@@ -1,0 +1,54 @@
+{
+  "name": "vuepress-plugin-smplayer",
+  "version": "vuepress-plugin-smplayer-version",
+  "description": "A media player plugin for vuepress",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/u2sb/vuepress-plugin-smplayer.git"
+  },
+  "keywords": [
+    "Vuepress",
+    "vuepress-plugin",
+    "Media",
+    "Meting",
+    "Aplayer",
+    "Dplayer",
+    "Bilibili",
+    "Xigua",
+    "西瓜",
+    "Video",
+    "Audio"
+  ],
+  "author": "MonoLogueChi",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/u2sb/vuepress-plugin-smplayer/issues"
+  },
+  "homepage": "https://github.com/u2sb/vuepress-plugin-smplayer",
+  "dependencies": {
+    "aplayer": "^1.10.1",
+    "artplayer": "^4.5.2",
+    "artplayer-plugin-danmuku": "^4.4.8",
+    "dashjs": "^4.4.0",
+    "deepmerge-ts": "^4.2.1",
+    "dplayer": "^1.26.0",
+    "hls.js": "^1.1.5",
+    "mpegts.js": "^1.6.10",
+    "shaka-player": "^4.1.1",
+    "webtorrent": "^1.8.24"
+  },
+  "devDependencies": {
+    "@vuepress/client": "^2.0.0-beta.45",
+    "@vuepress/core": "^2.0.0-beta.38",
+    "@vuepress/utils": "^2.0.0-beta.38",
+    "execa": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-json-editor": "^2.5.6",
+    "gulp-rimraf": "^1.0.0",
+    "vue": "^3.2.37"
+  }
+}
