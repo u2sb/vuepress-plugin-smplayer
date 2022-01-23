@@ -1,24 +1,14 @@
 <template>
-  <div>
+  <div class="mmedia">
     <iframe
+      ref="mmplayer"
       class="xgplayer"
       :src="src"
-      allowfullscreen="allowfullscreen"
+      :allowfullscreen="allowfullscreen"
       scrolling="no"
       frameborder="0"
-      sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"
+      :sandbox="sandbox"
     ></iframe>
-    <script>
-      var xgplayers = document.getElementsByClassName("xgplayer");
-      xgplayers.forEach(function (item, index, arr) {
-        item.style.height = item.scrollWidth * 0.7 + "px";
-      });
-      window.onresize = function () {
-        xgplayers.forEach(function (item, index, arr) {
-          item.style.height = item.scrollWidth * 0.7 + "px";
-        });
-      };
-    </script>
   </div>
 </template>
 
@@ -37,12 +27,22 @@ export default {
     },
     autoplay: {
       type: Boolean,
-      default: false,
+      default: XIGUA.autoplay,
       required: false,
     },
     startTime: {
       type: Number,
-      default: 0,
+      default: XIGUA.startTime,
+      required: false,
+    },
+    sandbox: {
+      type: String,
+      default: XIGUA.sandbox,
+      required: false,
+    },
+    allowfullscreen: {
+      type: String,
+      default: XIGUA.allowfullscreen,
       required: false,
     },
   },
@@ -51,6 +51,14 @@ export default {
       src: `//www.ixigua.com/iframe/${this.xid}?${
         this.id == null || thid.id == "" ? "" : "id=" + this.id + "&"
       }autoplay=${this.autoplay ? 1 : 0}&startTime=${this.startTime}`,
+    };
+  },
+  mounted() {
+    var mmplayer = this.$refs.mmplayer;
+    mmplayer.style.height = mmplayer.scrollWidth * 0.7 + "px";
+
+    window.onresize = function () {
+      mmplayer.style.height = mmplayer.scrollWidth * 0.7 + "px";
     };
   },
 };

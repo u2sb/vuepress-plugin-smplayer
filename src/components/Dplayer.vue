@@ -1,130 +1,102 @@
 <template>
-  <div class="dplayer">
-    <div ref="container" />
+  <div class="mmedia">
+    <div ref="mmediadplayer" />
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    src: {
-      type: String,
-      default: "",
+    dplayer: {
+      type: Object,
       required: true,
     },
-    screenshot: {
+    hls: {
       type: Boolean,
-      default: false,
+      default: DPLAYER.hls,
+      required: false,
     },
-    subtitle: {
-      type: String,
-      default: "",
-    },
-    danmuId: {
-      type: String,
-      default: "",
-    },
-    danmuApi: {
-      type: String,
-      default: "https://danmu.u2sb.com/api/danmu/dplayer/",
-    },
-    danmuAddition: {
-      type: String,
-      default: "",
-    },
-    danmuAddition1: {
-      type: String,
-      default: null,
-    },
-    danmuAddition2: {
-      type: String,
-      default: null,
-    },
-    autoplay: {
+    dash: {
       type: Boolean,
-      default: false,
+      default: DPLAYER.dash,
+      required: false,
     },
-    theme: {
-      type: String,
-      default: "#b7daff",
-    },
-    loop: {
+    shakaDash: {
       type: Boolean,
-      default: false,
+      default: DPLAYER.shakaDash,
+      required: false,
     },
-    hotkey: {
+    flv: {
       type: Boolean,
-      default: true,
+      default: DPLAYER.flv,
+      required: false,
     },
-    preload: {
-      type: String,
-      default: "auto",
-    },
-    logo: {
-      type: String,
-      default: "",
-    },
-    mutex: {
+    webtorrent: {
       type: Boolean,
-      default: true,
-    },
-    crossOrigin: {
-      type: Boolean,
-      default: false,
-    },
-    proxy: {
-      type: String,
-      default: "https://cors-anywhere.herokuapp.com",
+      default: DPLAYER.hls,
+      required: false,
     },
   },
-  data() {
-    return {
-      shouldShowPlayer: false,
-    };
+  mounted() {
+    this.initdplayer();
   },
+
   methods: {
-    function() {
-      Promise.all([
-        import(/* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"),
-      ]).then(([{ default: DPlayer }]) => {
-        // eslint-disable-next-line
-        let dp = new DPlayer({
-          container: this.$refs.container,
-          autoplay: this.autoplay,
-          theme: this.theme,
-          loop: this.loop,
-          screenshot: this.screenshot,
-          hotkey: this.hotkey,
-          preload: this.preload,
-          logo: this.logo,
-          video: {
-            url: this.crossOrigin ? `${this.proxy}/${this.src}` : this.src,
-          },
-          subtitle: this.subtitle
-            ? {
-                url: this.crossOrigin
-                  ? `${this.proxy}/${this.subtitle}`
-                  : this.subtitle,
-                color: "#000000",
-                fontSize: "25px",
-                bottom: "2%",
-              }
-            : null,
-          danmaku: {
-            id: this.danmuId,
-            api: this.danmuApi,
-            addition: [
-              this.danmuAddition,
-              this.danmuAddition1,
-              this.danmuAddition2,
-            ].filter(function (s) {
-              return s && s.trim();
-            }),
-            maximum: 10000,
-            bottom: "15%",
-          },
-          mutex: this.mutex,
+    initdplayer() {
+      if (this.hls) {
+        import(/* webpackChunkName: "hls.js" */ "hls.js/dist/hls.min.js").then(
+          ({ default: Hls }) => {
+            if (window) {
+              window.Hls = Hls;
+            }
+          }
+        );
+      }
+      if (this.dash) {
+        import(
+          /* webpackChunkName: "dashjs" */ "dashjs/dist/dash.all.min.js"
+        ).then(({ default: dashjs }) => {
+          if (window) {
+            window.dashjs = dashjs;
+          }
         });
+      }
+      if (this.shakaDash) {
+        import(
+          /* webpackChunkName: "shaka-player" */ "shaka-player/dist/shaka-player.compiled.js"
+        ).then(({ default: shaka }) => {
+          if (window) {
+            window.shaka = shaka;
+          }
+        });
+      }
+      if (this.flv) {
+        import(/* webpackChunkName: "flv.js" */ "flv.js/dist/flv.min.js").then(
+          ({ default: flvjs }) => {
+            if (window) {
+              window.flvjs = flvjs;
+            }
+          }
+        );
+      }
+      if (this.webtorrent) {
+        import(
+          /* webpackChunkName: "webtorrent" */ "webtorrent/webtorrent.min.js"
+        ).then(({ default: webtorrent }) => {
+          if (window) {
+            window.webtorrent = webtorrent;
+          }
+        });
+      }
+
+      import(
+        /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
+      ).then(({ default: DPlayer }) => {
+        let dp = new DPlayer(
+          Object.assign(this.dplayer, {
+            container: this.$refs.mmediadplayer,
+          })
+        );
         dp.on("fullscreen", function () {
           if (
             /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -139,19 +111,3 @@ export default {
   },
 };
 </script>
-
-<style lang="stylus" scoped>
-button.btn-show-player {
-  margin-top: 0.75rem;
-  border: 2px solid #4dba87;
-  background-color: #fff;
-  cursor: pointer;
-  outline: none;
-  border-radius: 33px;
-  padding: 5px 16px;
-  font-size: 13px;
-  font-weight: 700;
-  transition: background-color 0.3s ease;
-  color: #4dba87;
-}
-</style>

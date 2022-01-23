@@ -1,30 +1,19 @@
 <template>
   <div class="mmedia">
     <iframe
+      ref="mmplayer"
       class="bbplayer"
       :src="src"
-      allowfullscreen="allowfullscreen"
+      :allowfullscreen="allowfullscreen"
       scrolling="no"
       frameborder="0"
-      sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"
+      :sandbox="sandbox"
     ></iframe>
-    <script>
-      var bbplayers = document.getElementsByClassName("bbplayer");
-      bbplayers.forEach(function (item, index, arr) {
-        item.style.height = item.scrollWidth * 0.76 + "px";
-      });
-      window.onresize = function () {
-        bbplayers.forEach(function (item, index, arr) {
-          item.style.height = item.scrollWidth * 0.76 + "px";
-        });
-      };
-    </script>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Bilibili",
   props: {
     bvid: {
       type: String,
@@ -33,25 +22,36 @@ export default {
     },
     page: {
       type: Number,
-      default: 1,
-      required: false,
-    },
-    highQuality: {
-      type: Boolean,
-      default: false,
+      default: BILIBILI.page,
       required: false,
     },
     danmaku: {
       type: Boolean,
-      default: false,
+      default: BILIBILI.danmaku,
+      required: false,
+    },
+    sandbox: {
+      type: String,
+      default: BILIBILI.sandbox,
+      required: false,
+    },
+    allowfullscreen: {
+      type: String,
+      default: BILIBILI.allowfullscreen,
       required: false,
     },
   },
   data() {
     return {
-      src: `//player.bilibili.com/player.html?bvid=${this.bvid}&page=${
-        this.page
-      }&high_quality=${this.highQuality ? 1 : 0}&danmaku=${this.danmaku}`,
+      src: `//player.bilibili.com/player.html?bvid=${this.bvid}&page=${this.page}&danmaku=${this.danmaku}`,
+    };
+  },
+  mounted() {
+    var mmplayer = this.$refs.mmplayer;
+    mmplayer.style.height = mmplayer.scrollWidth * 0.76 + "px";
+
+    window.onresize = function () {
+      mmplayer.style.height = mmplayer.scrollWidth * 0.76 + "px";
     };
   },
 };

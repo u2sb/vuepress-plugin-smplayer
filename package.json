@@ -1,8 +1,8 @@
 {
   "name": "vuepress-plugin-mmedia",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A media plugin for vuepress",
-  "main": "src/main.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,17 +27,17 @@
   "bugs": {
     "url": "https://github.com/u2sb/vuepress-plugin-mmedia/issues"
   },
-  "homepage": "https://github.com/u2sb/vuepress-plugin-mmedia#readme",
+  "homepage": "https://github.com/u2sb/vuepress-plugin-mmedia",
   "dependencies": {
-    "@vuepress/types": "1.9.7",
+    "deepmerge": "^4.2.2",
     "aplayer": "^1.10.1",
-    "artplayer": "^4.2.3",
+    "artplayer": "^4.2.6",
     "dashjs": "^4.2.1",
     "dplayer": "^1.26.0",
     "flv.js": "^1.6.2",
-    "hls.js": "^1.1.2",
+    "hls.js": "^1.1.3",
     "meting": "^2.0.1",
     "shaka-player": "^3.3.0",
-    "webtorrent": "^1.5.9"
+    "webtorrent": "^1.7.1"
   }
 }
