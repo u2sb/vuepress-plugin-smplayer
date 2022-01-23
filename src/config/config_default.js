@@ -1,17 +1,9 @@
 export default {
-  aplayer: {
-    lrcType: 3,
-  },
+  aplayer: {},
   meting: {
     api: "https://api.i-meto.com/meting/api",
   },
-  dplayer: {
-    hls: false,
-    dash: false,
-    shakaDash: false,
-    flv: false,
-    webtorrent: false,
-  },
+  dplayer: {},
   artplayer: {
     autoSize: !0,
     autoMini: !0,

@@ -47,7 +47,7 @@ export default {
     };
   },
   mounted() {
-    var mmplayer = this.$refs.mmplayer;
+    let mmplayer = this.$refs.mmplayer;
     mmplayer.style.height = mmplayer.scrollWidth * 0.76 + "px";
 
     window.onresize = function () {
