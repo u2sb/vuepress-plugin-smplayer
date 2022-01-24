@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   aplayer: {},
   meting: {
     api: "https://api.i-meto.com/meting/api",

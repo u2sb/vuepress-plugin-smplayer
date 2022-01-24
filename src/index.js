@@ -1,6 +1,6 @@
-import { resolve } from "path";
-import merge from "deepmerge";
-import config_default from "./config/config_default";
+const { resolve } = require("path");
+const merge = require("deepmerge");
+const config_default = require("./config/config_default");
 
 module.exports = (opts, context) => ({
   define() {
