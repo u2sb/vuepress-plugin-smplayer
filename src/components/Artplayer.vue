@@ -94,14 +94,14 @@ export default {
         });
       }
 
-      import(/* webpackChunkName: "artplayer" */ "artplayer").then(
-        ({ default: Artplayer }) => {
-          this.player = new Artplayer({
-            container: this.$refs.mmplayer,
-            ...this.src,
-          });
-        }
-      );
+      import(
+        /* webpackChunkName: "artplayer" */ "artplayer/dist/artplayer.js"
+      ).then(({ default: Artplayer }) => {
+        this.player = new Artplayer({
+          container: this.$refs.mmplayer,
+          ...this.src,
+        });
+      });
     },
 
     DestroyPlayer() {

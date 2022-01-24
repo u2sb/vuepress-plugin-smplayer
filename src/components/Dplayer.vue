@@ -48,7 +48,7 @@ export default {
   methods: {
     InitPlayer() {
       if (this.hls) {
-        import(/* webpackChunkName: "hls" */ "hls.js").then(
+        import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
           ({ default: Hls }) => {
             if (window) {
               window.Hls = Hls;
@@ -57,25 +57,25 @@ export default {
         );
       }
       if (this.dash) {
-        import(/* webpackChunkName: "dashjs" */ "dashjs").then(
-          ({ default: dashjs }) => {
-            if (window) {
-              window.dashjs = dashjs;
-            }
+        import(
+          /* webpackChunkName: "dashjs" */ "dashjs/dist/dash.all.min.js"
+        ).then(({ default: dashjs }) => {
+          if (window) {
+            window.dashjs = dashjs;
           }
-        );
+        });
       }
       if (this.shakaDash) {
-        import(/* webpackChunkName: "shaka-player" */ "shaka-player").then(
-          ({ default: shaka }) => {
-            if (window) {
-              window.shaka = shaka;
-            }
+        import(
+          /* webpackChunkName: "shaka-player" */ "shaka-player/dist/shaka-player.compiled.js"
+        ).then(({ default: shaka }) => {
+          if (window) {
+            window.shaka = shaka;
           }
-        );
+        });
       }
       if (this.flv) {
-        import(/* webpackChunkName: "flv" */ "flv.js").then(
+        import(/* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js").then(
           ({ default: flvjs }) => {
             if (window) {
               window.flvjs = flvjs;
@@ -84,33 +84,33 @@ export default {
         );
       }
       if (this.webtorrent) {
-        import(/* webpackChunkName: "webtorrent" */ "webtorrent").then(
-          ({ default: webtorrent }) => {
-            if (window) {
-              window.webtorrent = webtorrent;
-            }
+        import(
+          /* webpackChunkName: "webtorrent" */ "webtorrent/webtorrent.min.js"
+        ).then(({ default: webtorrent }) => {
+          if (window) {
+            window.webtorrent = webtorrent;
           }
-        );
+        });
       }
 
-      import(/* webpackChunkName: "dplayer" */ "dplayer").then(
-        ({ default: DPlayer }) => {
-          this.player = new DPlayer({
-            container: this.$refs.mmplayer,
-            ...this.src,
-          });
+      import(
+        /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
+      ).then(({ default: DPlayer }) => {
+        this.player = new DPlayer({
+          container: this.$refs.mmplayer,
+          ...this.src,
+        });
 
-          this.player.on("fullscreen", function () {
-            if (
-              /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-                navigator.userAgent
-              )
-            ) {
-              screen.orientation.lock("landscape");
-            }
-          });
-        }
-      );
+        this.player.on("fullscreen", function () {
+          if (
+            /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+              navigator.userAgent
+            )
+          ) {
+            screen.orientation.lock("landscape");
+          }
+        });
+      });
     },
 
     DestroyPlayer() {
