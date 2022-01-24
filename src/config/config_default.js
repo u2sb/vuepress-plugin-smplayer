@@ -3,13 +3,14 @@ module.exports = {
   meting: {
     api: "https://api.i-meto.com/meting/api",
   },
-  dplayer: {},
-  artplayer: {
-    autoSize: !0,
-    autoMini: !0,
-    fullscreen: !0,
-    fullscreenWeb: !0,
+  dplayer: {
+    hls: false,
+    dash: false,
+    shakaDash: false,
+    flv: false,
+    webtorrent: false,
   },
+  artplayer: {},
   bilibili: {
     page: 1,
     danmaku: !0,

@@ -13,21 +13,29 @@ export default {
     },
   },
   mounted() {
-    this.initplayer();
+    this.InitPlayer();
   },
 
+  beforeDestroy() {
+    this.DestroyPlayer();
+  },
   methods: {
-    initplayer() {
+    InitPlayer() {
       Promise.all([
         import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
-        import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"),
+        import(
+          /* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"
+        ),
       ]).then(([{ default: APlayer }]) => {
-        let ap = new APlayer(
-          Object.assign(this.src, {
-            container: this.$refs.mmplayer,
-          })
-        );
+        this.player = new APlayer({
+          container: this.$refs.mmplayer,
+          ...this.src,
+        });
       });
+    },
+
+    DestroyPlayer() {
+      this.player.destroy();
     },
   },
 };

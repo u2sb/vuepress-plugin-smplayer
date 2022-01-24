@@ -37,13 +37,17 @@ export default {
       required: false,
     },
   },
+
   mounted() {
-    this.initplayer();
-    this.changeWidth();
+    this.InitPlayer();
+    this.ChangeWidth();
   },
 
+  beforeDestroy() {
+    this.DestroyPlayer();
+  },
   methods: {
-    initplayer() {
+    InitPlayer() {
       if (this.hls) {
         import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
           ({ default: Hls }) => {
@@ -92,16 +96,19 @@ export default {
 
       import(/* webpackChunkName: "artplayer" */ "artplayer").then(
         ({ default: Artplayer }) => {
-          let art = new Artplayer(
-            Object.assign(this.src, {
-              container: this.$refs.mmplayer,
-            })
-          );
+          this.player = new Artplayer({
+            container: this.$refs.mmplayer,
+            ...this.src,
+          });
         }
       );
     },
 
-    changeWidth() {
+    DestroyPlayer() {
+      this.player.destroy();
+    },
+
+    ChangeWidth() {
       let mmplayer = this.$refs.mmplayer;
       mmplayer.style.height = (mmplayer.scrollWidth * 9) / 16 + "px";
 

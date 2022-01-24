@@ -38,11 +38,15 @@ export default {
     },
   },
   mounted() {
-    this.initplayer();
+    this.InitPlayer();
+  },
+
+  beforeDestroy() {
+    this.DestroyPlayer();
   },
 
   methods: {
-    initplayer() {
+    InitPlayer() {
       if (this.hls) {
         import(/* webpackChunkName: "hls" */ "hls.js").then(
           ({ default: Hls }) => {
@@ -91,12 +95,12 @@ export default {
 
       import(/* webpackChunkName: "dplayer" */ "dplayer").then(
         ({ default: DPlayer }) => {
-          let dp = new DPlayer(
-            Object.assign(this.src, {
-              container: this.$refs.mmplayer,
-            })
-          );
-          dp.on("fullscreen", function () {
+          this.player = new DPlayer({
+            container: this.$refs.mmplayer,
+            ...this.src,
+          });
+
+          this.player.on("fullscreen", function () {
             if (
               /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
                 navigator.userAgent
@@ -107,6 +111,10 @@ export default {
           });
         }
       );
+    },
+
+    DestroyPlayer() {
+      this.player.destroy();
     },
   },
 };

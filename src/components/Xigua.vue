@@ -55,10 +55,10 @@ export default {
   },
   mounted() {
     let mmplayer = this.$refs.mmplayer;
-    mmplayer.style.height = mmplayer.scrollWidth * 0.7 + "px";
+    mmplayer.style.height = (mmplayer.scrollWidth * 9) / 16 + "px";
 
     window.onresize = function () {
-      mmplayer.style.height = mmplayer.scrollWidth * 0.7 + "px";
+      mmplayer.style.height = (mmplayer.scrollWidth * 9) / 16 + "px";
     };
   },
 };
