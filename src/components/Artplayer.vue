@@ -13,33 +13,32 @@ export default {
     },
     hls: {
       type: Boolean,
-      default: DPLAYER.hls,
+      default: ARTPLAYER.hls,
       required: false,
     },
     dash: {
       type: Boolean,
-      default: DPLAYER.dash,
+      default: ARTPLAYER.dash,
       required: false,
     },
     shakaDash: {
       type: Boolean,
-      default: DPLAYER.shakaDash,
+      default: ARTPLAYER.shakaDash,
       required: false,
     },
     flv: {
       type: Boolean,
-      default: DPLAYER.flv,
+      default: ARTPLAYER.flv,
       required: false,
     },
     webtorrent: {
       type: Boolean,
-      default: DPLAYER.webtorrent,
+      default: ARTPLAYER.webtorrent,
       required: false,
     },
     danmuku: {
-      type: Boolean,
-      default: DPLAYER.danmuku,
-      required: false,
+      type: Object,
+      default: ARTPLAYER.danmuku,
     },
   },
 
@@ -105,6 +104,9 @@ export default {
           if (window) {
             window.artplayerPluginDanmuku = artplayerPluginDanmuku;
           }
+          Object.assign(this.src, {
+            plugins: [artplayerPluginDanmuku(this.danmuku)],
+          });
         });
       }
 

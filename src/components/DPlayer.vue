@@ -33,7 +33,7 @@ export default {
     },
     webtorrent: {
       type: Boolean,
-      default: DPLAYER.hls,
+      default: DPLAYER.webtorrent,
       required: false,
     },
   },

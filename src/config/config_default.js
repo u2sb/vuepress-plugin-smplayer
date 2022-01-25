@@ -10,7 +10,13 @@ module.exports = {
     flv: false,
     webtorrent: false,
   },
-  artplayer: {},
+  artplayer: {
+    hls: false,
+    dash: false,
+    shakaDash: false,
+    flv: false,
+    webtorrent: false,
+  },
   bilibili: {
     page: 1,
     danmaku: !0,
