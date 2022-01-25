@@ -101,9 +101,9 @@ export default {
         import(
           /* webpackChunkName: "artplayer-plugin-danmuku" */ "artplayer-plugin-danmuku/dist/artplayer-plugin-danmuku.js"
         ).then(({ default: artplayerPluginDanmuku }) => {
-          if (window) {
-            window.artplayerPluginDanmuku = artplayerPluginDanmuku;
-          }
+          // if (window) {
+          //   window.artplayerPluginDanmuku = artplayerPluginDanmuku;
+          // }
           Object.assign(this.src, {
             plugins: [artplayerPluginDanmuku(this.danmuku)],
           });
