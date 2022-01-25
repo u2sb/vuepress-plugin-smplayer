@@ -33,7 +33,12 @@ export default {
     },
     webtorrent: {
       type: Boolean,
-      default: DPLAYER.hls,
+      default: DPLAYER.webtorrent,
+      required: false,
+    },
+    danmuku: {
+      type: Boolean,
+      default: DPLAYER.danmuku,
       required: false,
     },
   },
@@ -90,6 +95,15 @@ export default {
         ).then(({ default: webtorrent }) => {
           if (window) {
             window.webtorrent = webtorrent;
+          }
+        });
+      }
+      if (this.danmuku) {
+        import(
+          /* webpackChunkName: "artplayer-plugin-danmuku" */ "artplayer-plugin-danmuku/dist/artplayer-plugin-danmuku.js"
+        ).then(({ default: artplayerPluginDanmuku }) => {
+          if (window) {
+            window.artplayerPluginDanmuku = artplayerPluginDanmuku;
           }
         });
       }
