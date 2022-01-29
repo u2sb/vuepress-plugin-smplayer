@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import merge from "deepmerge";
+
 export default {
   props: {
     src: {
@@ -101,9 +103,6 @@ export default {
         import(
           /* webpackChunkName: "artplayer-plugin-danmuku" */ "artplayer-plugin-danmuku/dist/artplayer-plugin-danmuku.js"
         ).then(({ default: artplayerPluginDanmuku }) => {
-          // if (window) {
-          //   window.artplayerPluginDanmuku = artplayerPluginDanmuku;
-          // }
           Object.assign(this.src, {
             plugins: [artplayerPluginDanmuku(this.danmuku)],
           });
@@ -113,9 +112,10 @@ export default {
       import(
         /* webpackChunkName: "artplayer" */ "artplayer/dist/artplayer.js"
       ).then(({ default: Artplayer }) => {
+        let src = merge(ARTPLAYER.src, this.src);
         this.player = new Artplayer({
           container: this.$refs.mmplayer,
-          ...this.src,
+          ...src,
         });
       });
     },

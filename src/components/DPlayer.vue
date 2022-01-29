@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import merge from "deepmerge";
+
 export default {
   props: {
     src: {
@@ -96,9 +98,10 @@ export default {
       import(
         /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
       ).then(({ default: DPlayer }) => {
+        let src = merge(DPLAYER.src, this.src);
         this.player = new DPlayer({
           container: this.$refs.mmplayer,
-          ...this.src,
+          ...src,
         });
 
         this.player.on("fullscreen", function () {

@@ -1,5 +1,9 @@
 module.exports = {
-  aplayer: {},
+  aplayer: {
+    src: {
+      lrcType: 3,
+    },
+  },
   meting: {
     api: "https://api.i-meto.com/meting/api",
   },
@@ -9,6 +13,7 @@ module.exports = {
     shakaDash: false,
     flv: false,
     webtorrent: false,
+    src: {},
   },
   artplayer: {
     hls: false,
@@ -16,6 +21,11 @@ module.exports = {
     shakaDash: false,
     flv: false,
     webtorrent: false,
+    src: {
+      fullscreen: true,
+      autoSize: true,
+      setting: true,
+    },
   },
   bilibili: {
     page: 1,

@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import merge from "deepmerge";
+
 export default {
   props: {
     src: {
@@ -14,6 +16,12 @@ export default {
   },
   mounted() {
     this.InitPlayer();
+    this.$nextTick(() => {
+      if (this.src.fixed) {
+        const app = document.querySelector("#app");
+        app.append(this.$el);
+      }
+    });
   },
 
   beforeDestroy() {
@@ -27,15 +35,18 @@ export default {
           /* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"
         ),
       ]).then(([{ default: APlayer }]) => {
+        let src = merge(APLAYER.src, this.src);
         this.player = new APlayer({
           container: this.$refs.mmplayer,
-          ...this.src,
+          ...src,
         });
       });
     },
 
     DestroyPlayer() {
-      this.player.destroy();
+      if (!this.src.fixed) {
+        this.player.destroy();
+      }
     },
   },
 };
