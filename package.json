@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-mmedia",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "A media plugin for vuepress",
   "main": "src/index.js",
   "files": [
@@ -37,7 +37,6 @@
     "dplayer": "^1.26.0",
     "flv.js": "^1.6.2",
     "hls.js": "^1.1.3",
-    "meting": "^2.0.1",
     "shaka-player": "^3.3.0",
     "webtorrent": "^1.7.1"
   }

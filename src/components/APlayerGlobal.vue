@@ -3,8 +3,6 @@
 </template>
 
 <script>
-import APlayer from "./APlayer.vue";
-
 export default {
   props: {
     src: {
