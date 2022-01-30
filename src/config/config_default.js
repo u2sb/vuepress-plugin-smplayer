@@ -1,5 +1,6 @@
 module.exports = {
   aplayer: {
+    hls: false,
     src: {
       lrcType: 3,
     },

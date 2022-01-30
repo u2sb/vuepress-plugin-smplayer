@@ -13,6 +13,11 @@ export default {
       type: Object,
       required: true,
     },
+    hls: {
+      type: Boolean,
+      default: DPLAYER.hls,
+      required: false,
+    },
   },
   mounted() {
     this.InitPlayer();
@@ -29,6 +34,15 @@ export default {
   },
   methods: {
     InitPlayer() {
+      if (this.hls) {
+        import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
+          ({ default: Hls }) => {
+            if (window) {
+              window.Hls = Hls;
+            }
+          }
+        );
+      }
       Promise.all([
         import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
         import(
