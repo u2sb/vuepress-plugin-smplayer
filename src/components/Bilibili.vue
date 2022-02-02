@@ -48,10 +48,10 @@ export default {
   },
   mounted() {
     let mmplayer = this.$refs.mmplayer;
-    mmplayer.style.height = (mmplayer.scrollWidth * 9) / 16 + 30 + "px";
+    mmplayer.style.height = (mmplayer.scrollWidth * 9) / 16 + 50 + "px";
 
     window.onresize = function () {
-      mmplayer.style.height = (mmplayer.scrollWidth * 9) / 16 + 30 + "px";
+      mmplayer.style.height = (mmplayer.scrollWidth * 9) / 16 + 50 + "px";
     };
   },
 };

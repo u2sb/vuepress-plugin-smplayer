@@ -49,49 +49,39 @@ export default {
 
   methods: {
     InitPlayer() {
-      if (this.hls) {
+      if (this.hls && window && !window.Hls) {
         import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
           ({ default: Hls }) => {
-            if (window) {
-              window.Hls = Hls;
-            }
+            window.Hls = Hls;
           }
         );
       }
-      if (this.dash) {
+      if (this.dash && window && !window.dashjs) {
         import(
           /* webpackChunkName: "dashjs" */ "dashjs/dist/dash.all.min.js"
         ).then(({ default: dashjs }) => {
-          if (window) {
-            window.dashjs = dashjs;
-          }
+          window.dashjs = dashjs;
         });
       }
-      if (this.shakaDash) {
+      if (this.shakaDash && window && !window.shaka) {
         import(
           /* webpackChunkName: "shaka-player" */ "shaka-player/dist/shaka-player.compiled.js"
         ).then(({ default: shaka }) => {
-          if (window) {
-            window.shaka = shaka;
-          }
+          window.shaka = shaka;
         });
       }
-      if (this.flv) {
+      if (this.flv && window && !window.flvjs) {
         import(/* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js").then(
           ({ default: flvjs }) => {
-            if (window) {
-              window.flvjs = flvjs;
-            }
+            window.flvjs = flvjs;
           }
         );
       }
-      if (this.webtorrent) {
+      if (this.webtorrent && window && !window.webtorrent) {
         import(
           /* webpackChunkName: "webtorrent" */ "webtorrent/webtorrent.min.js"
         ).then(({ default: webtorrent }) => {
-          if (window) {
-            window.webtorrent = webtorrent;
-          }
+          window.webtorrent = webtorrent;
         });
       }
 

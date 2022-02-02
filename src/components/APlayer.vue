@@ -34,15 +34,14 @@ export default {
   },
   methods: {
     InitPlayer() {
-      if (this.hls) {
+      if (this.hls && window && !window.Hls) {
         import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
           ({ default: Hls }) => {
-            if (window) {
-              window.Hls = Hls;
-            }
+            window.Hls = Hls;
           }
         );
       }
+
       Promise.all([
         import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
         import(
@@ -58,7 +57,7 @@ export default {
     },
 
     DestroyPlayer() {
-      if (!this.src.fixed) {
+      if (this.player && !this.src.fixed) {
         this.player.destroy();
       }
     },
