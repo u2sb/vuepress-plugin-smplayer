@@ -37,6 +37,7 @@ module.exports = {
     shakaDash: false,
     flv: false,
     webtorrent: false,
+    danmuku: false,
     src: {
       fullscreen: true,
       autoSize: true,
