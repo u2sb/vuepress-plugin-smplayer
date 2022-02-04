@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-mmedia",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A media plugin for vuepress",
   "main": "src/index.js",
   "files": [

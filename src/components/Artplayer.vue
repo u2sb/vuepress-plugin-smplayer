@@ -131,9 +131,14 @@ export default {
   },
   data() {
     return {
-      isMobile: /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      ),
+      isMobile: () => {
+        if (navigator) {
+          return /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+          );
+        }
+        return false;
+      },
     };
   },
 };
