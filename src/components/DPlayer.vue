@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import DPlayer from "dplayer";
 import merge from "deepmerge";
 
 export default {
@@ -25,20 +24,24 @@ export default {
 
   methods: {
     InitPlayer() {
-      let src = merge(DPLAYER.src, this.src);
-      this.player = new DPlayer({
-        container: this.$refs.mmplayer,
-        ...src,
-      });
+      import(
+        /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
+      ).then(({ default: DPlayer }) => {
+        let src = merge(DPLAYER.src, this.src);
+        this.player = new DPlayer({
+          container: this.$refs.mmplayer,
+          ...src,
+        });
 
-      this.player.on("fullscreen", function () {
-        if (
-          /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent
-          )
-        ) {
-          screen.orientation.lock("landscape");
-        }
+        this.player.on("fullscreen", function () {
+          if (
+            /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+              navigator.userAgent
+            )
+          ) {
+            screen.orientation.lock("landscape");
+          }
+        });
       });
     },
 

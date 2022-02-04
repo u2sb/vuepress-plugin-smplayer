@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import Artplayer from "artplayer";
 import merge from "deepmerge";
 
 export default {
@@ -26,10 +25,14 @@ export default {
   },
   methods: {
     InitPlayer() {
-      let src = merge(ARTPLAYER.src, this.src);
-      this.player = new Artplayer({
-        container: this.$refs.mmplayer,
-        ...src,
+      import(
+        /* webpackChunkName: "artplayer" */ "artplayer/dist/artplayer.js"
+      ).then(({ default: Artplayer }) => {
+        let src = merge(ARTPLAYER.src, this.src);
+        this.player = new Artplayer({
+          container: this.$refs.mmplayer,
+          ...src,
+        });
       });
     },
 

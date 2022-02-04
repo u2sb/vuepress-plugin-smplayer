@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import APlayer from "aplayer";
-import("aplayer/dist/APlayer.min.css");
 import merge from "deepmerge";
 
 export default {
@@ -31,10 +29,17 @@ export default {
   },
   methods: {
     InitPlayer() {
-      let src = merge(APLAYER.src, this.src);
-      this.player = new APlayer({
-        container: this.$refs.mmplayer,
-        ...src,
+      Promise.all([
+        import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
+        import(
+          /* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"
+        ),
+      ]).then(([{ default: APlayer }]) => {
+        let src = merge(APLAYER.src, this.src);
+        this.player = new APlayer({
+          container: this.$refs.mmplayer,
+          ...src,
+        });
       });
     },
 
