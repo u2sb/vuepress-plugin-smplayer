@@ -15,7 +15,7 @@ export default {
     },
     hls: {
       type: Boolean,
-      default: DPLAYER.hls,
+      default: APLAYER.hls,
       required: false,
     },
   },
