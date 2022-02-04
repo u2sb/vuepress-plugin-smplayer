@@ -1,12 +1,6 @@
 <template>
   <div class="mmedia">
-    <video
-      v-if="isMobile"
-      class="artplayer-app"
-      :src="src.url"
-      controls="controls"
-    ></video>
-    <div v-else ref="mmplayer" class="artplayer-app" />
+    <div ref="mmplayer" class="artplayer-app" />
   </div>
 </template>
 
@@ -128,18 +122,6 @@ export default {
         mmplayer.style.height = (mmplayer.scrollWidth * 9) / 16 + "px";
       };
     },
-  },
-  data() {
-    return {
-      isMobile: () => {
-        if (navigator) {
-          return /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent
-          );
-        }
-        return false;
-      },
-    };
   },
 };
 </script>
