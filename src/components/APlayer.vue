@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import APlayer from "aplayer";
+import("aplayer/dist/APlayer.min.css");
 import merge from "deepmerge";
 
 export default {
@@ -12,11 +14,6 @@ export default {
     src: {
       type: Object,
       required: true,
-    },
-    hls: {
-      type: Boolean,
-      default: APLAYER.hls,
-      required: false,
     },
   },
   mounted() {
@@ -34,25 +31,10 @@ export default {
   },
   methods: {
     InitPlayer() {
-      if (this.hls && window && !window.Hls) {
-        import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
-          ({ default: Hls }) => {
-            window.Hls = Hls;
-          }
-        );
-      }
-
-      Promise.all([
-        import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
-        import(
-          /* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"
-        ),
-      ]).then(([{ default: APlayer }]) => {
-        let src = merge(APLAYER.src, this.src);
-        this.player = new APlayer({
-          container: this.$refs.mmplayer,
-          ...src,
-        });
+      let src = merge(APLAYER.src, this.src);
+      this.player = new APlayer({
+        container: this.$refs.mmplayer,
+        ...src,
       });
     },
 

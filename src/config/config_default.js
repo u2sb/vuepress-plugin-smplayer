@@ -1,6 +1,5 @@
 module.exports = {
   aplayer: {
-    hls: false,
     src: {
       lrcType: 3,
     },
@@ -24,20 +23,9 @@ module.exports = {
     storageName: "vuepress-plugin-mmedia",
   },
   dplayer: {
-    hls: false,
-    dash: false,
-    shakaDash: false,
-    flv: false,
-    webtorrent: false,
     src: {},
   },
   artplayer: {
-    hls: false,
-    dash: false,
-    shakaDash: false,
-    flv: false,
-    webtorrent: false,
-    danmuku: false,
     src: {
       fullscreen: true,
       autoSize: true,
