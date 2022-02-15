@@ -160,7 +160,7 @@ export default {
                 /* webpackChunkName: "dash" */ "dashjs/dist/dash.all.min.js"
               ).then(({ default: dashjs }) => {
                 const dashPlayer = dashjs.MediaPlayer().create();
-                dashPlayer.initialize(video, url, true);
+                dashPlayer.initialize(video, url, false);
                 player.on("destroy", function () {
                   dashPlayer.reset();
                 });
