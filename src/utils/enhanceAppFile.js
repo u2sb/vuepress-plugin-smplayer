@@ -1,10 +1,10 @@
-import Bilibili from "../components/Bilibili.vue";
-import Xigua from "../components/Xigua.vue";
-import DPlayer from "../components/DPlayer.vue";
-import APlayer from "../components/APlayer.vue";
-import APlayerGlobal from "../components/APlayerGlobal.vue";
-import Artplayer from "../components/Artplayer.vue";
-import Meting from "../components/Meting.vue";
+import Bilibili from "../components/Bilibili/Bilibili.vue";
+import Xigua from "../components/Xigua/Xigua.vue";
+import DPlayer from "../components/Dplayer/DPlayer.vue";
+import APlayer from "../components/Aplayer/APlayer.vue";
+import APlayerGlobal from "../components/Aplayer/APlayerGlobal.vue";
+import Artplayer from "../components/Artplayer/Artplayer.vue";
+import Meting from "../components/Meting/Meting.vue";
 
 export default ({ Vue }) => {
   Vue.component("Bilibili", Bilibili);

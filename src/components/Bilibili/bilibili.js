@@ -1,18 +1,3 @@
-<template>
-  <div class="mmedia">
-    <iframe
-      ref="mmplayer"
-      class="bbplayer"
-      :src="src"
-      :allowfullscreen="allowfullscreen"
-      scrolling="no"
-      frameborder="0"
-      :sandbox="sandbox"
-    ></iframe>
-  </div>
-</template>
-
-<script>
 export default {
   props: {
     bvid: {
@@ -55,10 +40,3 @@ export default {
     };
   },
 };
-</script>
-
-<style lang="stylus" scoped>
-.bbplayer {
-  width: 100%;
-}
-</style>
