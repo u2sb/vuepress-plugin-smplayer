@@ -5,6 +5,7 @@ import APlayer from "../components/Aplayer/APlayer.vue";
 import APlayerGlobal from "../components/Aplayer/APlayerGlobal.vue";
 import Artplayer from "../components/Artplayer/Artplayer.vue";
 import Meting from "../components/Meting/Meting.vue";
+import Xgplayer from "../components/Xgplayer/Xgplayer.vue";
 
 export default ({ Vue }) => {
   Vue.component("Bilibili", Bilibili);
@@ -15,4 +16,5 @@ export default ({ Vue }) => {
   Vue.component("Artplayer", Artplayer);
   Vue.component("Meting", Meting);
   Vue.component("meting-js", Meting);
+  Vue.component("Xgplayer", Xgplayer);
 };

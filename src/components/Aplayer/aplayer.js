@@ -23,10 +23,8 @@ export default {
   methods: {
     InitPlayer() {
       Promise.all([
-        import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
-        import(
-          /* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"
-        ),
+        import("aplayer/dist/APlayer.min.js"),
+        import("aplayer/dist/APlayer.min.css"),
       ]).then(([{ default: APlayer }]) => {
         let src = merge(APLAYER.src, this.src);
         if (src.customAudioType == undefined) {
@@ -53,9 +51,7 @@ export default {
         if (useHls) {
           Object.assign(src.customAudioType, {
             mmediaAplayerHls: function (audioElement, audio, player) {
-              import(
-                /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
-              ).then(({ default: Hls }) => {
+              import("hls.js/dist/hls.min.js").then(({ default: Hls }) => {
                 if (
                   audioElement.canPlayType("application/x-mpegURL") ||
                   audioElement.canPlayType("application/vnd.apple.mpegURL")

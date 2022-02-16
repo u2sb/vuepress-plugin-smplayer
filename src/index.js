@@ -12,6 +12,7 @@ module.exports = (opts, context) => ({
       ARTPLAYER: config.artplayer,
       BILIBILI: config.bilibili,
       XIGUA: config.xigua,
+      XGPLAYER: config.xgplayer,
     };
   },
   enhanceAppFiles: resolve(__dirname, "utils/", "enhanceAppFile.js"),

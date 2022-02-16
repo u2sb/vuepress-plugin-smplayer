@@ -49,4 +49,10 @@ module.exports = {
     max_width: "850px",
     margin: "auto",
   },
+  xgplayer: {
+    src: {
+      fluid: true,
+      fitVideoSize: "auto",
+    },
+  },
 };

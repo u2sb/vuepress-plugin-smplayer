@@ -17,9 +17,7 @@ export default {
 
   methods: {
     InitPlayer() {
-      import(
-        /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
-      ).then(({ default: DPlayer }) => {
+      import("dplayer/dist/DPlayer.min.js").then(({ default: DPlayer }) => {
         let src = merge(DPLAYER.src, this.src);
 
         let useHls = false;
@@ -118,9 +116,7 @@ export default {
         if (useHls) {
           Object.assign(src.video.customType, {
             mmediaDplayerHls: function (video, player) {
-              import(
-                /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
-              ).then(({ default: Hls }) => {
+              import("hls.js/dist/hls.min.js").then(({ default: Hls }) => {
                 const hls = new Hls();
                 hls.loadSource(video.src);
                 hls.attachMedia(video);
@@ -135,9 +131,7 @@ export default {
         if (useFlv) {
           Object.assign(src.video.customType, {
             mmediaDplayerFlv: function (video, player) {
-              import(
-                /* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js"
-              ).then(({ default: flvjs }) => {
+              import("flv.js/dist/flv.min.js").then(({ default: flvjs }) => {
                 const flvPlayer = flvjs.createPlayer({
                   type: "flv",
                   url: video.src,
@@ -155,15 +149,15 @@ export default {
         if (useDash) {
           Object.assign(src.video.customType, {
             mmediaDplayerDash: function (video, player) {
-              import(
-                /* webpackChunkName: "dash" */ "dashjs/dist/dash.all.min.js"
-              ).then(({ default: dashjs }) => {
-                const dashPlayer = dashjs.MediaPlayer().create();
-                dashPlayer.initialize(video, video.src, false);
-                player.on("destroy", function () {
-                  dashPlayer.reset();
-                });
-              });
+              import("dashjs/dist/dash.all.min.js").then(
+                ({ default: dashjs }) => {
+                  const dashPlayer = dashjs.MediaPlayer().create();
+                  dashPlayer.initialize(video, video.src, false);
+                  player.on("destroy", function () {
+                    dashPlayer.reset();
+                  });
+                }
+              );
             },
           });
         }
@@ -171,16 +165,16 @@ export default {
         if (useShakaDash) {
           Object.assign(src.video.customType, {
             mmediaDplayerShakaDash: function (video, player) {
-              import(
-                /* webpackChunkName: "shaka" */ "shaka-player/dist/shaka-player.compiled.js"
-              ).then(({ default: shaka }) => {
-                const shakaPlayer = new shaka.Player(video);
-                shakaPlayer.load(video.src).then(function () {
-                  player.on("destroy", function () {
-                    shakaPlayer.destroy();
+              import("shaka-player/dist/shaka-player.compiled.js").then(
+                ({ default: shaka }) => {
+                  const shakaPlayer = new shaka.Player(video);
+                  shakaPlayer.load(video.src).then(function () {
+                    player.on("destroy", function () {
+                      shakaPlayer.destroy();
+                    });
                   });
-                });
-              });
+                }
+              );
             },
           });
         }
@@ -188,20 +182,20 @@ export default {
         if (useWebtorrent) {
           Object.assign(src.video.customType, {
             mmediaDplayerWebtorrent: function (video, player) {
-              import(
-                /* webpackChunkName: "webtorrent" */ "webtorrent/webtorrent.min.js"
-              ).then(({ default: WebTorrent }) => {
-                const client = new WebTorrent();
-                client.add(video.src, function (torrent) {
-                  const file = torrent.files.find(function (file) {
-                    return file.name.endsWith(".mp4");
+              import("webtorrent/webtorrent.min.js").then(
+                ({ default: WebTorrent }) => {
+                  const client = new WebTorrent();
+                  client.add(video.src, function (torrent) {
+                    const file = torrent.files.find(function (file) {
+                      return file.name.endsWith(".mp4");
+                    });
+                    file.renderTo(video);
+                    player.on("destroy", function () {
+                      client.destroy();
+                    });
                   });
-                  file.renderTo(video);
-                  player.on("destroy", function () {
-                    client.destroy();
-                  });
-                });
-              });
+                }
+              );
             },
           });
         }
