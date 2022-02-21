@@ -4,9 +4,23 @@
 
 文档&DEMO: [https://www.u2sb.com/open-sw/](https://www.u2sb.com/open-sw/#vuepress-plugin-mmedia)
 
+包括但不仅限于以下播放器：
+
+- [x] [Aplayer](https://github.com/DIYgod/APlayer)
+- [x] [MetingJS](https://github.com/metowolf/MetingJS)
+- [x] [Dplayer](https://github.com/DIYgod/DPlayer)
+- [x] [哔哩哔哩](https://www.bilibili.com/)
+- [x] [西瓜视频](https://www.ixigua.com/)
+- [ ] [YouTube]()
+- [x] [ArtPlayer](https://github.com/zhw2590582/ArtPlayer)
+- [x] [xgplayer](https://github.com/bytedance/xgplayer)
+
 ## 感谢
+
+本项目依赖以下项目
 
 - [Aplayer](https://github.com/DIYgod/APlayer)
 - [MetingJS](https://github.com/metowolf/MetingJS)
 - [Dplayer](https://github.com/DIYgod/DPlayer)
 - [ArtPlayer](https://github.com/zhw2590582/ArtPlayer)
+- [xgplayer](https://github.com/bytedance/xgplayer)
