@@ -132,13 +132,16 @@ export default {
         list.map((e) => {
           //判断id或auto是否存在，如果存在就将其添加到urlList中
           if (e.id || e.auto) {
-            let a = this.ParseMeting({
-              id: e.id,
-              server: e.server,
-              type: e.type,
-              auth: e.auth,
-              auto: e.auto,
-            });
+            let a = this.ParseMeting(
+              {
+                id: e.id,
+                server: e.server,
+                type: e.type,
+                auth: e.auth,
+                auto: e.auto,
+              },
+              this.api
+            );
             if (a) {
               urlList.push(a);
             }
@@ -147,12 +150,10 @@ export default {
       }
 
       //循环获取urlList中的音频
-      let pList = urlList.map(async (url) => {
-        return await (await fetch(url)).json();
-      });
+      let pList = urlList.map(async (url) => (await fetch(url)).json());
 
       //等待所有音频获取完毕,初始化播放器
-      Promise.allSettled(pList).then((a) => {
+      Promise.all(pList).then((a) => {
         a.map((e) => {
           audio = audio.concat(
             e.map((obj) => ({
@@ -165,36 +166,36 @@ export default {
             }))
           );
         });
-        this.InitPlayer(audio);
+        let src = {
+          audio: audio,
+          fixed: this.fixed,
+          mini: this.mini,
+          autoplay: this.autoplay,
+          loop: this.loop,
+          order: this.order,
+          preload: this.preload,
+          volume: this.volume,
+          mutex: this.mutex,
+          lrcType: this.lrcType,
+          listFolded: this.listFolded,
+          listMaxHeight: this.listMaxHeight,
+          storageName: this.storageName,
+        };
+        this.InitPlayer(src, this.$refs.mmplayer);
       });
     },
 
     //初始化播放器
-    InitPlayer(audio) {
-      let src = {
-        audio: audio,
-        fixed: this.fixed,
-        mini: this.mini,
-        autoplay: this.autoplay,
-        loop: this.loop,
-        order: this.order,
-        preload: this.preload,
-        volume: this.volume,
-        mutex: this.mutex,
-        lrcType: this.lrcType,
-        listFolded: this.listFolded,
-        listMaxHeight: this.listMaxHeight,
-        storageName: this.storageName,
-      };
-      APlayer.InitPlayer(src, this.$refs.mmplayer);
+    InitPlayer(src, container) {
+      APlayer.InitPlayer(src, container);
     },
 
-    ParseMeting(m) {
+    ParseMeting(m, api) {
       if (m && m.auto) {
         m = this.ParseLink(m.auto);
       }
 
-      let url = this.api
+      let url = api
         .replace(":server", m.server)
         .replace(":type", m.type)
         .replace(":id", m.id)
@@ -224,13 +225,13 @@ export default {
       ];
 
       for (let rule of rules) {
-        let patt = new RegExp(rule[0]);
-        let res = patt.exec(auto);
-        if (res !== null) {
+        let reg = new RegExp(rule[0]);
+        let result = reg.exec(auto);
+        if (result) {
           return {
             server: rule[1],
             type: rule[2],
-            id: res[1],
+            id: result[1],
           };
         }
       }
