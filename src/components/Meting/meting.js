@@ -152,7 +152,7 @@ export default {
       });
 
       //等待所有音频获取完毕,初始化播放器
-      Promise.all(pList).then((a) => {
+      Promise.allSettled(pList).then((a) => {
         a.map((e) => {
           audio = audio.concat(
             e.map((obj) => ({
