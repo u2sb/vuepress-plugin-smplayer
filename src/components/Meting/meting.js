@@ -1,3 +1,4 @@
+import APlayer from "../Aplayer/APlayer.js";
 export default {
   props: {
     id: {
@@ -90,53 +91,120 @@ export default {
       type: String,
       default: METING.api,
     },
+    audio: {
+      required: false,
+      type: Array,
+    },
+    list: {
+      required: false,
+      type: Array,
+    },
   },
 
   methods: {
-    parse() {
-      if (this.auto) {
-        this.parse_link();
+    async InitMeting() {
+      let urlList = [];
+      let audio = this.audio || [];
+      let list = this.list || [];
+
+      //判断id或auto是否存在，如果存在就将其添加到list中
+      if (this.id || this.auto) {
+        list = [
+          {
+            id: this.id,
+            server: this.server,
+            type: this.type,
+            auth: this.auth,
+            auto: this.auto,
+          },
+        ].concat(
+          list.map((obj) => ({
+            id: obj.id,
+            server: obj.server,
+            type: obj.type,
+            auth: obj.auth,
+            auto: obj.auto,
+          }))
+        );
+      }
+
+      if (list && list.length > 0) {
+        list.map((e) => {
+          //判断id或auto是否存在，如果存在就将其添加到urlList中
+          if (e.id || e.auto) {
+            let a = this.ParseMeting({
+              id: e.id,
+              server: e.server,
+              type: e.type,
+              auth: e.auth,
+              auto: e.auto,
+            });
+            if (a) {
+              urlList.push(a);
+            }
+          }
+        });
+      }
+
+      //循环获取urlList中的音频
+      let pList = urlList.map(async (url) => {
+        return await (await fetch(url)).json();
+      });
+
+      //等待所有音频获取完毕,初始化播放器
+      Promise.all(pList).then((a) => {
+        a.map((e) => {
+          audio = audio.concat(
+            e.map((obj) => ({
+              name: obj.name || obj.title || "Audio name",
+              artist: obj.artist || obj.author || "Audio artist",
+              url: obj.url,
+              cover: obj.cover || obj.pic,
+              lrc: obj.lrc || obj.lyric || "",
+              type: obj.type || "auto",
+            }))
+          );
+        });
+        this.InitPlayer(audio);
+      });
+    },
+
+    //初始化播放器
+    InitPlayer(audio) {
+      let src = {
+        audio: audio,
+        fixed: this.fixed,
+        mini: this.mini,
+        autoplay: this.autoplay,
+        loop: this.loop,
+        order: this.order,
+        preload: this.preload,
+        volume: this.volume,
+        mutex: this.mutex,
+        lrcType: this.lrcType,
+        listFolded: this.listFolded,
+        listMaxHeight: this.listMaxHeight,
+        storageName: this.storageName,
+      };
+      APlayer.InitPlayer(src, this.$refs.mmplayer);
+    },
+
+    ParseMeting(m) {
+      if (m && m.auto) {
+        m = this.ParseLink(m.auto);
       }
 
       let url = this.api
-        .replace(":server", this.server)
-        .replace(":type", this.type)
-        .replace(":id", this.id)
-        .replace(":auth", this.auth)
+        .replace(":server", m.server)
+        .replace(":type", m.type)
+        .replace(":id", m.id)
+        .replace(":auth", m.auth)
         .replace(":r", Math.random());
 
-      fetch(url)
-        .then((res) => res.json())
-        .then((result) => {
-          const res = result.map((obj) => ({
-            name: obj.name || obj.title || "Audio name",
-            artist: obj.artist || obj.author || "Audio artist",
-            url: obj.url,
-            cover: obj.cover || obj.pic,
-            lrc: obj.lrc || obj.lyric || "",
-            type: obj.type || "auto",
-          }));
-
-          this.src = {
-            audio: res,
-            fixed: this.fixed,
-            mini: this.mini,
-            autoplay: this.autoplay,
-            loop: this.loop,
-            order: this.order,
-            preload: this.preload,
-            volume: this.volume,
-            mutex: this.mutex,
-            lrcType: this.lrcType,
-            listFolded: this.listFolded,
-            listMaxHeight: this.listMaxHeight,
-            storageName: this.storageName,
-          };
-          this.ready = true;
-        });
+      return url;
     },
 
-    parse_link() {
+    ParseLink(auto) {
       let rules = [
         ["music.163.com.*song.*id=(\\d+)", "netease", "song"],
         ["music.163.com.*album.*id=(\\d+)", "netease", "album"],
@@ -144,6 +212,7 @@ export default {
         ["music.163.com.*playlist.*id=(\\d+)", "netease", "playlist"],
         ["music.163.com.*discover/toplist.*id=(\\d+)", "netease", "playlist"],
         ["y.qq.com.*song/(\\w+).html", "tencent", "song"],
+        ["y.qq.com.*songDetail/(\\w+)", "tencent", "song"],
         ["y.qq.com.*album/(\\w+).html", "tencent", "album"],
         ["y.qq.com.*singer/(\\w+).html", "tencent", "artist"],
         ["y.qq.com.*playsquare/(\\w+).html", "tencent", "playlist"],
@@ -156,23 +225,20 @@ export default {
 
       for (let rule of rules) {
         let patt = new RegExp(rule[0]);
-        let res = patt.exec(this.auto);
+        let res = patt.exec(auto);
         if (res !== null) {
-          this.server = rule[1];
-          this.type = rule[2];
-          this.id = res[1];
-          return;
+          return {
+            server: rule[1],
+            type: rule[2],
+            id: res[1],
+          };
         }
       }
       console.error(`无法解析的链接: ${this.auto}，请检查链接是否书写正确`);
+      return false;
     },
   },
   mounted() {
-    this.parse();
-  },
-  data() {
-    return {
-      ready: false,
-    };
+    this.InitMeting();
   },
 };

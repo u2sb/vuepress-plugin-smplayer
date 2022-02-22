@@ -4,4 +4,4 @@
   </div>
 </template>
 
-<script src="./aplayer.js"></script>
+<script src="./APlayerVue.js"></script>
