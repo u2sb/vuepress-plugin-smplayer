@@ -1,12 +1,14 @@
 import merge from "deepmerge";
+import Artplayer from "./Artplayer";
+import { Artplayer as ArtplayerType } from "../../type/Config";
+import { Vue, Component, Prop, Ref } from "vue-property-decorator";
 
-export default {
-  props: {
-    src: {
-      type: Object,
-      required: true,
-    },
-  },
+declare const ARTPLAYER: ArtplayerType;
+
+@Component
+export default class ArtplayerVue extends Vue {
+  @Prop({ type: Object, required: true }) src!: Record<string, any>;
+  @Ref("mmplayer") mmplayer!: HTMLElement;
 
   mounted() {
     this.InitPlayer();

@@ -1,3 +1,6 @@
+import { DPlayerOptions } from "dplayer";
+import { Option as ArtplayerOptions } from "../type/artplayer";
+
 interface Aplayer {
   src: Record<string, any>;
 }
@@ -38,11 +41,11 @@ interface Meting {
 }
 
 interface Dplayer {
-  src: Record<string, any>;
+  src: DPlayerOptions;
 }
 
 interface Artplayer {
-  src: Record<string, any>;
+  src: ArtplayerOptions;
 }
 
 interface Bilibili {

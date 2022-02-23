@@ -42,6 +42,7 @@
     "hls.js": "^1.1.5",
     "shaka-player": "^3.3.1",
     "ts-deepmerge": "^2.0.1",
+    "vue-property-decorator": "^9.1.2",
     "webtorrent": "^1.8.3",
     "xgplayer": "^2.31.4",
     "xgplayer-dash": "^1.1.8",
@@ -52,13 +53,13 @@
     "xgplayer-shaka": "^1.1.5"
   },
   "devDependencies": {
+    "@types/dplayer": "^1.25.2",
     "execa": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-replace": "^1.1.3",
     "gulp-rimraf": "^1.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "*",
-    "vue-property-decorator": "^9.1.2",
     "vuepress-types": "^0.9.4"
   }
 }

@@ -30,7 +30,6 @@ specifiers:
   xgplayer-shaka: ^1.1.5
 
 dependencies:
-  '@types/dplayer': 1.25.2
   aplayer: 1.10.1
   artplayer: 4.3.1
   artplayer-plugin-danmuku: 4.3.0
@@ -41,6 +40,7 @@ dependencies:
   hls.js: 1.1.5
   shaka-player: 3.3.1
   ts-deepmerge: 2.0.1
+  vue-property-decorator: 9.1.2
   webtorrent: 1.8.3
   xgplayer: 2.31.4
   xgplayer-dash: 1.1.8
@@ -51,13 +51,13 @@ dependencies:
   xgplayer-shaka: 1.1.5
 
 devDependencies:
+  '@types/dplayer': 1.25.2
   execa: 5.1.1
   gulp: 4.0.2
   gulp-replace: 1.1.3
   gulp-rimraf: 1.0.0
   gulp-typescript: 6.0.0-alpha.1_typescript@4.5.5
   typescript: 4.5.5
-  vue-property-decorator: 9.1.2
   vuepress-types: 0.9.4
 
 packages:
@@ -84,7 +84,7 @@ packages:
 
   /@types/dplayer/1.25.2:
     resolution: {integrity: sha512-bkTVZkK3Vi7N7eX2FUBnqKhCjTaeRLkhvY8H6zolatbSTtjPPdxyUzhE3C29sIBYRRq1kQHSduFgCHKg5VF3Jw==}
-    dev: false
+    dev: true
 
   /@types/expect/1.20.4:
     resolution: {integrity: sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==}
@@ -5840,7 +5840,7 @@ packages:
     peerDependencies:
       vue: '*'
       vue-class-component: '*'
-    dev: true
+    dev: false
 
   /vue-style-loader/4.1.3:
     resolution: {integrity: sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg==}

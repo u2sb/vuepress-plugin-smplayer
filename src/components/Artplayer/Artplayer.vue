@@ -4,5 +4,5 @@
   </div>
 </template>
 
-<script src="./artplayer.js"></script>
-<style src="./artplayer.css"></style>
+<script src="./ArtplayerVue.js"></script>
+<style src="./ArtplayerStyle.css"></style>

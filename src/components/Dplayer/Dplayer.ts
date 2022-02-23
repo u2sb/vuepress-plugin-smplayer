@@ -1,11 +1,12 @@
+import DPlayer, { DPlayerOptions } from "dplayer";
 export default class Dplayer {
-  player: any;
+  player: DPlayer | undefined;
 
-  InitPlayer(src: Record<string, any>, container: HTMLElement): void {
+  InitPlayer(src: DPlayerOptions, container: HTMLElement): void {
     import(
       // @ts-ignore
       /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
-    ).then(({ default: DPlayer }) => {
+    ).then(({ default: dplayer }) => {
       let useHls = false;
       let useFlv = true;
       let useDash = false;
@@ -195,10 +196,10 @@ export default class Dplayer {
         });
       }
 
-      this.player = new DPlayer({
+      this.player = new dplayer({
         ...src,
         container: container,
-      });
+      }) as DPlayer;
 
       this.player.on("fullscreen", function () {
         if (
@@ -213,6 +214,6 @@ export default class Dplayer {
   }
 
   DestroyPlayer(): void {
-    this.player.destroy();
+    this.player?.destroy();
   }
 }
