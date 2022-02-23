@@ -6,4 +6,4 @@
   </div>
 </template>
 
-<script src="./Meting.js"></script>
+<script src="./MetingVue.js"></script>

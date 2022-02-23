@@ -1,7 +1,12 @@
-export default {
-  InitPlayer(src, container) {
+export default class Aplayer {
+  player: any;
+  src: any;
+  InitPlayer(src: Record<string, any>, container: HTMLElement) {
+    this.src = src;
     Promise.all([
+      // @ts-ignore
       import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
+      // @ts-ignore
       import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"),
     ]).then(([{ default: APlayer }]) => {
       if (src.customAudioType == undefined) {
@@ -9,7 +14,7 @@ export default {
       }
       let useHls = false;
 
-      src.audio.forEach((e) => {
+      src.audio.forEach((e: any) => {
         if (e.type == undefined) {
           if (e.url.toLowerCase().endsWith(".m3u8")) {
             e.type = "hls";
@@ -27,7 +32,12 @@ export default {
       });
       if (useHls) {
         Object.assign(src.customAudioType, {
-          mmediaAplayerHls: function (audioElement, audio, player) {
+          mmediaAplayerHls: function (
+            audioElement: any,
+            audio: Record<string, any>,
+            player: any
+          ) {
+            // @ts-ignore
             import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
               ({ default: Hls }) => {
                 if (
@@ -56,11 +66,11 @@ export default {
         container: container,
       });
     });
-  },
+  }
 
   DestroyPlayer() {
     if (this.player && !this.src.fixed) {
       this.player.destroy();
     }
-  },
-};
+  }
+}

@@ -42,6 +42,7 @@
     "hls.js": "^1.1.5",
     "shaka-player": "^3.3.1",
     "ts-deepmerge": "^2.0.1",
+    "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2",
     "webtorrent": "^1.8.3",
     "xgplayer": "^2.31.4",

@@ -1,6 +1,3 @@
-export = Artplayer;
-export as namespace Artplayer;
-
 type Selector = {
   /**
    * Whether the default is selected
@@ -183,16 +180,16 @@ type AdsOption = {
   url: string;
 };
 
-export type Option = {
+type Option = {
   /**
    * The container mounted by the player
    */
-  container: string | HTMLElement;
+  container?: string | HTMLElement;
 
   /**
    * Video url
    */
-  url: string;
+  url?: string;
 
   /**
    * Video poster image url
@@ -377,6 +374,7 @@ export type Option = {
      * Video quality url
      */
     url: string;
+    type?: string;
   }[];
 
   /**
@@ -714,3 +712,7 @@ declare class Artplayer extends Player {
 
   readonly setting: Record<string, HTMLElement> & Component;
 }
+
+export default Artplayer;
+
+export { Option };

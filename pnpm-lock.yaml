@@ -18,6 +18,7 @@ specifiers:
   shaka-player: ^3.3.1
   ts-deepmerge: ^2.0.1
   typescript: '*'
+  vue-class-component: ^7.2.6
   vue-property-decorator: ^9.1.2
   vuepress-types: ^0.9.4
   webtorrent: ^1.8.3
@@ -40,7 +41,8 @@ dependencies:
   hls.js: 1.1.5
   shaka-player: 3.3.1
   ts-deepmerge: 2.0.1
-  vue-property-decorator: 9.1.2
+  vue-class-component: 7.2.6
+  vue-property-decorator: 9.1.2_vue-class-component@7.2.6
   webtorrent: 1.8.3
   xgplayer: 2.31.4
   xgplayer-dash: 1.1.8
@@ -5810,6 +5812,12 @@ packages:
     resolution: {integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==}
     dev: true
 
+  /vue-class-component/7.2.6:
+    resolution: {integrity: sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==}
+    peerDependencies:
+      vue: ^2.0.0
+    dev: false
+
   /vue-hot-reload-api/2.3.4:
     resolution: {integrity: sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==}
     dev: true
@@ -5835,11 +5843,13 @@ packages:
       webpack: 4.46.0
     dev: true
 
-  /vue-property-decorator/9.1.2:
+  /vue-property-decorator/9.1.2_vue-class-component@7.2.6:
     resolution: {integrity: sha512-xYA8MkZynPBGd/w5QFJ2d/NM0z/YeegMqYTphy7NJQXbZcuU6FC6AOdUAcy4SXP+YnkerC6AfH+ldg7PDk9ESQ==}
     peerDependencies:
       vue: '*'
       vue-class-component: '*'
+    dependencies:
+      vue-class-component: 7.2.6
     dev: false
 
   /vue-style-loader/4.1.3:

@@ -1,4 +1,9 @@
-import DPlayer, { DPlayerOptions } from "dplayer";
+import {
+  DPlayer,
+  DPlayerOptions,
+  DPlayerEvents,
+  DPlayerVideo,
+} from "../../type/dplayer";
 export default class Dplayer {
   player: DPlayer | undefined;
 
@@ -57,7 +62,7 @@ export default class Dplayer {
       }
 
       if (src.video.quality != undefined && src.video.quality.length > 0) {
-        src.video.quality.forEach((e: any) => {
+        src.video.quality.forEach((e: DPlayerVideo) => {
           // .m3u8 和 .flv 结尾的视频
           if (e.type == undefined) {
             if (e.url.toLowerCase().endsWith(".m3u8")) {
@@ -102,14 +107,14 @@ export default class Dplayer {
       // 自定义类型
       if (useHls) {
         Object.assign(src.video.customType, {
-          mmediaDplayerHls: function (video: any, player: any) {
+          mmediaDplayerHls: function (video: DPlayerOptions, player: DPlayer) {
             // @ts-ignore
             import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
               ({ default: Hls }) => {
                 const hls = new Hls();
                 hls.loadSource(video.src);
                 hls.attachMedia(video);
-                player.on("destroy", function () {
+                player.on("destroy" as DPlayerEvents.destroy, function () {
                   hls.destroy();
                 });
               }
@@ -120,7 +125,7 @@ export default class Dplayer {
 
       if (useFlv) {
         Object.assign(src.video.customType, {
-          mmediaDplayerFlv: function (video: any, player: any) {
+          mmediaDplayerFlv: function (video: DPlayerOptions, player: DPlayer) {
             // @ts-ignore
             import(/* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js").then(
               ({ default: flvjs }) => {
@@ -130,7 +135,7 @@ export default class Dplayer {
                 });
                 flvPlayer.attachMediaElement(video);
                 flvPlayer.load();
-                player.on("destroy", function () {
+                player.on("destroy" as DPlayerEvents.destroy, function () {
                   flvPlayer.destroy();
                 });
               }
@@ -141,14 +146,14 @@ export default class Dplayer {
 
       if (useDash) {
         Object.assign(src.video.customType, {
-          mmediaDplayerDash: function (video: any, player: any) {
+          mmediaDplayerDash: function (video: DPlayerOptions, player: DPlayer) {
             import(
               // @ts-ignore
               /* webpackChunkName: "dash" */ "dashjs/dist/dash.all.min.js"
             ).then(({ default: dashjs }) => {
               const dashPlayer = dashjs.MediaPlayer().create();
               dashPlayer.initialize(video, video.src, false);
-              player.on("destroy", function () {
+              player.on("destroy" as DPlayerEvents.destroy, function () {
                 dashPlayer.reset();
               });
             });
@@ -158,14 +163,17 @@ export default class Dplayer {
 
       if (useShakaDash) {
         Object.assign(src.video.customType, {
-          mmediaDplayerShakaDash: function (video: any, player: any) {
+          mmediaDplayerShakaDash: function (
+            video: DPlayerOptions,
+            player: DPlayer
+          ) {
             import(
               // @ts-ignore
               /* webpackChunkName: "shaka" */ "shaka-player/dist/shaka-player.compiled.js"
             ).then(({ default: shaka }) => {
               const shakaPlayer = new shaka.Player(video);
               shakaPlayer.load(video.src).then(function () {
-                player.on("destroy", function () {
+                player.on("destroy" as DPlayerEvents.destroy, function () {
                   shakaPlayer.destroy();
                 });
               });
@@ -176,7 +184,10 @@ export default class Dplayer {
 
       if (useWebtorrent) {
         Object.assign(src.video.customType, {
-          mmediaDplayerWebtorrent: function (video: any, player: any) {
+          mmediaDplayerWebtorrent: function (
+            video: DPlayerOptions,
+            player: DPlayer
+          ) {
             import(
               // @ts-ignore
               /* webpackChunkName: "webtorrent" */ "webtorrent/webtorrent.min.js"
@@ -187,7 +198,7 @@ export default class Dplayer {
                   return file.name.endsWith(".mp4");
                 });
                 file.renderTo(video);
-                player.on("destroy", function () {
+                player.on("destroy" as DPlayerEvents.destroy, function () {
                   client.destroy();
                 });
               });
@@ -201,7 +212,7 @@ export default class Dplayer {
         container: container,
       }) as DPlayer;
 
-      this.player.on("fullscreen", function () {
+      this.player.on("fullscreen" as DPlayerEvents.fullscreen, function () {
         if (
           /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
             navigator.userAgent

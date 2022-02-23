@@ -4,4 +4,4 @@
   </div>
 </template>
 
-<script src="./xgplayer.js"></script>
+<script src="./XgplayerVue.js"></script>

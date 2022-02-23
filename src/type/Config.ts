@@ -1,5 +1,6 @@
-import { DPlayerOptions } from "dplayer";
-import { Option as ArtplayerOptions } from "../type/artplayer";
+import { DPlayerOptions } from "./dplayer";
+import { Option as ArtplayerOptions } from "./artplayer";
+import { IPlayerOptions } from "./xgplayer";
 
 interface Aplayer {
   src: Record<string, any>;
@@ -64,7 +65,7 @@ interface Xigua {
 }
 
 interface Xgplayer {
-  src?: Record<string, any>;
+  src: IPlayerOptions;
 }
 
 interface Config {
