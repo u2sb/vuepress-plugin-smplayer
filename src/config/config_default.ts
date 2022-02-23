@@ -1,4 +1,6 @@
-module.exports = {
+import { Config } from "../type/Config";
+
+const ConfigDefault: Config = {
   aplayer: {
     src: {
       lrcType: 3,
@@ -45,9 +47,6 @@ module.exports = {
     allowfullscreen: "allowfullscreen",
     sandbox:
       "allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups",
-    width: "100%",
-    max_width: "850px",
-    margin: "auto",
   },
   xgplayer: {
     src: {
@@ -56,3 +55,5 @@ module.exports = {
     },
   },
 };
+
+module.exports = ConfigDefault;

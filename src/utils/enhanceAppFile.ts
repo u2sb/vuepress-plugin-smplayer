@@ -1,3 +1,5 @@
+import { EnhanceApp } from "vuepress-types";
+
 import Bilibili from "../components/Bilibili/Bilibili.vue";
 import Xigua from "../components/Xigua/Xigua.vue";
 import DPlayer from "../components/Dplayer/DPlayer.vue";
@@ -7,7 +9,7 @@ import Artplayer from "../components/Artplayer/Artplayer.vue";
 import Meting from "../components/Meting/Meting.vue";
 import Xgplayer from "../components/Xgplayer/Xgplayer.vue";
 
-export default ({ Vue }) => {
+const enhanceAppFile: EnhanceApp = ({ Vue }): void => {
   Vue.component("Bilibili", Bilibili);
   Vue.component("Xigua", Xigua);
   Vue.component("DPlayer", DPlayer);
@@ -18,3 +20,5 @@ export default ({ Vue }) => {
   Vue.component("meting-js", Meting);
   Vue.component("Xgplayer", Xgplayer);
 };
+
+export default enhanceAppFile;
