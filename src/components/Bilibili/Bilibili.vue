@@ -12,5 +12,5 @@
   </div>
 </template>
 
-<script src="./bilibili.js"></script>
-<style src="./bilibili.css"></style>
+<script src="./BilibiliVue.js"></script>
+<style src="./BilibiliStyle.css"></style>

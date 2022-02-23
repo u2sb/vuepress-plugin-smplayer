@@ -1,5 +1,5 @@
 interface Aplayer {
-  src?: Record<string, any>;
+  src: Record<string, any>;
 }
 
 interface AplayerAudio {
@@ -38,14 +38,15 @@ interface Meting {
 }
 
 interface Dplayer {
-  src?: Record<string, any>;
+  src: Record<string, any>;
 }
 
 interface Artplayer {
-  src?: Record<string, any>;
+  src: Record<string, any>;
 }
 
 interface Bilibili {
+  bvid?: string;
   page?: number;
   danmaku?: boolean;
   allowfullscreen?: string;

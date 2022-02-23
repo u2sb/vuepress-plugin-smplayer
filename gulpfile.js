@@ -3,13 +3,13 @@ const ts = require("gulp-typescript");
 const rm = require("rimraf");
 const replace = require("gulp-replace");
 const { resolve } = require("path");
-const { exec } = require("gulp-execa");
+const execa = require("execa");
 
 const outputDir = "./dist";
 const tempDir = "./temp";
 const inputDir = "./src";
 
-const version = exec("git describe --tags", {
+const version = execa.commandSync("git describe --tags", {
   shell: true,
   all: true,
 }).stdout;
@@ -19,20 +19,27 @@ const cleanTemp = (e) => rm(tempDir, e);
 
 const tsc = () => {
   const tsProject = ts.createProject("tsconfig.json");
-  return tsProject.src().pipe(tsProject()).js.pipe(dest(tempDir));
+  return tsProject.src().pipe(tsProject()).pipe(dest(tempDir));
 };
 
 const cpVue = () => src(resolve(inputDir, "**/*.vue")).pipe(dest(outputDir));
 const cpCss = () => src(resolve(inputDir, "**/*.css")).pipe(dest(outputDir));
+
 const cpPackageJson = () => {
-  console.log(version);
-  return src(resolve(inputDir, "package.json")).pipe(dest(outputDir));
+  return src("package.json")
+    .pipe(replace("vuepress-plugin-mmedia-version", version))
+    .pipe(src("readme.md"))
+    .pipe(src("LICENSE"))
+    .pipe(dest(outputDir));
 };
 
 const cpTempJs = () =>
   src(resolve(tempDir, "**/*.js"))
     .pipe(replace("export {};", ""))
+    .pipe(src(resolve(tempDir, "**/*.d.ts")))
     .pipe(dest(outputDir));
+
+const cpJs = () => src(resolve(inputDir, "**/*.js")).pipe(dest(outputDir));
 exports.build = series(
   cleanOut,
   cleanTemp,
@@ -40,5 +47,7 @@ exports.build = series(
   cpTempJs,
   cpVue,
   cpCss,
+  cpPackageJson,
+  cpJs,
   cleanTemp
 );

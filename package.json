@@ -1,8 +1,8 @@
 {
   "name": "vuepress-plugin-mmedia",
-  "version": "1.3.0",
+  "version": "vuepress-plugin-mmedia-version",
   "description": "A media plugin for vuepress",
-  "main": "dist/index.js",
+  "main": "index.js",
   "files": [
     "src"
   ],
@@ -39,11 +39,10 @@
     "deepmerge": "^4.2.2",
     "dplayer": "^1.26.0",
     "flv.js": "^1.6.2",
-    "hls.js": "^1.1.4",
+    "hls.js": "^1.1.5",
     "shaka-player": "^3.3.1",
-    "vue-class-component": "^7.1.0",
-    "vue-property-decorator": "^8.3.0",
-    "webtorrent": "^1.8.1",
+    "ts-deepmerge": "^2.0.1",
+    "webtorrent": "^1.8.3",
     "xgplayer": "^2.31.4",
     "xgplayer-dash": "^1.1.8",
     "xgplayer-flv.js": "^2.3.0",
@@ -53,13 +52,13 @@
     "xgplayer-shaka": "^1.1.5"
   },
   "devDependencies": {
+    "execa": "^5.0.0",
     "gulp": "^4.0.2",
-    "gulp-cli": "^2.3.0",
-    "gulp-execa": "^3.0.2",
     "gulp-replace": "^1.1.3",
     "gulp-rimraf": "^1.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "*",
+    "vue-property-decorator": "^9.1.2",
     "vuepress-types": "^0.9.4"
   }
 }
