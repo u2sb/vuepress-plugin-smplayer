@@ -3,9 +3,6 @@
   "version": "vuepress-plugin-sbmedia-version",
   "description": "A media plugin for vuepress",
   "main": "index.js",
-  "files": [
-    "src"
-  ],
   "scripts": {
     "build": "gulp build"
   },
