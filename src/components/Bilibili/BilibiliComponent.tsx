@@ -26,7 +26,7 @@ export default class BilibiliComponent extends Vue {
 
   render(): VNode {
     return (
-      <div class="sbmedia">
+      <div class="smplayer">
         <iframe
           ref="sbplayer"
           class="bbplayer"

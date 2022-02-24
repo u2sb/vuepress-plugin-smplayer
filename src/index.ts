@@ -5,7 +5,7 @@ const { resolve } = require("path");
 const merge = require("deepmerge");
 const config_default = require("./config/ConfigDefault");
 
-const SbMediaPlugin: Plugin<Config> = (opts, context) => ({
+const smplayerPlugin: Plugin<Config> = (opts, context) => ({
   define() {
     const config = merge(config_default, opts);
     return {
@@ -21,4 +21,4 @@ const SbMediaPlugin: Plugin<Config> = (opts, context) => ({
   enhanceAppFiles: resolve(__dirname, "utils/", "enhanceAppFile.js"),
 });
 
-module.exports = SbMediaPlugin;
+module.exports = smplayerPlugin;

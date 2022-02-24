@@ -27,7 +27,7 @@ const cpCss = () => src(resolve(inputDir, "**/*.css")).pipe(dest(outputDir));
 
 const cpPackageJson = () => {
   return src("package.json")
-    .pipe(replace("vuepress-plugin-sbmedia-version", version))
+    .pipe(replace("vuepress-plugin-smplayer-version", version))
     .pipe(src("readme.md"))
     .pipe(src("LICENSE"))
     .pipe(dest(outputDir));

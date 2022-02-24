@@ -34,25 +34,25 @@ export default class ArtplayerVue {
         switch (src.type.toLowerCase()) {
           case "hls":
           case "m3u8":
-            src.type = "sbmediaArtplayerHls";
+            src.type = "smplayerArtplayerHls";
             useHls = true;
             break;
           case "flv":
-            src.type = "sbmediaArtplayerFlv";
+            src.type = "smplayerArtplayerFlv";
             useFlv = true;
             break;
           case "dash":
-            src.type = "sbmediaArtplayerDash";
+            src.type = "smplayerArtplayerDash";
             useDash = true;
             break;
           case "shakadash":
           case "shaka":
           case "shaka-dash":
-            src.type = "sbmediaArtplayerShakaDash";
+            src.type = "smplayerArtplayerShakaDash";
             useShakaDash = true;
             break;
           case "webtorrent":
-            src.type = "sbmediaArtplayerWebtorrent";
+            src.type = "smplayerArtplayerWebtorrent";
             useWebtorrent = true;
             break;
         }
@@ -75,25 +75,25 @@ export default class ArtplayerVue {
             switch (e.type.toLowerCase()) {
               case "hls":
               case "m3u8":
-                e.type = "sbmediaArtplayerHls";
+                e.type = "smplayerArtplayerHls";
                 useHls = true;
                 break;
               case "flv":
-                e.type = "sbmediaArtplayerFlv";
+                e.type = "smplayerArtplayerFlv";
                 useFlv = true;
                 break;
               case "dash":
-                e.type = "sbmediaArtplayerDash";
+                e.type = "smplayerArtplayerDash";
                 useDash = true;
                 break;
               case "shakadash":
               case "shaka":
               case "shaka-dash":
-                e.type = "sbmediaArtplayerShakaDash";
+                e.type = "smplayerArtplayerShakaDash";
                 useShakaDash = true;
                 break;
               case "webtorrent":
-                e.type = "sbmediaArtplayerWebtorrent";
+                e.type = "smplayerArtplayerWebtorrent";
                 useWebtorrent = true;
                 break;
             }
@@ -104,7 +104,7 @@ export default class ArtplayerVue {
       // 自定义类型
       if (useHls) {
         Object.assign(src.customType, {
-          sbmediaArtplayerHls: function (
+          smplayerArtplayerHls: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -125,7 +125,7 @@ export default class ArtplayerVue {
       }
       if (useFlv) {
         Object.assign(src.customType, {
-          sbmediaArtplayerFlv: function (
+          smplayerArtplayerFlv: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -150,7 +150,7 @@ export default class ArtplayerVue {
 
       if (useDash) {
         Object.assign(src.customType, {
-          sbmediaArtplayerDash: function (
+          smplayerArtplayerDash: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -171,7 +171,7 @@ export default class ArtplayerVue {
 
       if (useShakaDash) {
         Object.assign(src.customType, {
-          sbmediaArtplayerShakaDash: function (
+          smplayerArtplayerShakaDash: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -193,7 +193,7 @@ export default class ArtplayerVue {
 
       if (useWebtorrent) {
         Object.assign(src.customType, {
-          sbmediaArtplayerWebtorrent: function (
+          smplayerArtplayerWebtorrent: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer

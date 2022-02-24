@@ -7,7 +7,7 @@ export default class SbBasePlayerComponent<T> extends Vue {
   @Ref("sbplayer") sbplayer!: any;
   render(): VNode {
     return (
-      <div class="sbmedia">
+      <div class="smplayer">
         <div ref="sbplayer" />
       </div>
     );

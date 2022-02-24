@@ -24,7 +24,7 @@ export default class Aplayer {
           switch (e.type.toLowerCase()) {
             case "hls":
             case "m3u8":
-              e.type = "sbmediaAplayerHls";
+              e.type = "smplayerAplayerHls";
               useHls = true;
               break;
           }
@@ -32,7 +32,7 @@ export default class Aplayer {
       });
       if (useHls) {
         Object.assign(src.customAudioType, {
-          sbmediaAplayerHls: function (
+          smplayerAplayerHls: function (
             audioElement: any,
             audio: Record<string, any>,
             player: any
