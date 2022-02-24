@@ -58,7 +58,9 @@
     "gulp-rimraf": "^1.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "^3.0.0",
-    "vue": "2",
     "vuepress-types": "^0.9.4"
+  },
+  "peerDependencies": {
+    "vue": "^2.0.0"
   }
 }

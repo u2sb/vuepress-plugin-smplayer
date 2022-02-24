@@ -37,7 +37,6 @@ const cpTempJs = () =>
   src(resolve(tempDir, "**/*.js"))
     .pipe(replace("export {};", ""))
     .pipe(src(resolve(tempDir, "**/*.d.ts")))
-    .pipe(src(resolve(tempDir, "**/*.jsx")))
     .pipe(dest(outputDir));
 
 const cpJs = () => src(resolve(inputDir, "**/*.js")).pipe(dest(outputDir));
