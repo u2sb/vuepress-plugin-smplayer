@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/u2sb/vuepress-plugin-mmedia.git"
+    "url": "git+https://github.com/u2sb/vuepress-plugin-sbmedia.git"
   },
   "keywords": [
     "Vuepress",
@@ -25,9 +25,9 @@
   "author": "MonoLogueChi",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/u2sb/vuepress-plugin-mmedia/issues"
+    "url": "https://github.com/u2sb/vuepress-plugin-sbmedia/issues"
   },
-  "homepage": "https://github.com/u2sb/vuepress-plugin-mmedia",
+  "homepage": "https://github.com/u2sb/vuepress-plugin-sbmedia",
   "dependencies": {
     "aplayer": "^1.10.1",
     "artplayer": "^4.3.1",
@@ -58,6 +58,7 @@
     "gulp-rimraf": "^1.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "*",
+    "vue": "2",
     "vuepress-types": "^0.9.4"
   }
 }

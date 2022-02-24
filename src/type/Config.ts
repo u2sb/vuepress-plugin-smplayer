@@ -1,6 +1,6 @@
-import { DPlayerOptions } from "./dplayer";
-import { Option as ArtplayerOptions } from "./artplayer";
-import { IPlayerOptions } from "./xgplayer";
+import { DPlayerOptions } from "./Dplayer";
+import { ArtplayerOptions } from "./Artplayer";
+import { IPlayerOptions } from "./Xgplayer";
 
 interface Aplayer {
   src: Record<string, any>;

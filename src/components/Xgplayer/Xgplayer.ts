@@ -1,4 +1,4 @@
-import { Xgplayer as XGplayer, IPlayerOptions } from "../../type/xgplayer";
+import { Xgplayer as XGplayer, IPlayerOptions } from "../../type/Xgplayer";
 
 export default class Xgplayer {
   player: XGplayer | undefined;

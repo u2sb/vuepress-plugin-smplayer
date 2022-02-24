@@ -1,20 +1,20 @@
 import merge from "deepmerge";
 import Xgplayer from "./Xgplayer";
 import { Xgplayer as XgplayerType } from "../../type/Config";
-import { Vue, Component, Prop, Ref } from "vue-property-decorator";
-import { IPlayerOptions } from "../../type/xgplayer";
+import { IPlayerOptions } from "../../type/Xgplayer";
+import {
+  BasePlayerComponent,
+  Component,
+} from "../BasePlayer/SbBasePlayerComponent";
 
 declare const XGPLAYER: XgplayerType;
 
 @Component
-export default class XgplayerVue extends Vue {
-  @Prop({ type: Object, required: true }) src!: IPlayerOptions;
-  @Ref("mmplayer") mmplayer!: any;
-
+export default class XgplayerComponent extends BasePlayerComponent<IPlayerOptions> {
   xgplayer = new Xgplayer();
   mounted() {
     let src = merge(XGPLAYER.src, this.src);
-    this.xgplayer.InitPlayer(src, this.mmplayer);
+    this.xgplayer.InitPlayer(src, this.sbplayer);
   }
 
   beforeDestroy() {

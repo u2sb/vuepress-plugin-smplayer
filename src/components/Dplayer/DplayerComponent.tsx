@@ -1,21 +1,21 @@
 import merge from "deepmerge";
 import Dplayer from "./Dplayer";
 import { Dplayer as DplayerType } from "../../type/Config";
-import { DPlayerOptions } from "../../type/dplayer";
-import { Vue, Component, Prop, Ref } from "vue-property-decorator";
+import { DPlayerOptions } from "../../type/Dplayer";
+import {
+  BasePlayerComponent,
+  Component,
+} from "../BasePlayer/SbBasePlayerComponent";
 
 declare const DPLAYER: DplayerType;
 
 @Component
-export default class DplayerVue extends Vue {
-  @Prop({ type: Object, required: true }) src!: DPlayerOptions;
-  @Ref("mmplayer") mmplayer!: any;
-
+export default class DplayerComponent extends BasePlayerComponent<DPlayerOptions> {
   dplayer: Dplayer = new Dplayer();
 
   mounted() {
     let src = merge(DPLAYER.src, this.src);
-    this.dplayer.InitPlayer(src, this.mmplayer);
+    this.dplayer.InitPlayer(src, this.sbplayer);
   }
 
   beforeDestroy() {

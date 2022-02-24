@@ -1,12 +1,15 @@
 import Meting from "./Meting";
-import merge from "deepmerge";
 import { Meting as MetingType } from "../../type/Config";
-import { Vue, Component, Prop, Ref } from "vue-property-decorator";
+import {
+  BasePlayerComponent,
+  Prop,
+  Component,
+} from "../BasePlayer/SbBasePlayerComponent";
 
 declare const METING: MetingType;
 
 @Component
-export default class MetingVue extends Vue {
+export default class MetingComponent extends BasePlayerComponent<any> {
   @Prop({ type: String, default: "" }) id: string | undefined;
   @Prop({ type: String, default: METING.server }) server: string | undefined;
   @Prop({ type: String, default: METING.type }) type: string | undefined;
@@ -36,13 +39,11 @@ export default class MetingVue extends Vue {
   @Prop({ type: Array }) audio: Array<any> | undefined;
   @Prop({ type: Array }) list: Array<any> | undefined;
 
-  @Ref("mmplayer") mmplayer!: any;
-
   meting = new Meting();
 
   mounted() {
     let src = this.$props;
-    this.meting.InitMeting(src, this.mmplayer);
+    this.meting.InitMeting(src, this.sbplayer);
   }
 
   beforeDestroy() {

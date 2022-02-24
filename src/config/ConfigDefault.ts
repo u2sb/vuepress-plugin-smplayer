@@ -22,7 +22,7 @@ const ConfigDefault: Config = {
     lrcType: 3,
     listFolded: false,
     listMaxHeight: "340px",
-    storageName: "vuepress-plugin-mmedia",
+    storageName: "vuepress-plugin-sbmedia",
   },
   dplayer: {
     src: {},

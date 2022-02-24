@@ -18,6 +18,7 @@ specifiers:
   shaka-player: ^3.3.1
   ts-deepmerge: ^2.0.1
   typescript: '*'
+  vue: '2'
   vue-class-component: ^7.2.6
   vue-property-decorator: ^9.1.2
   vuepress-types: ^0.9.4
@@ -41,8 +42,8 @@ dependencies:
   hls.js: 1.1.5
   shaka-player: 3.3.1
   ts-deepmerge: 2.0.1
-  vue-class-component: 7.2.6
-  vue-property-decorator: 9.1.2_vue-class-component@7.2.6
+  vue-class-component: 7.2.6_vue@2.6.14
+  vue-property-decorator: 9.1.2_cc5a81cd4d75b7f9736a3e9b263f47e5
   webtorrent: 1.8.3
   xgplayer: 2.31.4
   xgplayer-dash: 1.1.8
@@ -60,6 +61,7 @@ devDependencies:
   gulp-rimraf: 1.0.0
   gulp-typescript: 6.0.0-alpha.1_typescript@4.5.5
   typescript: 4.5.5
+  vue: 2.6.14
   vuepress-types: 0.9.4
 
 packages:
@@ -2774,13 +2776,13 @@ packages:
     resolution: {integrity: sha1-xg7taebY/bazEEofy8ocGS3FtQE=}
     dev: true
 
-  /immediate-chunk-store/2.2.0:
+  /isbmediate-chunk-store/2.2.0:
     resolution: {integrity: sha512-1bHBna0hCa6arRXicu91IiL9RvvkbNYLVq+mzWdaLGZC3hXvX4doh8e1dLhMKez5siu63CYgO5NrGJbRX5lbPA==}
     dependencies:
       queue-microtask: 1.2.3
     dev: false
 
-  /immediate/3.0.6:
+  /isbmediate/3.0.6:
     resolution: {integrity: sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=}
     dev: false
 
@@ -3294,7 +3296,7 @@ packages:
   /lie/3.1.1:
     resolution: {integrity: sha1-mkNrLMd0bKWd56QfpGmz77dr2H4=}
     dependencies:
-      immediate: 3.0.6
+      isbmediate: 3.0.6
     dev: false
 
   /liftoff/3.1.0:
@@ -4841,7 +4843,7 @@ packages:
       split-string: 3.1.0
     dev: true
 
-  /setimmediate/1.0.5:
+  /setisbmediate/1.0.5:
     resolution: {integrity: sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU=}
     dev: true
 
@@ -5401,7 +5403,7 @@ packages:
     resolution: {integrity: sha512-9phl76Cqm6FhSX9Xe1ZUAMLtm1BLkKj2Qd5ApyWkXzsMRaA7dgr81kf4wJmQf/hAvg8EEyJxDo3du/0KlhPiKQ==}
     engines: {node: '>=0.6.0'}
     dependencies:
-      setimmediate: 1.0.5
+      setisbmediate: 1.0.5
     dev: true
 
   /to-absolute-glob/2.0.2:
@@ -5812,10 +5814,12 @@ packages:
     resolution: {integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==}
     dev: true
 
-  /vue-class-component/7.2.6:
+  /vue-class-component/7.2.6_vue@2.6.14:
     resolution: {integrity: sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==}
     peerDependencies:
       vue: ^2.0.0
+    dependencies:
+      vue: 2.6.14
     dev: false
 
   /vue-hot-reload-api/2.3.4:
@@ -5843,13 +5847,14 @@ packages:
       webpack: 4.46.0
     dev: true
 
-  /vue-property-decorator/9.1.2_vue-class-component@7.2.6:
+  /vue-property-decorator/9.1.2_cc5a81cd4d75b7f9736a3e9b263f47e5:
     resolution: {integrity: sha512-xYA8MkZynPBGd/w5QFJ2d/NM0z/YeegMqYTphy7NJQXbZcuU6FC6AOdUAcy4SXP+YnkerC6AfH+ldg7PDk9ESQ==}
     peerDependencies:
       vue: '*'
       vue-class-component: '*'
     dependencies:
-      vue-class-component: 7.2.6
+      vue: 2.6.14
+      vue-class-component: 7.2.6_vue@2.6.14
     dev: false
 
   /vue-style-loader/4.1.3:
@@ -6068,7 +6073,7 @@ packages:
       end-of-stream: 1.4.4
       escape-html: 1.0.3
       fs-chunk-store: 2.0.4
-      immediate-chunk-store: 2.2.0
+      isbmediate-chunk-store: 2.2.0
       load-ip-set: 2.2.1
       lt_donthave: 1.0.1
       memory-chunk-store: 1.3.5

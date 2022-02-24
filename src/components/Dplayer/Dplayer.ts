@@ -3,7 +3,7 @@ import {
   DPlayerOptions,
   DPlayerEvents,
   DPlayerVideo,
-} from "../../type/dplayer";
+} from "../../type/Dplayer";
 export default class Dplayer {
   player: DPlayer | undefined;
 
@@ -37,25 +37,25 @@ export default class Dplayer {
         switch (src.video.type.toLowerCase()) {
           case "hls":
           case "m3u8":
-            src.video.type = "mmediaDplayerHls";
+            src.video.type = "sbmediaDplayerHls";
             useHls = true;
             break;
           case "flv":
-            src.video.type = "mmediaDplayerFlv";
+            src.video.type = "sbmediaDplayerFlv";
             useFlv = true;
             break;
           case "dash":
-            src.video.type = "mmediaDplayerDash";
+            src.video.type = "sbmediaDplayerDash";
             useDash = true;
             break;
           case "shakadash":
           case "shaka":
           case "shaka-dash":
-            src.video.type = "mmediaDplayerShakaDash";
+            src.video.type = "sbmediaDplayerShakaDash";
             useShakaDash = true;
             break;
           case "webtorrent":
-            src.video.type = "mmediaDplayerWebtorrent";
+            src.video.type = "sbmediaDplayerWebtorrent";
             useWebtorrent = true;
             break;
         }
@@ -78,25 +78,25 @@ export default class Dplayer {
             switch (e.type.toLowerCase()) {
               case "hls":
               case "m3u8":
-                e.type = "mmediaDplayerHls";
+                e.type = "sbmediaDplayerHls";
                 useHls = true;
                 break;
               case "flv":
-                e.type = "mmediaDplayerFlv";
+                e.type = "sbmediaDplayerFlv";
                 useFlv = true;
                 break;
               case "dash":
-                e.type = "mmediaDplayerDash";
+                e.type = "sbmediaDplayerDash";
                 useDash = true;
                 break;
               case "shakadash":
               case "shaka":
               case "shaka-dash":
-                e.type = "mmediaDplayerShakaDash";
+                e.type = "sbmediaDplayerShakaDash";
                 useShakaDash = true;
                 break;
               case "webtorrent":
-                e.type = "mmediaDplayerWebtorrent";
+                e.type = "sbmediaDplayerWebtorrent";
                 useWebtorrent = true;
                 break;
             }
@@ -107,7 +107,7 @@ export default class Dplayer {
       // 自定义类型
       if (useHls) {
         Object.assign(src.video.customType, {
-          mmediaDplayerHls: function (video: DPlayerOptions, player: DPlayer) {
+          sbmediaDplayerHls: function (video: DPlayerOptions, player: DPlayer) {
             // @ts-ignore
             import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
               ({ default: Hls }) => {
@@ -125,7 +125,7 @@ export default class Dplayer {
 
       if (useFlv) {
         Object.assign(src.video.customType, {
-          mmediaDplayerFlv: function (video: DPlayerOptions, player: DPlayer) {
+          sbmediaDplayerFlv: function (video: DPlayerOptions, player: DPlayer) {
             // @ts-ignore
             import(/* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js").then(
               ({ default: flvjs }) => {
@@ -146,7 +146,7 @@ export default class Dplayer {
 
       if (useDash) {
         Object.assign(src.video.customType, {
-          mmediaDplayerDash: function (video: DPlayerOptions, player: DPlayer) {
+          sbmediaDplayerDash: function (video: DPlayerOptions, player: DPlayer) {
             import(
               // @ts-ignore
               /* webpackChunkName: "dash" */ "dashjs/dist/dash.all.min.js"
@@ -163,7 +163,7 @@ export default class Dplayer {
 
       if (useShakaDash) {
         Object.assign(src.video.customType, {
-          mmediaDplayerShakaDash: function (
+          sbmediaDplayerShakaDash: function (
             video: DPlayerOptions,
             player: DPlayer
           ) {
@@ -184,7 +184,7 @@ export default class Dplayer {
 
       if (useWebtorrent) {
         Object.assign(src.video.customType, {
-          mmediaDplayerWebtorrent: function (
+          sbmediaDplayerWebtorrent: function (
             video: DPlayerOptions,
             player: DPlayer
           ) {

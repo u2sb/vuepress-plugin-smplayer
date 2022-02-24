@@ -1,13 +1,13 @@
 import { EnhanceApp } from "vuepress-types";
 
-import Bilibili from "../components/Bilibili/Bilibili.vue";
-import Xigua from "../components/Xigua/Xigua.vue";
-import DPlayer from "../components/Dplayer/DPlayer.vue";
-import APlayer from "../components/Aplayer/APlayer.vue";
-import APlayerGlobal from "../components/Aplayer/APlayerGlobal.vue";
-import Artplayer from "../components/Artplayer/Artplayer.vue";
-import Meting from "../components/Meting/Meting.vue";
-import Xgplayer from "../components/Xgplayer/Xgplayer.vue";
+import Bilibili from "../components/Bilibili/BilibiliComponent";
+import Xigua from "../components/Xigua/XiguaComponent";
+import DPlayer from "../components/Dplayer/DplayerComponent";
+import APlayer from "../components/Aplayer/AplayerComponent";
+import APlayerGlobal from "../components/Aplayer/AplayerGlobalComponent";
+import Artplayer from "../components/Artplayer/ArtplayerComponent";
+import Meting from "../components/Meting/MetingComponent";
+import Xgplayer from "../components/Xgplayer/XgplayerComponent";
 
 const enhanceAppFile: EnhanceApp = ({ Vue }): void => {
   Vue.component("Bilibili", Bilibili);

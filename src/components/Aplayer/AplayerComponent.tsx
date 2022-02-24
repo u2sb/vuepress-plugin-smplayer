@@ -1,19 +1,21 @@
 import merge from "deepmerge";
 import Aplayer from "./Aplayer";
 import { Aplayer as AplayerType } from "../../type/Config";
-import { Vue, Component, Prop, Ref } from "vue-property-decorator";
+import {
+  BasePlayerComponent,
+  Component,
+} from "../BasePlayer/SbBasePlayerComponent";
 
 declare const APLAYER: AplayerType;
 
 @Component
-export default class AplayerVue extends Vue {
-  @Prop({ type: Object, required: true }) src!: Record<string, any>;
-  @Ref("mmplayer") mmplayer!: any;
-
+export default class AplayerComponent extends BasePlayerComponent<
+  Record<string, any>
+> {
   aplayer = new Aplayer();
-  mounted() {
+  mounted(): void {
     let src = merge(APLAYER.src, this.src);
-    this.aplayer.InitPlayer(src, this.mmplayer);
+    this.aplayer.InitPlayer(src, this.sbplayer);
     this.$nextTick(() => {
       if (this.src.fixed) {
         const app = document.querySelector("#app");
@@ -22,7 +24,7 @@ export default class AplayerVue extends Vue {
     });
   }
 
-  beforeDestroy() {
+  beforeDestroy(): void {
     this.aplayer.DestroyPlayer();
   }
 }

@@ -3,7 +3,7 @@ import { Config } from "./type/Config";
 
 const { resolve } = require("path");
 const merge = require("deepmerge");
-const config_default = require("./config/config_default");
+const config_default = require("./config/ConfigDefault");
 
 const SbMediaPlugin: Plugin<Config> = (opts, context) => ({
   define() {

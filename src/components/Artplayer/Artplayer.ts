@@ -1,4 +1,4 @@
-import Artplayer, { Option as ArtplayerOptions } from "../../type/artplayer";
+import { Artplayer, ArtplayerOptions } from "../../type/Artplayer";
 
 export default class ArtplayerVue {
   player: Artplayer | undefined;
@@ -34,25 +34,25 @@ export default class ArtplayerVue {
         switch (src.type.toLowerCase()) {
           case "hls":
           case "m3u8":
-            src.type = "mmediaArtplayerHls";
+            src.type = "sbmediaArtplayerHls";
             useHls = true;
             break;
           case "flv":
-            src.type = "mmediaArtplayerFlv";
+            src.type = "sbmediaArtplayerFlv";
             useFlv = true;
             break;
           case "dash":
-            src.type = "mmediaArtplayerDash";
+            src.type = "sbmediaArtplayerDash";
             useDash = true;
             break;
           case "shakadash":
           case "shaka":
           case "shaka-dash":
-            src.type = "mmediaArtplayerShakaDash";
+            src.type = "sbmediaArtplayerShakaDash";
             useShakaDash = true;
             break;
           case "webtorrent":
-            src.type = "mmediaArtplayerWebtorrent";
+            src.type = "sbmediaArtplayerWebtorrent";
             useWebtorrent = true;
             break;
         }
@@ -75,25 +75,25 @@ export default class ArtplayerVue {
             switch (e.type.toLowerCase()) {
               case "hls":
               case "m3u8":
-                e.type = "mmediaArtplayerHls";
+                e.type = "sbmediaArtplayerHls";
                 useHls = true;
                 break;
               case "flv":
-                e.type = "mmediaArtplayerFlv";
+                e.type = "sbmediaArtplayerFlv";
                 useFlv = true;
                 break;
               case "dash":
-                e.type = "mmediaArtplayerDash";
+                e.type = "sbmediaArtplayerDash";
                 useDash = true;
                 break;
               case "shakadash":
               case "shaka":
               case "shaka-dash":
-                e.type = "mmediaArtplayerShakaDash";
+                e.type = "sbmediaArtplayerShakaDash";
                 useShakaDash = true;
                 break;
               case "webtorrent":
-                e.type = "mmediaArtplayerWebtorrent";
+                e.type = "sbmediaArtplayerWebtorrent";
                 useWebtorrent = true;
                 break;
             }
@@ -104,7 +104,7 @@ export default class ArtplayerVue {
       // 自定义类型
       if (useHls) {
         Object.assign(src.customType, {
-          mmediaArtplayerHls: function (
+          sbmediaArtplayerHls: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -125,7 +125,7 @@ export default class ArtplayerVue {
       }
       if (useFlv) {
         Object.assign(src.customType, {
-          mmediaArtplayerFlv: function (
+          sbmediaArtplayerFlv: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -150,7 +150,7 @@ export default class ArtplayerVue {
 
       if (useDash) {
         Object.assign(src.customType, {
-          mmediaArtplayerDash: function (
+          sbmediaArtplayerDash: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -171,7 +171,7 @@ export default class ArtplayerVue {
 
       if (useShakaDash) {
         Object.assign(src.customType, {
-          mmediaArtplayerShakaDash: function (
+          sbmediaArtplayerShakaDash: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -193,7 +193,7 @@ export default class ArtplayerVue {
 
       if (useWebtorrent) {
         Object.assign(src.customType, {
-          mmediaArtplayerWebtorrent: function (
+          sbmediaArtplayerWebtorrent: function (
             video: HTMLVideoElement,
             url: string,
             player: Artplayer
@@ -224,11 +224,11 @@ export default class ArtplayerVue {
     });
   }
 
-  DestroyPlayer() {
+  DestroyPlayer(): void {
     this.player?.destroy();
   }
 
-  ChangeWidth(container: any) {
+  ChangeWidth(container: any): void {
     container.style.height = (container.scrollWidth * 9) / 16 + "px";
   }
 }
