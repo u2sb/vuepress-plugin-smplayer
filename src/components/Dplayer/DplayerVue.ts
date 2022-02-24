@@ -9,7 +9,7 @@ declare const DPLAYER: DplayerType;
 @Component
 export default class DplayerVue extends Vue {
   @Prop({ type: Object, required: true }) src!: DPlayerOptions;
-  @Ref("mmplayer") mmplayer!: HTMLElement;
+  @Ref("mmplayer") mmplayer!: any;
 
   dplayer: Dplayer = new Dplayer();
 

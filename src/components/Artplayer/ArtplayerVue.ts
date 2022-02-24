@@ -9,7 +9,7 @@ declare const ARTPLAYER: ArtplayerType;
 @Component
 export default class ArtplayerVue extends Vue {
   @Prop({ type: Object, required: true }) src!: ArtplayerOptions;
-  @Ref("mmplayer") mmplayer!: HTMLElement;
+  @Ref("mmplayer") mmplayer!: any;
 
   artplayer = new Artplayer();
   mounted() {

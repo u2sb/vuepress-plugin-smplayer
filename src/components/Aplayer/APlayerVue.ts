@@ -8,7 +8,7 @@ declare const APLAYER: AplayerType;
 @Component
 export default class AplayerVue extends Vue {
   @Prop({ type: Object, required: true }) src!: Record<string, any>;
-  @Ref("mmplayer") mmplayer!: HTMLElement;
+  @Ref("mmplayer") mmplayer!: any;
 
   aplayer = new Aplayer();
   mounted() {

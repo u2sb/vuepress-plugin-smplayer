@@ -2,7 +2,7 @@ import { Xgplayer as XGplayer, IPlayerOptions } from "../../type/xgplayer";
 
 export default class Xgplayer {
   player: XGplayer | undefined;
-  InitPlayer(src: IPlayerOptions, container: HTMLElement) {
+  InitPlayer(src: IPlayerOptions, container: any) {
     if (src.type == undefined && typeof src.url == "string") {
       if (src.url.toLowerCase().endsWith(".m3u8")) {
         src.type = "hls";

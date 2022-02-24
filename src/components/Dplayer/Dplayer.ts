@@ -7,7 +7,7 @@ import {
 export default class Dplayer {
   player: DPlayer | undefined;
 
-  InitPlayer(src: DPlayerOptions, container: HTMLElement): void {
+  InitPlayer(src: DPlayerOptions, container: any): void {
     import(
       // @ts-ignore
       /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"

@@ -14,7 +14,7 @@ type ComponentOption = {
   /**
    * Html string or html element of component
    */
-  html: string | HTMLElement;
+  html: string | any;
 
   /**
    * Whether to disable component
@@ -44,7 +44,7 @@ type ComponentOption = {
   /**
    * Wnen the component was mounted
    */
-  mounted?(element: HTMLElement): void;
+  mounted?(element: any): void;
 
   /**
    * Component tooltip, use in controls
@@ -64,19 +64,19 @@ type ComponentOption = {
   /**
    * When selector item click, use in controls
    */
-  onSelect?(selector: Selector, element: HTMLElement, event: Event): void;
+  onSelect?(selector: Selector, element: any, event: Event): void;
 };
 
 type SettingOption = {
   /**
    * Html string or html element of setting name
    */
-  html: string | HTMLElement;
+  html: string | any;
 
   /**
    * Html string or html element of setting icon
    */
-  icon?: string | HTMLElement;
+  icon?: string | any;
 
   /**
    * The width of setting
@@ -101,7 +101,7 @@ type SettingOption = {
   /**
    * When selector item click
    */
-  onSelect?(selector: SettingOption, element: HTMLElement, event: Event): void;
+  onSelect?(selector: SettingOption, element: any, event: Event): void;
 };
 
 type Component = {
@@ -118,7 +118,7 @@ type Component = {
   /**
    * Component parent element
    */
-  readonly $parent: HTMLElement | void;
+  readonly $parent: any | void;
 
   /**
    * Whether to show component parent
@@ -138,7 +138,7 @@ type Component = {
   /**
    * Dynamic add a component
    */
-  add(option: ComponentOption): HTMLElement;
+  add(option: ComponentOption): any;
 };
 
 type PluginFunction = (art: Artplayer) => any;
@@ -184,7 +184,7 @@ type Option = {
   /**
    * The container mounted by the player
    */
-  container?: string | HTMLElement;
+  container?: string | any;
 
   /**
    * Video url
@@ -426,19 +426,19 @@ type Option = {
    * Custom default icons
    */
   icons?: {
-    loading?: HTMLElement | string;
-    state?: HTMLElement | string;
-    play?: HTMLElement | string;
-    pause?: HTMLElement | string;
-    volume?: HTMLElement | string;
-    volumeClose?: HTMLElement | string;
-    subtitle?: HTMLElement | string;
-    screenshot?: HTMLElement | string;
-    setting?: HTMLElement | string;
-    fullscreen?: HTMLElement | string;
-    fullscreenWeb?: HTMLElement | string;
-    pip?: HTMLElement | string;
-    indicator?: HTMLElement | string;
+    loading?: any | string;
+    state?: any | string;
+    play?: any | string;
+    pause?: any | string;
+    volume?: any | string;
+    volumeClose?: any | string;
+    subtitle?: any | string;
+    screenshot?: any | string;
+    setting?: any | string;
+    fullscreen?: any | string;
+    fullscreenWeb?: any | string;
+    pip?: any | string;
+    indicator?: any | string;
   };
 
   /**
@@ -559,9 +559,9 @@ declare class Artplayer extends Player {
   once(name: string, fn: Function, ctx?: object): void;
   emit(name: string): void;
   off(name: string, callback?: Function): void;
-  query(selector: string): HTMLElement;
+  query(selector: string): any;
   proxy(
-    target: HTMLElement,
+    target: any,
     name: string,
     callback: EventCallback,
     option?: { passive?: boolean; once?: boolean; capture?: boolean } | Boolean
@@ -569,40 +569,40 @@ declare class Artplayer extends Player {
   destroy(removeHtml?: boolean): void;
 
   readonly template: {
-    query(str: string): HTMLElement;
-    readonly $container: HTMLElement;
-    readonly $original: HTMLElement;
-    readonly $player: HTMLElement;
-    readonly $video: HTMLElement;
-    readonly $poster: HTMLElement;
-    readonly $subtitle: HTMLElement;
-    readonly $danmuku: HTMLElement;
-    readonly $bottom: HTMLElement;
-    readonly $progress: HTMLElement;
-    readonly $controls: HTMLElement;
-    readonly $controlsLeft: HTMLElement;
-    readonly $controlsRight: HTMLElement;
-    readonly $layer: HTMLElement;
-    readonly $loading: HTMLElement;
-    readonly $notice: HTMLElement;
-    readonly $noticeInner: HTMLElement;
-    readonly $mask: HTMLElement;
-    readonly $state: HTMLElement;
-    readonly $setting: HTMLElement;
-    readonly $settingInner: HTMLElement;
-    readonly $settingBody: HTMLElement;
-    readonly $info: HTMLElement;
-    readonly $infoPanel: HTMLElement;
-    readonly $infoClose: HTMLElement;
-    readonly $miniHeader: HTMLElement;
-    readonly $miniTitle: HTMLElement;
-    readonly $miniClose: HTMLElement;
-    readonly $contextmenu: HTMLElement;
+    query(str: string): any;
+    readonly $container: any;
+    readonly $original: any;
+    readonly $player: any;
+    readonly $video: any;
+    readonly $poster: any;
+    readonly $subtitle: any;
+    readonly $danmuku: any;
+    readonly $bottom: any;
+    readonly $progress: any;
+    readonly $controls: any;
+    readonly $controlsLeft: any;
+    readonly $controlsRight: any;
+    readonly $layer: any;
+    readonly $loading: any;
+    readonly $notice: any;
+    readonly $noticeInner: any;
+    readonly $mask: any;
+    readonly $state: any;
+    readonly $setting: any;
+    readonly $settingInner: any;
+    readonly $settingBody: any;
+    readonly $info: any;
+    readonly $infoPanel: any;
+    readonly $infoClose: any;
+    readonly $miniHeader: any;
+    readonly $miniTitle: any;
+    readonly $miniClose: any;
+    readonly $contextmenu: any;
   };
 
   readonly events: {
     proxy(
-      target: HTMLElement,
+      target: any,
       name: string,
       callback: EventCallback,
       option?:
@@ -610,7 +610,7 @@ declare class Artplayer extends Player {
         | Boolean
     ): Function;
     hover(
-      target: HTMLElement,
+      target: any,
       mouseenter?: EventCallback,
       mouseleave?: EventCallback
     ): Function;
@@ -631,25 +631,25 @@ declare class Artplayer extends Player {
   };
 
   readonly icons: {
-    readonly loading: HTMLElement;
-    readonly state: HTMLElement;
-    readonly play: HTMLElement;
-    readonly pause: HTMLElement;
-    readonly check: HTMLElement;
-    readonly volume: HTMLElement;
-    readonly volumeClose: HTMLElement;
-    readonly subtitle: HTMLElement;
-    readonly screenshot: HTMLElement;
-    readonly setting: HTMLElement;
-    readonly fullscreen: HTMLElement;
-    readonly fullscreenWeb: HTMLElement;
-    readonly pip: HTMLElement;
-    readonly indicator: HTMLElement;
-    readonly arrowLeft: HTMLElement;
-    readonly arrowRight: HTMLElement;
-    readonly playbackRate: HTMLElement;
-    readonly aspectRatio: HTMLElement;
-    readonly config: HTMLElement;
+    readonly loading: any;
+    readonly state: any;
+    readonly play: any;
+    readonly pause: any;
+    readonly check: any;
+    readonly volume: any;
+    readonly volumeClose: any;
+    readonly subtitle: any;
+    readonly screenshot: any;
+    readonly setting: any;
+    readonly fullscreen: any;
+    readonly fullscreenWeb: any;
+    readonly pip: any;
+    readonly indicator: any;
+    readonly arrowLeft: any;
+    readonly arrowRight: any;
+    readonly playbackRate: any;
+    readonly aspectRatio: any;
+    readonly config: any;
   };
 
   readonly hotkey: {
@@ -680,7 +680,7 @@ declare class Artplayer extends Player {
     set toggle(state: boolean);
     get url(): string;
     set url(url: string);
-    style(name: string | CSSStyleDeclaration, value?: string): HTMLElement;
+    style(name: string | CSSStyleDeclaration, value?: string): any;
     switch(url: string, option?: SubtitleOption): Promise<string>;
   };
 
@@ -704,13 +704,13 @@ declare class Artplayer extends Player {
 
   readonly mask: Component;
 
-  readonly layers: Record<string, HTMLElement> & Component;
+  readonly layers: Record<string, any> & Component;
 
-  readonly controls: Record<string, HTMLElement> & Component;
+  readonly controls: Record<string, any> & Component;
 
-  readonly contextmenu: Record<string, HTMLElement> & Component;
+  readonly contextmenu: Record<string, any> & Component;
 
-  readonly setting: Record<string, HTMLElement> & Component;
+  readonly setting: Record<string, any> & Component;
 }
 
 export default Artplayer;

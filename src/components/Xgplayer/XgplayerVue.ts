@@ -9,7 +9,7 @@ declare const XGPLAYER: XgplayerType;
 @Component
 export default class XgplayerVue extends Vue {
   @Prop({ type: Object, required: true }) src!: IPlayerOptions;
-  @Ref("mmplayer") mmplayer!: HTMLElement;
+  @Ref("mmplayer") mmplayer!: any;
 
   xgplayer = new Xgplayer();
   mounted() {

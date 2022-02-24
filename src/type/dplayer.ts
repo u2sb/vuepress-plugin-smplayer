@@ -1,7 +1,7 @@
 import DPlayer, { DPlayerOptions, DPlayerEvents, DPlayerVideo } from "dplayer";
 
 export interface SbDPlayerOptions extends Omit<DPlayerOptions, "container"> {
-  container?: HTMLElement | null;
+  container?: any | null;
 }
 
 class SbDPlayer extends DPlayer {

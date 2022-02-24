@@ -11,7 +11,7 @@ export default class XiguaVue extends Vue {
   @Prop({ default: XIGUA.startTime }) startTime!: number;
   @Prop({ default: XIGUA.allowfullscreen }) allowfullscreen!: string;
   @Prop({ default: XIGUA.sandbox }) sandbox!: string;
-  @Ref("mmplayer") mmplayer!: HTMLElement;
+  @Ref("mmplayer") mmplayer!: any;
 
   data() {
     return {

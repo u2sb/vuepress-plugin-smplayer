@@ -10,7 +10,7 @@ export default class BilibiliVue extends Vue {
   @Prop({ default: BILIBILI.page }) page!: number;
   @Prop({ default: BILIBILI.allowfullscreen }) allowfullscreen!: string;
   @Prop({ default: BILIBILI.sandbox }) sandbox!: string;
-  @Ref("mmplayer") mmplayer!: HTMLElement;
+  @Ref("mmplayer") mmplayer!: any;
 
   data() {
     return {

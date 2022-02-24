@@ -36,7 +36,7 @@ export default class MetingVue extends Vue {
   @Prop({ type: Array }) audio: Array<any> | undefined;
   @Prop({ type: Array }) list: Array<any> | undefined;
 
-  @Ref("mmplayer") mmplayer!: HTMLElement;
+  @Ref("mmplayer") mmplayer!: any;
 
   meting = new Meting();
 

@@ -1,7 +1,7 @@
 export default class Aplayer {
   player: any;
   src: any;
-  InitPlayer(src: Record<string, any>, container: HTMLElement) {
+  InitPlayer(src: Record<string, any>, container: any) {
     this.src = src;
     Promise.all([
       // @ts-ignore
