@@ -9,7 +9,7 @@
     // "lib": [],                             /* Specify library files to be included in the compilation. */
     "allowJs": true,
     // "checkJs": true,
-    "jsx": "preserve",
+    "jsx": "react-native",
     "declaration": true,
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
