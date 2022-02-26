@@ -1,12 +1,11 @@
 import { Bilibili as BilibiliType } from "../../type/Config";
 import {
-  VNode,
   Vue,
+  VNode,
   Component,
   Prop,
   Ref,
 } from "../BasePlayer/SbBasePlayerComponent";
-import "./BilibiliStyle.css";
 
 declare const BILIBILI: BilibiliType;
 
@@ -17,11 +16,13 @@ export default class BilibiliComponent extends Vue {
   @Prop({ default: BILIBILI.page }) page!: number;
   @Prop({ default: BILIBILI.allowfullscreen }) allowfullscreen!: string;
   @Prop({ default: BILIBILI.sandbox }) sandbox!: string;
+  @Prop({ type: String, default: BILIBILI.width }) width!: string;
+  @Prop({ type: Array, default: () => BILIBILI.height }) height!: Array<number>;
   @Ref("sbplayer") sbplayer!: HTMLElement | any;
 
   mounted() {
     this.sbplayer.style.height =
-      (this.sbplayer.scrollWidth * 9) / 16 + 50 + "px";
+      this.sbplayer.scrollWidth * this.height[0] + this.height[1] + "px";
   }
 
   render(): VNode {
@@ -29,7 +30,7 @@ export default class BilibiliComponent extends Vue {
       <div class="smplayer">
         <iframe
           ref="sbplayer"
-          class="bbplayer"
+          style={`width: ${this.width}`}
           src={`//player.bilibili.com/player.html?bvid=${this.bvid}&page=${this.page}&danmaku=${this.danmaku}`}
           allowfullscreen={this.allowfullscreen}
           scrolling="no"

@@ -5,6 +5,7 @@ const ConfigDefault: Config = {
     src: {
       lrcType: 3,
     },
+    width: "100%",
   },
   meting: {
     api: "https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r",
@@ -26,6 +27,7 @@ const ConfigDefault: Config = {
   },
   dplayer: {
     src: {},
+    width: "100%",
   },
   artplayer: {
     src: {
@@ -33,6 +35,8 @@ const ConfigDefault: Config = {
       autoSize: true,
       setting: true,
     },
+    width: "100%",
+    height: [9 / 16, 0],
   },
   bilibili: {
     page: 1,
@@ -40,6 +44,8 @@ const ConfigDefault: Config = {
     allowfullscreen: "allowfullscreen",
     sandbox:
       "allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups",
+    width: "100%",
+    height: [9 / 16, 70],
   },
   xigua: {
     autoplay: !1,
@@ -47,12 +53,15 @@ const ConfigDefault: Config = {
     allowfullscreen: "allowfullscreen",
     sandbox:
       "allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups",
+    width: "100%",
+    height: [9 / 16, 0],
   },
   xgplayer: {
     src: {
       fluid: true,
       fitVideoSize: "auto",
     },
+    width: "100%",
   },
 };
 

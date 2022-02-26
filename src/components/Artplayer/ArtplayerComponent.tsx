@@ -6,7 +6,6 @@ import {
   BasePlayerComponent,
   Component,
 } from "../BasePlayer/SbBasePlayerComponent";
-import "./ArtplayerStyle.css";
 
 declare const ARTPLAYER: ArtplayerType;
 
@@ -16,7 +15,8 @@ export default class ArtplayerComponent extends BasePlayerComponent<ArtplayerOpt
   mounted(): void {
     let src = merge(ARTPLAYER.src, this.src);
     this.artplayer.InitPlayer(src, this.sbplayer);
-    this.artplayer.ChangeWidth(this.sbplayer);
+    this.sbplayer.style.height =
+      this.sbplayer.scrollWidth * this.height[0] + this.height[1] + "px";
   }
 
   beforeDestroy(): void {

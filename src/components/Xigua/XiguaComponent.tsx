@@ -1,12 +1,11 @@
 import { Xigua as XiguaType } from "../../type/Config";
 import {
   VNode,
-  Vue,
   Component,
   Prop,
+  Vue,
   Ref,
 } from "../BasePlayer/SbBasePlayerComponent";
-import "./XiguaStyle.css";
 
 declare const XIGUA: XiguaType;
 
@@ -18,10 +17,13 @@ export default class XiguaComponent extends Vue {
   @Prop({ default: XIGUA.startTime }) startTime!: number;
   @Prop({ default: XIGUA.allowfullscreen }) allowfullscreen!: string;
   @Prop({ default: XIGUA.sandbox }) sandbox!: string;
+  @Prop({ type: String, default: XIGUA.width }) width!: string;
+  @Prop({ type: Array, default: () => XIGUA.height }) height!: Array<number>;
   @Ref("sbplayer") sbplayer!: HTMLElement | any;
 
   mounted() {
-    this.sbplayer.style.height = (this.sbplayer.scrollWidth * 9) / 16 + "px";
+    this.sbplayer.style.height =
+      this.sbplayer.scrollWidth * this.height[0] + this.height[1] + "px";
   }
 
   render(): VNode {
@@ -29,7 +31,7 @@ export default class XiguaComponent extends Vue {
       <div class="smplayer">
         <iframe
           ref="sbplayer"
-          class="xiguaplayer"
+          style={`width: ${this.width}`}
           src={`//www.ixigua.com/iframe/${this.xid}?${
             this.id ? "id=" + this.id + "&" : ""
           }autoplay=${this.autoplay ? 1 : 0}&startTime=${this.startTime}`}

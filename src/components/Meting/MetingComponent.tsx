@@ -10,7 +10,7 @@ import { Audio as AplayerAudio } from "../../type/Aplayer";
 declare const METING: MetingType;
 
 @Component
-export default class MetingComponent extends BasePlayerComponent<any> {
+export default class MetingComponent extends BasePlayerComponent<undefined> {
   @Prop({ type: String, default: "" }) id: string | undefined;
   @Prop({ type: String, default: METING.server }) server: string | undefined;
   @Prop({ type: String, default: METING.type }) type: string | undefined;
@@ -38,7 +38,7 @@ export default class MetingComponent extends BasePlayerComponent<any> {
     | undefined;
   @Prop({ type: String, default: METING.api }) api: string | undefined;
   @Prop({ type: Array }) audio: Array<AplayerAudio> | undefined;
-  @Prop({ type: Array }) list: Array<any> | undefined;
+  @Prop({ type: Array }) list: Array<MetingType> | undefined;
 
   meting = new Meting();
 

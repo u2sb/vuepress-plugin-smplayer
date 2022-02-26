@@ -227,8 +227,4 @@ export default class ArtplayerVue {
   DestroyPlayer(): void {
     this.player?.destroy();
   }
-
-  ChangeWidth(container: HTMLElement): void {
-    container.style.height = (container.scrollWidth * 9) / 16 + "px";
-  }
 }

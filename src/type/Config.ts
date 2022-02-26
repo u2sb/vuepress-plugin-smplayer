@@ -5,6 +5,7 @@ import { Audio as AplayerAudio, AplayerOptions } from "./Aplayer";
 
 interface Aplayer {
   src: AplayerOptions;
+  width?: string;
 }
 
 interface Meting {
@@ -33,10 +34,13 @@ interface Meting {
 
 interface Dplayer {
   src: DPlayerOptions;
+  width?: string;
 }
 
 interface Artplayer {
   src: ArtplayerOptions;
+  width?: string;
+  height?: Array<number>;
 }
 
 interface Bilibili {
@@ -45,6 +49,8 @@ interface Bilibili {
   danmaku?: boolean;
   allowfullscreen?: string;
   sandbox?: string;
+  width?: string;
+  height?: Array<number>;
 }
 
 interface Xigua {
@@ -52,10 +58,13 @@ interface Xigua {
   startTime?: number;
   allowfullscreen?: string;
   sandbox?: string;
+  width?: string;
+  height?: Array<number>;
 }
 
 interface Xgplayer {
   src: IPlayerOptions;
+  width?: string;
 }
 
 interface Config {
