@@ -2,7 +2,7 @@ import { Artplayer, Option as ArtplayerOption } from "./ArtplayerType";
 
 export interface SbArtplayerOptions
   extends Omit<ArtplayerOption, "container" | "url"> {
-  container?: any | null;
+  container?: HTMLElement | null;
   url?: string;
   quality?: {
     /**

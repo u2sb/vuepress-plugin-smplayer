@@ -4,7 +4,7 @@ import { VNode } from "vue";
 @Component
 export default class SbBasePlayerComponent<T> extends Vue {
   @Prop(Object) src!: T;
-  @Ref("sbplayer") sbplayer!: any;
+  @Ref("sbplayer") sbplayer!: HTMLElement | any;
   render(): VNode {
     return (
       <div class="smplayer">

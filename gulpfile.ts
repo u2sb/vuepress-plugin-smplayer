@@ -14,8 +14,8 @@ const version = execa.commandSync("git describe --tags", {
   all: true,
 }).stdout;
 
-const cleanOut = (e) => rm(outputDir, e);
-const cleanTemp = (e) => rm(tempDir, e);
+const cleanOut = (e: void) => rm(outputDir, e);
+const cleanTemp = (e: void) => rm(tempDir, e);
 
 const tsc = () => {
   const tsProject = ts.createProject("tsconfig.json");

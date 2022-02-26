@@ -5,6 +5,7 @@ import {
   Prop,
   Component,
 } from "../BasePlayer/SbBasePlayerComponent";
+import { Audio as AplayerAudio } from "../../type/Aplayer";
 
 declare const METING: MetingType;
 
@@ -36,7 +37,7 @@ export default class MetingComponent extends BasePlayerComponent<any> {
     | string
     | undefined;
   @Prop({ type: String, default: METING.api }) api: string | undefined;
-  @Prop({ type: Array }) audio: Array<any> | undefined;
+  @Prop({ type: Array }) audio: Array<AplayerAudio> | undefined;
   @Prop({ type: Array }) list: Array<any> | undefined;
 
   meting = new Meting();

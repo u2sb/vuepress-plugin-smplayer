@@ -17,7 +17,7 @@ export default class BilibiliComponent extends Vue {
   @Prop({ default: BILIBILI.page }) page!: number;
   @Prop({ default: BILIBILI.allowfullscreen }) allowfullscreen!: string;
   @Prop({ default: BILIBILI.sandbox }) sandbox!: string;
-  @Ref("sbplayer") sbplayer!: any;
+  @Ref("sbplayer") sbplayer!: HTMLElement | any;
 
   mounted() {
     this.sbplayer.style.height =

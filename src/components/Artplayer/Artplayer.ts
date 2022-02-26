@@ -3,7 +3,7 @@ import { Artplayer, ArtplayerOptions } from "../../type/Artplayer";
 export default class ArtplayerVue {
   player: Artplayer | undefined;
 
-  InitPlayer(src: ArtplayerOptions, container: any): void {
+  InitPlayer(src: ArtplayerOptions, container: HTMLElement): void {
     import(
       // @ts-ignore
       /* webpackChunkName: "artplayer" */ "artplayer/dist/artplayer.js"
@@ -228,7 +228,7 @@ export default class ArtplayerVue {
     this.player?.destroy();
   }
 
-  ChangeWidth(container: any): void {
+  ChangeWidth(container: HTMLElement): void {
     container.style.height = (container.scrollWidth * 9) / 16 + "px";
   }
 }

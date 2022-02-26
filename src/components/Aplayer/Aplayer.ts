@@ -1,7 +1,9 @@
+import { Audio as AplayerAudio, AplayerOptions } from "../../type/Aplayer";
+
 export default class Aplayer {
   player: any;
-  src: any;
-  InitPlayer(src: Record<string, any>, container: any) {
+  src: AplayerOptions | undefined;
+  InitPlayer(src: AplayerOptions, container: HTMLElement) {
     this.src = src;
     Promise.all([
       // @ts-ignore
@@ -14,7 +16,7 @@ export default class Aplayer {
       }
       let useHls = false;
 
-      src.audio.forEach((e: any) => {
+      src.audio?.forEach((e: AplayerAudio) => {
         if (e.type == undefined) {
           if (e.url.toLowerCase().endsWith(".m3u8")) {
             e.type = "hls";
@@ -33,8 +35,8 @@ export default class Aplayer {
       if (useHls) {
         Object.assign(src.customAudioType, {
           smplayerAplayerHls: function (
-            audioElement: any,
-            audio: Record<string, any>,
+            audioElement: HTMLAudioElement,
+            audio: AplayerAudio,
             player: any
           ) {
             // @ts-ignore
@@ -69,7 +71,7 @@ export default class Aplayer {
   }
 
   DestroyPlayer() {
-    if (this.player && !this.src.fixed) {
+    if (this.player && !this.src?.fixed) {
       this.player.destroy();
     }
   }

@@ -1,20 +1,10 @@
 import { DPlayerOptions } from "./Dplayer";
 import { ArtplayerOptions } from "./Artplayer";
 import { IPlayerOptions } from "./Xgplayer";
+import { Audio as AplayerAudio, AplayerOptions } from "./Aplayer";
 
 interface Aplayer {
-  src: Record<string, any>;
-}
-
-interface AplayerAudio {
-  name?: string;
-  artist?: string;
-  url?: string;
-  cover?: string;
-  lrc?: string;
-  theme?: string;
-  type?: string;
-  customAudioType?: Record<string, Function>;
+  src: AplayerOptions;
 }
 
 interface Meting {

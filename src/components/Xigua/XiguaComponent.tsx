@@ -18,7 +18,7 @@ export default class XiguaComponent extends Vue {
   @Prop({ default: XIGUA.startTime }) startTime!: number;
   @Prop({ default: XIGUA.allowfullscreen }) allowfullscreen!: string;
   @Prop({ default: XIGUA.sandbox }) sandbox!: string;
-  @Ref("sbplayer") sbplayer!: any;
+  @Ref("sbplayer") sbplayer!: HTMLElement | any;
 
   mounted() {
     this.sbplayer.style.height = (this.sbplayer.scrollWidth * 9) / 16 + "px";

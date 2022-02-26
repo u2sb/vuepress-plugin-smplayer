@@ -1,6 +1,7 @@
 import merge from "deepmerge";
 import Aplayer from "./Aplayer";
 import { Aplayer as AplayerType } from "../../type/Config";
+import { AplayerOptions } from "../../type/Aplayer";
 import {
   BasePlayerComponent,
   Component,
@@ -9,9 +10,7 @@ import {
 declare const APLAYER: AplayerType;
 
 @Component
-export default class AplayerComponent extends BasePlayerComponent<
-  Record<string, any>
-> {
+export default class AplayerComponent extends BasePlayerComponent<AplayerOptions> {
   aplayer = new Aplayer();
   mounted(): void {
     let src = merge(APLAYER.src, this.src);
