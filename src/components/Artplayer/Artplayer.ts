@@ -11,7 +11,7 @@ export default class ArtplayerVue extends SbBasePlayer<
       /* webpackChunkName: "artplayer" */ "artplayer/dist/artplayer.js"
     ).then(({ default: artplayer }) => {
       let useHls = false;
-      let useFlv = true;
+      let useFlv = false;
       let useDash = false;
       let useShakaDash = false;
       let useWebtorrent = false;

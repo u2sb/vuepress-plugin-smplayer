@@ -12,7 +12,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
       /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
     ).then(({ default: dplayer }) => {
       let useHls = false;
-      let useFlv = true;
+      let useFlv = false;
       let useDash = false;
       let useShakaDash = false;
       let useWebtorrent = false;
