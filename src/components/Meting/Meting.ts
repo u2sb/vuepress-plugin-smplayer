@@ -1,8 +1,12 @@
 import Aplayer from "../Aplayer/Aplayer";
 import { AplayerOptions } from "../../type/Aplayer";
 
-export default class Meting {
-  aplayer = new Aplayer();
+export default class Meting extends Aplayer {
+  constructor(meting: Record<string, any> = {}, container: HTMLElement) {
+    super();
+    this.InitMeting(meting, container);
+  }
+
   async InitMeting(meting: Record<string, any> = {}, container: HTMLElement) {
     let urlList: Array<string> = [];
     let audio = meting.audio || [];
@@ -68,6 +72,7 @@ export default class Meting {
         );
       });
       let src: AplayerOptions = {
+        container: container,
         audio: audio,
         fixed: meting.fixed,
         mini: meting.mini,
@@ -82,17 +87,17 @@ export default class Meting {
         listMaxHeight: meting.listMaxHeight,
         storageName: meting.storageName,
       };
-      this.InitPlayer(src, container);
+      this.InitPlayer(src);
     });
   }
 
   //初始化播放器
-  InitPlayer(src: AplayerOptions, container: HTMLElement) {
-    this.aplayer.InitPlayer(src, container);
+  InitPlayer(src: AplayerOptions) {
+    return super.InitPlayer(src);
   }
 
   DestroyPlayer() {
-    this.aplayer.DestroyPlayer();
+    super.DestroyPlayer();
   }
 
   ParseMeting(m: Record<string, any>, api: string): string | undefined {

@@ -10,20 +10,21 @@ import {
 declare const APLAYER: AplayerType;
 
 @Component
-export default class AplayerComponent extends BasePlayerComponent<AplayerOptions> {
-  aplayer = new Aplayer();
+export default class AplayerComponent extends BasePlayerComponent<
+  any,
+  AplayerOptions
+> {
   mounted(): void {
-    let src = merge(APLAYER.src, this.src);
-    this.aplayer.InitPlayer(src, this.sbplayer);
+    let src: AplayerOptions = {
+      ...merge(APLAYER.src, this.src),
+      container: this.$refs.sbplayer as HTMLElement,
+    };
+    this.player = new Aplayer(src);
     this.$nextTick(() => {
       if (this.src.fixed) {
         const app = document.querySelector("#app");
         app?.append(this.$el);
       }
     });
-  }
-
-  beforeDestroy(): void {
-    this.aplayer.DestroyPlayer();
   }
 }

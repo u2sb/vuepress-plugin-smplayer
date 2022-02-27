@@ -1,10 +1,8 @@
 import { Audio as AplayerAudio, AplayerOptions } from "../../type/Aplayer";
+import SbBasePlayer from "../BasePlayer/SbBasePlayer";
 
-export default class Aplayer {
-  player: any;
-  src: AplayerOptions | undefined;
-  InitPlayer(src: AplayerOptions, container: HTMLElement) {
-    this.src = src;
+export default class Aplayer extends SbBasePlayer<any, AplayerOptions> {
+  override InitPlayer(src: AplayerOptions) {
     Promise.all([
       // @ts-ignore
       import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
@@ -62,15 +60,11 @@ export default class Aplayer {
           },
         });
       }
-
-      this.player = new APlayer({
-        ...src,
-        container: container,
-      });
+      this.player = new APlayer(src);
     });
   }
 
-  DestroyPlayer() {
+  override DestroyPlayer() {
     if (this.player && !this.src?.fixed) {
       this.player.destroy();
     }

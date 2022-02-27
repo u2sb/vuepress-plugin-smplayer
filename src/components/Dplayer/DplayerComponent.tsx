@@ -1,7 +1,7 @@
 import merge from "deepmerge";
 import Dplayer from "./Dplayer";
 import { Dplayer as DplayerType } from "../../type/Config";
-import { DPlayerOptions } from "../../type/Dplayer";
+import { DPlayer as Player, DPlayerOptions } from "../../type/Dplayer";
 import {
   BasePlayerComponent,
   Component,
@@ -10,15 +10,19 @@ import {
 declare const DPLAYER: DplayerType;
 
 @Component
-export default class DplayerComponent extends BasePlayerComponent<DPlayerOptions> {
-  dplayer: Dplayer = new Dplayer();
-
+export default class DplayerComponent extends BasePlayerComponent<
+  Player,
+  DPlayerOptions
+> {
   mounted() {
-    let src = merge(DPLAYER.src, this.src);
-    this.dplayer.InitPlayer(src, this.sbplayer);
+    let src = {
+      ...merge(DPLAYER.src, this.src),
+      container: this.$refs.sbplayer as HTMLElement,
+    };
+    this.player = new Dplayer(src);
   }
 
   beforeDestroy() {
-    this.dplayer.DestroyPlayer();
+    this.player?.DestroyPlayer();
   }
 }

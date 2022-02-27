@@ -1,9 +1,11 @@
 import { Artplayer, ArtplayerOptions } from "../../type/Artplayer";
+import SbBasePlayer from "../BasePlayer/SbBasePlayer";
 
-export default class ArtplayerVue {
-  player: Artplayer | undefined;
-
-  InitPlayer(src: ArtplayerOptions, container: HTMLElement): void {
+export default class ArtplayerVue extends SbBasePlayer<
+  Artplayer,
+  ArtplayerOptions
+> {
+  override InitPlayer(src: ArtplayerOptions) {
     import(
       // @ts-ignore
       /* webpackChunkName: "artplayer" */ "artplayer/dist/artplayer.js"
@@ -216,15 +218,11 @@ export default class ArtplayerVue {
           },
         });
       }
-
-      this.player = new artplayer({
-        ...src,
-        container: container,
-      }) as Artplayer;
+      this.player = artplayer(src) as Artplayer;
     });
   }
 
-  DestroyPlayer(): void {
+  override DestroyPlayer(): void {
     this.player?.destroy();
   }
 }

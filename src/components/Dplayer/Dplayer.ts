@@ -4,10 +4,9 @@ import {
   DPlayerEvents,
   DPlayerVideo,
 } from "../../type/Dplayer";
-export default class Dplayer {
-  player: DPlayer | undefined;
-
-  InitPlayer(src: DPlayerOptions, container: HTMLElement): void {
+import SbBasePlayer from "../BasePlayer/SbBasePlayer";
+export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
+  InitPlayer(src: DPlayerOptions): void {
     import(
       // @ts-ignore
       /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
@@ -107,7 +106,10 @@ export default class Dplayer {
       // 自定义类型
       if (useHls) {
         Object.assign(src.video.customType, {
-          smplayerDplayerHls: function (video: DPlayerOptions, player: DPlayer) {
+          smplayerDplayerHls: function (
+            video: DPlayerOptions,
+            player: DPlayer
+          ) {
             // @ts-ignore
             import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
               ({ default: Hls }) => {
@@ -125,7 +127,10 @@ export default class Dplayer {
 
       if (useFlv) {
         Object.assign(src.video.customType, {
-          smplayerDplayerFlv: function (video: DPlayerOptions, player: DPlayer) {
+          smplayerDplayerFlv: function (
+            video: DPlayerOptions,
+            player: DPlayer
+          ) {
             // @ts-ignore
             import(/* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js").then(
               ({ default: flvjs }) => {
@@ -146,7 +151,10 @@ export default class Dplayer {
 
       if (useDash) {
         Object.assign(src.video.customType, {
-          smplayerDplayerDash: function (video: DPlayerOptions, player: DPlayer) {
+          smplayerDplayerDash: function (
+            video: DPlayerOptions,
+            player: DPlayer
+          ) {
             import(
               // @ts-ignore
               /* webpackChunkName: "dash" */ "dashjs/dist/dash.all.min.js"
@@ -207,12 +215,9 @@ export default class Dplayer {
         });
       }
 
-      this.player = new dplayer({
-        ...src,
-        container: container,
-      }) as DPlayer;
+      this.player = new dplayer(src) as DPlayer;
 
-      this.player.on("fullscreen" as DPlayerEvents.fullscreen, function () {
+      this.player?.on("fullscreen" as DPlayerEvents.fullscreen, function () {
         if (
           /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
             navigator.userAgent
