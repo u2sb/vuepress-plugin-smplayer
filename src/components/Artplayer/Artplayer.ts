@@ -15,9 +15,7 @@ export default class ArtplayerVue extends SbBasePlayer<
       let useDash = false;
       let useShakaDash = false;
       let useWebtorrent = false;
-      if (src.customType == undefined) {
-        src.customType = {};
-      }
+      src.customType = src.customType || {};
 
       // 判断是否有自定义类型
 
@@ -218,7 +216,7 @@ export default class ArtplayerVue extends SbBasePlayer<
           },
         });
       }
-      this.player = artplayer(src) as Artplayer;
+      this.player = new artplayer(src) as Artplayer;
     });
   }
 
