@@ -216,11 +216,30 @@ export default class ArtplayerVue extends SbBasePlayer<
           },
         });
       }
-      this.player = new artplayer(src) as Artplayer;
+
+      if (src.customInit) {
+        src.customInit(artplayer, src).then((player) => {
+          this.player = player;
+          this.AddCustomFun(src);
+        });
+      } else {
+        this.player = new artplayer(src) as Artplayer;
+        this.AddCustomFun(src);
+      }
     });
   }
 
   override DestroyPlayer(): void {
     this.player?.destroy();
+  }
+
+  AddCustomFun(src: ArtplayerOptions) {
+    super.AddCustomFun(src);
+
+    if (src.once) {
+      for (let key in src.once) {
+        this.player?.once(key, src.once[key]);
+      }
+    }
   }
 }

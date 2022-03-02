@@ -26,7 +26,19 @@ const ConfigDefault: Config = {
     storageName: "vuepress-plugin-smplayer",
   },
   dplayer: {
-    src: {},
+    src: {
+      on: {
+        fullscreen: () => {
+          if (
+            /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+              navigator.userAgent
+            )
+          ) {
+            screen.orientation.lock("landscape");
+          }
+        },
+      },
+    },
     width: "100%",
   },
   artplayer: {

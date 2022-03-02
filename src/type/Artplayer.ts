@@ -21,6 +21,13 @@ export interface SbArtplayerOptions
     url: string;
     type?: string;
   }[];
+  on?: Record<string, () => void>;
+  once?: Record<string, () => void>;
+  customFun?: Record<
+    string,
+    (player: SbArtplayer, src: SbArtplayerOptions) => void
+  >;
+  customInit?: (player: any, src: SbArtplayerOptions) => Promise<SbArtplayer>;
 }
 
 class SbArtplayer extends Artplayer {

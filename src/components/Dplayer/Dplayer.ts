@@ -216,20 +216,23 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
       }
 
       this.player = new dplayer(src) as DPlayer;
-
-      this.player?.on("fullscreen" as DPlayerEvents.fullscreen, function () {
-        if (
-          /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent
-          )
-        ) {
-          screen.orientation.lock("landscape");
-        }
-      });
     });
   }
 
   DestroyPlayer(): void {
     this.player?.destroy();
+  }
+
+  AddCustomFun(src: DPlayerOptions) {
+    if (src.on) {
+      for (let key in src.on) {
+        this.player?.on(key as DPlayerEvents, src.on[key]);
+      }
+    }
+    if (src.customFun && this.player) {
+      for (let key in src.customFun) {
+        src.customFun[key](this.player, src);
+      }
+    }
   }
 }

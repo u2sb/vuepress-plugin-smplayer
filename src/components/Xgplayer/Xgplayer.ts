@@ -51,10 +51,27 @@ export default class Xgplayer extends SbBasePlayer<XGplayer, IPlayerOptions> {
     }
 
     importJs.then(({ default: xgplayer }) => {
-      this.player = new xgplayer(src) as XGplayer;
+      if (src.customInit) {
+        src.customInit(xgplayer, src).then((player) => {
+          this.player = player;
+          this.AddCustomFun(src);
+        });
+      } else {
+        this.player = new xgplayer(src) as XGplayer;
+        this.AddCustomFun(src);
+      }
     });
   }
   DestroyPlayer() {
     this.player?.destroy();
+  }
+
+  AddCustomFun(src: IPlayerOptions) {
+    super.AddCustomFun(src);
+    if (src.once) {
+      for (let key in src.once) {
+        this.player?.once(key, src.once[key]);
+      }
+    }
   }
 }
