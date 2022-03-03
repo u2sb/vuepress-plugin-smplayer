@@ -44,9 +44,10 @@ export default class MetingComponent extends BasePlayerComponent<
   @Prop({ type: Array }) list: Array<MetingType> | undefined;
 
   meting: Meting | undefined;
-  mounted() {
+  async mounted() {
     let src = this.$props;
     this.meting = new Meting(src, this.sbplayer);
+    await this.meting.InitPlayer();
   }
 
   beforeDestroy() {

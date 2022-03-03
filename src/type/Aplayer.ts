@@ -26,6 +26,7 @@ interface AplayerOptions {
   audio?: Audio[];
   storageName?: string;
   customAudioType?: Record<string, void>;
+  customInit?: (player: any, src: AplayerOptions) => Promise<any>;
 }
 
 export { Audio, AplayerOptions };

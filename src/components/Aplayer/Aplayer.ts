@@ -2,44 +2,48 @@ import { Audio as AplayerAudio, AplayerOptions } from "../../type/Aplayer";
 import SbBasePlayer from "../BasePlayer/SbBasePlayer";
 
 export default class Aplayer extends SbBasePlayer<any, AplayerOptions> {
-  override InitPlayer(src: AplayerOptions) {
-    Promise.all([
-      // @ts-ignore
-      import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
-      // @ts-ignore
-      import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"),
-    ]).then(([{ default: APlayer }]) => {
-      if (src.customAudioType == undefined) {
-        src.customAudioType = {};
-      }
-      let useHls = false;
+  override async InitPlayer() {
+    if (this.src) {
+      return await Promise.all([
+        // @ts-ignore
+        import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
 
-      src.audio?.forEach((e: AplayerAudio) => {
-        if (e.type == undefined) {
-          if (e.url.toLowerCase().endsWith(".m3u8")) {
-            e.type = "hls";
+        import(
+          // @ts-ignore
+          /* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"
+        ),
+      ]).then(async ([{ default: aplayer }]) => {
+        this.src!.customAudioType = this.src?.customAudioType || {};
+
+        let useHls = false;
+
+        this.src?.audio?.forEach((e: AplayerAudio) => {
+          if (!e.type) {
+            if (e.url.toLowerCase().endsWith(".m3u8")) {
+              e.type = "hls";
+            }
           }
-        }
-        if (e.type != undefined && typeof e.type == "string") {
-          switch (e.type.toLowerCase()) {
-            case "hls":
-            case "m3u8":
-              e.type = "smplayerAplayerHls";
-              useHls = true;
-              break;
+          if (e.type && typeof e.type == "string") {
+            switch (e.type.toLowerCase()) {
+              case "hls":
+              case "m3u8":
+                e.type = "smplayerAplayerHls";
+                useHls = true;
+                break;
+            }
           }
-        }
-      });
-      if (useHls) {
-        Object.assign(src.customAudioType, {
-          smplayerAplayerHls: function (
-            audioElement: HTMLAudioElement,
-            audio: AplayerAudio,
-            player: any
-          ) {
-            // @ts-ignore
-            import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
-              ({ default: Hls }) => {
+        });
+        if (useHls) {
+          Object.assign(this.src?.customAudioType, {
+            smplayerAplayerHls: function (
+              audioElement: HTMLAudioElement,
+              audio: AplayerAudio,
+              player: any
+            ) {
+              import(
+                // @ts-ignore
+                /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
+              ).then(({ default: Hls }) => {
                 if (
                   audioElement.canPlayType("application/x-mpegURL") ||
                   audioElement.canPlayType("application/vnd.apple.mpegURL")
@@ -55,13 +59,20 @@ export default class Aplayer extends SbBasePlayer<any, AplayerOptions> {
                 } else {
                   player.notice("Error: HLS is not supported.");
                 }
-              }
-            );
-          },
-        });
-      }
-      this.player = new APlayer(src);
-    });
+              });
+            },
+          });
+        }
+        this.player = this.src?.customInit
+          ? await this.src.customInit(aplayer, this.src).then((player) => {
+              this.player = player;
+              return this.player;
+            })
+          : new aplayer(this.src);
+
+        return this.player;
+      });
+    }
   }
 
   override DestroyPlayer() {

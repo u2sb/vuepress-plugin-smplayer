@@ -4,31 +4,30 @@ export default abstract class SbBasePlayer<T, U> {
   constructor(src?: U) {
     if (src) {
       this.src = src;
-      this.InitPlayer(src);
     }
   }
-  abstract InitPlayer(src: U): void;
-  abstract DestroyPlayer(): void;
+  
+  abstract InitPlayer(): Promise<T | undefined>;
 
-  // @ts-nocheck
-  AddCustomFun(src: U): void {
+  DestroyPlayer(): void {
     // @ts-ignore
-    if (src.on) {
-      // @ts-ignore
-      for (let key in src.on) {
-        // @ts-ignore
-        this.player?.on(key, src.on[key]);
-      }
-    }
+    this.player?.destroy();
+  }
 
-    // @ts-ignore
-    if (src.customFun && this.player) {
-      // @ts-ignore
-      for (let key in src.customFun) {
+  AddOnEvent(on?: Record<string, (player: T, src: U) => void>): void {
+    if (on && this.player) {
+      Object.keys(on).forEach((key) => {
         // @ts-ignore
-        src.customFun[key](this.player, src);
-      }
+        this.player!.on(key, () => on[key](this.player, this.src));
+      });
     }
   }
-  // @ts-check
+
+  AddCustomFun(customFun?: Array<(player: T, src: U) => void>): void {
+    if (customFun && this.player) {
+      customFun.forEach((fun) => {
+        fun(this.player!, this.src!);
+      });
+    }
+  }
 }

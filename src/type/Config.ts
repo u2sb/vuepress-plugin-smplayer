@@ -1,12 +1,20 @@
-import { DPlayerOptions } from "./Dplayer";
-import { ArtplayerOptions } from "./Artplayer";
-import { IPlayerOptions } from "./Xgplayer";
+import { DPlayerOptions, DPlayer } from "./Dplayer";
+import { ArtplayerOptions, Artplayer as ArtPlayer } from "./Artplayer";
+import { IPlayerOptions, Xgplayer as XgPlayer } from "./Xgplayer";
 import { Audio as AplayerAudio, AplayerOptions } from "./Aplayer";
 
-interface Aplayer {
-  src: AplayerOptions;
+interface Player<T, U> {
+  src: T;
   width?: string;
+  eventOn?: Record<string, (player: U, src: T) => void>;
+  height?: Array<number>;
+  customFun?: Array<(player: U, src: T) => void>;
 }
+
+interface Aplayer extends Player<AplayerOptions, any> {}
+interface Dplayer extends Player<DPlayerOptions, DPlayer> {}
+interface Artplayer extends Player<ArtplayerOptions, ArtPlayer> {}
+interface Xgplayer extends Player<IPlayerOptions, XgPlayer> {}
 
 interface Meting {
   id?: string;
@@ -32,17 +40,6 @@ interface Meting {
   list?: Array<Meting>;
 }
 
-interface Dplayer {
-  src: DPlayerOptions;
-  width?: string;
-}
-
-interface Artplayer {
-  src: ArtplayerOptions;
-  width?: string;
-  height?: Array<number>;
-}
-
 interface Bilibili {
   bvid?: string;
   page?: number;
@@ -60,11 +57,6 @@ interface Xigua {
   sandbox?: string;
   width?: string;
   height?: Array<number>;
-}
-
-interface Xgplayer {
-  src: IPlayerOptions;
-  width?: string;
 }
 
 interface Config {

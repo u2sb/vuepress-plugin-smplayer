@@ -58,7 +58,7 @@ export default class Meting extends Aplayer {
     let pList = urlList.map(async (url) => (await fetch(url)).json());
 
     //等待所有音频获取完毕,初始化播放器
-    Promise.all(pList).then((a) => {
+    return await Promise.all(pList).then(async (a) => {
       a.map((e) => {
         audio = audio.concat(
           e.map((obj: Record<string, any> | undefined) => ({
@@ -87,17 +87,9 @@ export default class Meting extends Aplayer {
         listMaxHeight: meting.listMaxHeight,
         storageName: meting.storageName,
       };
-      this.InitPlayer(src);
+      this.src = src;
+      return this.InitPlayer();
     });
-  }
-
-  //初始化播放器
-  InitPlayer(src: AplayerOptions) {
-    return super.InitPlayer(src);
-  }
-
-  DestroyPlayer() {
-    super.DestroyPlayer();
   }
 
   ParseMeting(m: Record<string, any>, api: string): string | undefined {
