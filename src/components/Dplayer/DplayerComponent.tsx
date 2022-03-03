@@ -19,16 +19,7 @@ export default class DplayerComponent extends BasePlayerComponent<
   declare width: string;
 
   async mounted() {
-    if (DPLAYER.eventOn) {
-      this.eventOn = this.eventOn
-        ? merge(DPLAYER.eventOn, this.eventOn)
-        : DPLAYER.eventOn;
-    }
-    if (DPLAYER.customFun) {
-      this.customFun = this.customFun
-        ? merge(DPLAYER.customFun, this.customFun)
-        : DPLAYER.customFun;
-    }
+    let on = merge(DPLAYER.on!, this.on);
 
     let src = {
       ...merge(DPLAYER.src, this.src),
@@ -36,8 +27,7 @@ export default class DplayerComponent extends BasePlayerComponent<
     };
     this.player = new Dplayer(src);
     await this.player.InitPlayer();
-    this.player.AddCustomFun(this.customFun);
-    this.player.AddOnEvent(this.eventOn);
+    this.player.AddOnEvent(on);
   }
 
   beforeDestroy() {

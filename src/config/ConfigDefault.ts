@@ -6,6 +6,7 @@ const ConfigDefault: Config = {
       lrcType: 3,
     },
     width: "100%",
+    on: {},
   },
   meting: {
     api: "https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r",
@@ -28,7 +29,7 @@ const ConfigDefault: Config = {
   dplayer: {
     src: {},
     width: "100%",
-    eventOn: {
+    on: {
       fullscreen: () => {
         if (
           /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -48,6 +49,7 @@ const ConfigDefault: Config = {
     },
     width: "100%",
     height: [9 / 16, 0],
+    on: {},
   },
   bilibili: {
     page: 1,
@@ -73,6 +75,7 @@ const ConfigDefault: Config = {
       fitVideoSize: "auto",
     },
     width: "100%",
+    on: {},
   },
 };
 

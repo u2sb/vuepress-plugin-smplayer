@@ -6,7 +6,7 @@ import { Audio as AplayerAudio, AplayerOptions } from "./Aplayer";
 interface Player<T, U> {
   src: T;
   width?: string;
-  eventOn?: Record<string, (player: U, src: T) => void>;
+  on?: Record<string, (player: U, src: T) => void>;
   height?: Array<number>;
   customFun?: Array<(player: U, src: T) => void>;
 }

@@ -16,16 +16,7 @@ export default class AplayerComponent extends BasePlayerComponent<
   AplayerOptions
 > {
   async mounted(): Promise<void> {
-    if (APLAYER.eventOn) {
-      this.eventOn = this.eventOn
-        ? merge(APLAYER.eventOn, this.eventOn)
-        : APLAYER.eventOn;
-    }
-    if (APLAYER.customFun) {
-      this.customFun = this.customFun
-        ? merge(APLAYER.customFun, this.customFun)
-        : APLAYER.customFun;
-    }
+    let on = merge(APLAYER.on!, this.on);
 
     let src: AplayerOptions = {
       ...merge(APLAYER.src, this.src),
@@ -33,8 +24,7 @@ export default class AplayerComponent extends BasePlayerComponent<
     };
     this.player = new Aplayer(src);
     await this.player.InitPlayer();
-    this.player.AddCustomFun(this.customFun);
-    this.player.AddOnEvent(this.eventOn);
+    this.player.AddOnEvent(on);
     this.$nextTick(() => {
       if (this.src.fixed) {
         const app = document.querySelector("#app");

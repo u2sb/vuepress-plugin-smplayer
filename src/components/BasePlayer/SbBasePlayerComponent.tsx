@@ -5,8 +5,10 @@ import SbBasePlayer from "./SbBasePlayer";
 @Component
 export default class SbBasePlayerComponent<T, U> extends Vue {
   @Prop(Object) src!: U;
-  @Prop(Object) eventOn: Record<string, (player: T, src: U) => void> | undefined;
-  @Prop(Array) customFun: Array<(player: T, src: U) => void> | undefined;
+  @Prop({ type: Object, default: () => ({}) }) on!: Record<
+    string,
+    (player: T, src: U) => void
+  >;
   @Prop({ type: String, default: "100%" }) width!: string;
   @Prop({ type: Array, default: () => [9 / 16, 0] }) height!: Array<number>;
   @Ref("sbplayer") sbplayer!: HTMLElement | any;
