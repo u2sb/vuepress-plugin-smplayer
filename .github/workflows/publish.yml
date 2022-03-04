@@ -32,7 +32,7 @@ jobs:
           npm install
           npm run build
       
-      -name: Publish
+      - name: Publish
         run: |
           cd ./dist/
           npm publish
