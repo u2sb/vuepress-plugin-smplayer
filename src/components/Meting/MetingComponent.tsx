@@ -46,8 +46,8 @@ export default class MetingComponent extends BasePlayerComponent<
   meting: Meting | undefined;
   async mounted() {
     let src = this.$props;
-    this.meting = new Meting(src, this.sbplayer);
-    await this.meting.InitPlayer();
+    this.meting = new Meting();
+    await this.meting.InitMeting(src, this.sbplayer);
   }
 
   beforeDestroy() {

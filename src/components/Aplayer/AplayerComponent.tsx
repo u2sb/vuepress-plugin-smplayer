@@ -1,7 +1,7 @@
 import merge from "deepmerge";
 import Aplayer from "./Aplayer";
 import { Aplayer as AplayerType } from "../../type/Config";
-import { AplayerOptions } from "../../type/Aplayer";
+import { AplayerOptions, APlayer } from "../../type/Aplayer";
 import {
   BasePlayerComponent,
   Component,
@@ -12,7 +12,7 @@ declare const APLAYER: AplayerType;
 
 @Component
 export default class AplayerComponent extends BasePlayerComponent<
-  any,
+  APlayer,
   AplayerOptions
 > {
   async mounted(): Promise<void> {

@@ -1,7 +1,11 @@
-import { Audio as AplayerAudio, AplayerOptions } from "../../type/Aplayer";
+import {
+  Audio as AplayerAudio,
+  AplayerOptions,
+  APlayer,
+} from "../../type/Aplayer";
 import SbBasePlayer from "../BasePlayer/SbBasePlayer";
 
-export default class Aplayer extends SbBasePlayer<any, AplayerOptions> {
+export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
   override async InitPlayer() {
     if (this.src) {
       return await Promise.all([
@@ -38,7 +42,7 @@ export default class Aplayer extends SbBasePlayer<any, AplayerOptions> {
             smplayerAplayerHls: function (
               audioElement: HTMLAudioElement,
               audio: AplayerAudio,
-              player: any
+              player: APlayer
             ) {
               import(
                 // @ts-ignore
@@ -65,10 +69,10 @@ export default class Aplayer extends SbBasePlayer<any, AplayerOptions> {
         }
         this.player = this.src?.customInit
           ? await this.src.customInit(aplayer, this.src).then((player) => {
-              this.player = player;
+              this.player = player as APlayer;
               return this.player;
             })
-          : new aplayer(this.src);
+          : (new aplayer(this.src) as APlayer);
 
         return this.player;
       });

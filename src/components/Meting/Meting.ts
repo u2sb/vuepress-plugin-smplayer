@@ -2,9 +2,8 @@ import Aplayer from "../Aplayer/Aplayer";
 import { AplayerOptions } from "../../type/Aplayer";
 
 export default class Meting extends Aplayer {
-  constructor(meting: Record<string, any> = {}, container: HTMLElement) {
+  constructor() {
     super();
-    this.InitMeting(meting, container);
   }
 
   async InitMeting(meting: Record<string, any> = {}, container: HTMLElement) {
