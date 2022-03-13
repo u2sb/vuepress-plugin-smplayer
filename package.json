@@ -41,7 +41,7 @@
     "ts-deepmerge": "^2.0.1",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2",
-    "webtorrent": "^1.8.5",
+    "webtorrent": "^1.8.6",
     "xgplayer": "^2.31.4",
     "xgplayer-dash": "^1.1.8",
     "xgplayer-flv.js": "^2.3.0",

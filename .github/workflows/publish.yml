@@ -15,22 +15,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Setup Pnpm
-      #   uses: pnpm/action-setup@v2
-      #   with:
-      #     version: latest
-      #     run_install: false
-
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+          cache: "yarn"
 
       - name: Build
         run: |
-          npm install
-          npm run build
+          yarn install
+          yarn build
       
       - name: Publish
         run: |
