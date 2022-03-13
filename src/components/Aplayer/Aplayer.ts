@@ -41,27 +41,35 @@ export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
           Object.assign(this.src?.customAudioType, {
             smplayerAplayerHls: function (
               audioElement: HTMLAudioElement,
-              audio: AplayerAudio,
-              player: APlayer
+              audioSrc: AplayerAudio,
+              ap: APlayer
             ) {
               import(
                 // @ts-ignore
                 /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
               ).then(({ default: Hls }) => {
+                let isPlaying = ap.audio.paused === false ? true : false;
                 if (
                   audioElement.canPlayType("application/x-mpegURL") ||
                   audioElement.canPlayType("application/vnd.apple.mpegURL")
                 ) {
-                  audioElement.src = audio.url;
+                  audioElement.src = audioSrc.url;
                 } else if (Hls.isSupported()) {
                   const hls = new Hls();
-                  hls.loadSource(audio.url);
                   hls.attachMedia(audioElement);
-                  player.on("destroy", function () {
+                  hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+                    hls.loadSource(audioSrc.url);
+                  });
+
+                  ap.on("destroy", function () {
                     hls.destroy();
                   });
                 } else {
-                  player.notice("Error: HLS is not supported.");
+                  ap.notice("Error: HLS is not supported.");
+                }
+
+                if (isPlaying) {
+                  ap.play();
                 }
               });
             },
