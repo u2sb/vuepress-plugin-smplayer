@@ -115,8 +115,10 @@ export default class ArtplayerVue extends SbBasePlayer<
                 /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
               ).then(({ default: Hls }) => {
                 const hls = new Hls();
-                hls.loadSource(url);
                 hls.attachMedia(video);
+                hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+                  hls.loadSource(url);
+                });
                 player.on("destroy", function () {
                   hls.destroy();
                 });

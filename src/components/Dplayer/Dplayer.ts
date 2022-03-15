@@ -117,8 +117,10 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
                 /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
               ).then(({ default: Hls }) => {
                 const hls = new Hls();
-                hls.loadSource(video.src);
                 hls.attachMedia(video);
+                hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+                  hls.loadSource(video.url);
+                });
                 player.on("destroy" as DPlayerEvents.destroy, function () {
                   hls.destroy();
                 });
