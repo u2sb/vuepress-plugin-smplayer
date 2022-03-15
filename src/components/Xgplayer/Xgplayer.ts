@@ -14,40 +14,33 @@ export default class Xgplayer extends SbBasePlayer<XGplayer, IPlayerOptions> {
         }
       }
 
-      let importJs;
+      let importJs: Promise<any>;
 
       if (this.src?.type && typeof this.src.type == "string") {
         switch (this.src.type.toLowerCase()) {
           case "hls":
           case "m3u8":
-            // @ts-ignore
             importJs = import("xgplayer-hls.js/dist/index.js");
             break;
           case "flv":
-            // @ts-ignore
             importJs = import("xgplayer-flv.js/dist/index.js");
             break;
           case "dash":
-            // @ts-ignore
             importJs = import("xgplayer-dash/dist/index.js");
             break;
           case "shakadash":
           case "shaka":
           case "shaka-dash":
-            // @ts-ignore
             importJs = import("xgplayer-shaka/dist/index.js");
             break;
           case "music":
-            // @ts-ignore
             importJs = import("xgplayer-music/dist/index.js");
             break;
 
           default:
-            // @ts-ignore
             importJs = import("xgplayer/dist/index.js");
         }
       } else {
-        // @ts-ignore
         importJs = import("xgplayer/dist/index.js");
       }
 
@@ -56,7 +49,7 @@ export default class Xgplayer extends SbBasePlayer<XGplayer, IPlayerOptions> {
           ? await this.src.customInit(xgplayer, this.src).then((player) => {
               return player;
             })
-          : (new xgplayer(this.src) as XGplayer);
+          : new xgplayer(this.src as IPlayerOptions);
 
         return this.player;
       });

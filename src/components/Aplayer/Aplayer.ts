@@ -9,14 +9,11 @@ export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
   override async InitPlayer() {
     if (this.src) {
       return await Promise.all([
-        // @ts-ignore
         import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
-
         import(
-          // @ts-ignore
           /* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.css"
         ),
-      ]).then(async ([{ default: aplayer }]) => {
+      ]).then(async ([{ default: aplayer }]): Promise<APlayer | undefined> => {
         this.src!.customAudioType = this.src?.customAudioType || {};
 
         let useHls = false;
@@ -45,7 +42,6 @@ export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
               ap: APlayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
               ).then(({ default: Hls }) => {
                 let isPlaying = ap.audio.paused === false ? true : false;
@@ -76,11 +72,13 @@ export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
           });
         }
         this.player = this.src?.customInit
-          ? await this.src.customInit(aplayer, this.src).then((player) => {
-              this.player = player as APlayer;
-              return this.player;
-            })
-          : (new aplayer(this.src) as APlayer);
+          ? await this.src
+              .customInit(aplayer, this.src)
+              .then((player: APlayer) => {
+                this.player = player;
+                return this.player;
+              })
+          : new aplayer(this.src);
 
         return this.player;
       });

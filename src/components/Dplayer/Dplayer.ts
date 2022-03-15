@@ -9,29 +9,28 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
   override async InitPlayer() {
     if (this.src) {
       return await import(
-        // @ts-ignore
         /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
-      ).then(async ({ default: dplayer }) => {
+      ).then(async ({ default: dplayer }): Promise<DPlayer | undefined> => {
         let useHls = false;
         let useFlv = false;
         let useDash = false;
         let useShakaDash = false;
         let useWebtorrent = false;
-        this.src!.video.customType = this.src?.video.customType || {};
+        this.src!.video!.customType = this.src?.video?.customType || {};
 
         // .m3u8 和 .flv 结尾的视频
-        if (!this.src?.video.type) {
-          if (this.src?.video.url.toLowerCase().endsWith(".m3u8")) {
+        if (!this.src?.video?.type) {
+          if (this.src?.video?.url.toLowerCase().endsWith(".m3u8")) {
             this.src.video.type = "hls";
-          } else if (this.src?.video.url.toLowerCase().endsWith(".flv")) {
+          } else if (this.src?.video?.url.toLowerCase().endsWith(".flv")) {
             this.src.video.type = "flv";
-          } else if (this.src?.video.url.toLowerCase().endsWith(".mpd")) {
+          } else if (this.src?.video?.url.toLowerCase().endsWith(".mpd")) {
             this.src.video.type = "shakaDash";
           }
         }
 
         // 判断是否有自定义类型
-        if (this.src?.video.type && typeof this.src.video.type == "string") {
+        if (this.src?.video?.type && typeof this.src.video.type == "string") {
           switch (this.src.video.type.toLowerCase()) {
             case "hls":
             case "m3u8":
@@ -60,7 +59,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         }
 
         if (
-          this.src?.video.quality != undefined &&
+          this.src?.video?.quality != undefined &&
           this.src.video.quality.length > 0
         ) {
           this.src.video.quality.forEach((e: DPlayerVideo) => {
@@ -107,17 +106,16 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
 
         // 自定义类型
         if (useHls) {
-          Object.assign(this.src?.video.customType, {
+          Object.assign(this.src?.video?.customType, {
             smplayerDplayerHls: function (
               video: DPlayerOptions,
               player: DPlayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
               ).then(({ default: Hls }) => {
                 const hls = new Hls();
-                hls.attachMedia(video);
+                hls.attachMedia(player.video);
                 hls.on(Hls.Events.MEDIA_ATTACHED, function () {
                   hls.loadSource(video.url);
                 });
@@ -130,20 +128,19 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         }
 
         if (useFlv) {
-          Object.assign(this.src?.video.customType, {
+          Object.assign(this.src?.video?.customType, {
             smplayerDplayerFlv: function (
               video: DPlayerOptions,
               player: DPlayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js"
               ).then(({ default: flvjs }) => {
                 const flvPlayer = flvjs.createPlayer({
                   type: "flv",
                   url: video.src,
                 });
-                flvPlayer.attachMediaElement(video);
+                flvPlayer.attachMediaElement(player.video);
                 flvPlayer.load();
                 player.on("destroy" as DPlayerEvents.destroy, function () {
                   flvPlayer.destroy();
@@ -154,17 +151,16 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         }
 
         if (useDash) {
-          Object.assign(this.src?.video.customType, {
+          Object.assign(this.src?.video?.customType, {
             smplayerDplayerDash: function (
               video: DPlayerOptions,
               player: DPlayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "dash" */ "dashjs/dist/dash.all.min.js"
               ).then(({ default: dashjs }) => {
                 const dashPlayer = dashjs.MediaPlayer().create();
-                dashPlayer.initialize(video, video.src, false);
+                dashPlayer.initialize(player.video, video.src, false);
                 player.on("destroy" as DPlayerEvents.destroy, function () {
                   dashPlayer.reset();
                 });
@@ -174,14 +170,13 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         }
 
         if (useShakaDash) {
-          Object.assign(this.src?.video.customType, {
+          Object.assign(this.src?.video?.customType, {
             smplayerDplayerShakaDash: function (
               video: DPlayerOptions,
               player: DPlayer
             ) {
               import(
-                // @ts-ignore
-                /* webpackChunkName: "shaka" */ "shaka-player/dist/shaka-player.compiled.js"
+                /* webpackChunkName: "shaka-player" */ "shaka-player/dist/shaka-player.compiled.js"
               ).then(({ default: shaka }) => {
                 const shakaPlayer = new shaka.Player(video);
                 shakaPlayer.load(video.src).then(function () {
@@ -195,13 +190,12 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         }
 
         if (useWebtorrent) {
-          Object.assign(this.src?.video.customType, {
+          Object.assign(this.src?.video?.customType, {
             smplayerDplayerWebtorrent: function (
               video: DPlayerOptions,
               player: DPlayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "webtorrent" */ "webtorrent/webtorrent.min.js"
               ).then(({ default: WebTorrent }) => {
                 const client = new WebTorrent();
@@ -224,7 +218,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
               this.player = player;
               return this.player;
             })
-          : (new dplayer(this.src!) as DPlayer);
+          : new dplayer(this.src!);
 
         return this.player;
       });

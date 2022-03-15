@@ -1,7 +1,6 @@
 import Xgplayer, { IPlayerOptions } from "xgplayer";
 
-export interface SbXgPlayerOptions extends Omit<IPlayerOptions, "url"> {
-  url?: string | Array<{ src: string; type?: string }>;
+export interface SbXgPlayerOptions extends IPlayerOptions {
   type?: string;
   customInit?: (player: any, src: SbXgPlayerOptions) => Promise<SbXgplayer>;
 }

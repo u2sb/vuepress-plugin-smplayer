@@ -8,7 +8,6 @@ export default class ArtplayerVue extends SbBasePlayer<
   override async InitPlayer() {
     if (this.src) {
       return await import(
-        // @ts-ignore
         /* webpackChunkName: "artplayer" */ "artplayer/dist/artplayer.js"
       ).then(async ({ default: artplayer }) => {
         let useHls = false;
@@ -111,7 +110,6 @@ export default class ArtplayerVue extends SbBasePlayer<
               player: Artplayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
               ).then(({ default: Hls }) => {
                 const hls = new Hls();
@@ -134,7 +132,6 @@ export default class ArtplayerVue extends SbBasePlayer<
               player: Artplayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js"
               ).then(({ default: flvjs }) => {
                 const flvPlayer = flvjs.createPlayer({
@@ -159,7 +156,6 @@ export default class ArtplayerVue extends SbBasePlayer<
               player: Artplayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "dash" */ "dashjs/dist/dash.all.min.js"
               ).then(({ default: dashjs }) => {
                 const dashPlayer = dashjs.MediaPlayer().create();
@@ -180,7 +176,6 @@ export default class ArtplayerVue extends SbBasePlayer<
               player: Artplayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "shaka" */ "shaka-player/dist/shaka-player.compiled.js"
               ).then(({ default: shaka }) => {
                 const shakaPlayer = new shaka.Player(video);
@@ -202,7 +197,6 @@ export default class ArtplayerVue extends SbBasePlayer<
               player: Artplayer
             ) {
               import(
-                // @ts-ignore
                 /* webpackChunkName: "webtorrent" */ "webtorrent/webtorrent.min.js"
               ).then(({ default: WebTorrent }) => {
                 const client = new WebTorrent();

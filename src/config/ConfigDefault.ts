@@ -27,7 +27,9 @@ const ConfigDefault: Config = {
     storageName: "vuepress-plugin-smplayer",
   },
   dplayer: {
-    src: {},
+    src: {
+      container: null,
+    },
     width: "100%",
     on: {
       fullscreen: () => {
@@ -43,6 +45,8 @@ const ConfigDefault: Config = {
   },
   artplayer: {
     src: {
+      container: "",
+      url: "",
       fullscreen: true,
       autoSize: true,
       setting: true,
@@ -71,6 +75,7 @@ const ConfigDefault: Config = {
   },
   xgplayer: {
     src: {
+      url: "",
       fluid: true,
       fitVideoSize: "auto",
     },
