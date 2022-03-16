@@ -119,7 +119,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
                 hls.on(Hls.Events.MEDIA_ATTACHED, function () {
                   hls.loadSource(video.url);
                 });
-                player.on("destroy" as DPlayerEvents.destroy, function () {
+                player.on("destroy" as DPlayerEvents, function () {
                   hls.destroy();
                 });
               });
@@ -142,7 +142,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
                 });
                 flvPlayer.attachMediaElement(player.video);
                 flvPlayer.load();
-                player.on("destroy" as DPlayerEvents.destroy, function () {
+                player.on("destroy" as DPlayerEvents, function () {
                   flvPlayer.destroy();
                 });
               });
@@ -161,7 +161,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
               ).then(({ default: dashjs }) => {
                 const dashPlayer = dashjs.MediaPlayer().create();
                 dashPlayer.initialize(player.video, video.src, false);
-                player.on("destroy" as DPlayerEvents.destroy, function () {
+                player.on("destroy" as DPlayerEvents, function () {
                   dashPlayer.reset();
                 });
               });
@@ -180,7 +180,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
               ).then(({ default: shaka }) => {
                 const shakaPlayer = new shaka.Player(video);
                 shakaPlayer.load(video.src).then(function () {
-                  player.on("destroy" as DPlayerEvents.destroy, function () {
+                  player.on("destroy" as DPlayerEvents, function () {
                     shakaPlayer.destroy();
                   });
                 });
@@ -204,7 +204,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
                     return file.name.endsWith(".mp4");
                   });
                   file.renderTo(video);
-                  player.on("destroy" as DPlayerEvents.destroy, function () {
+                  player.on("destroy" as DPlayerEvents, function () {
                     client.destroy();
                   });
                 });

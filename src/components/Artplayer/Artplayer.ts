@@ -176,7 +176,7 @@ export default class ArtplayerVue extends SbBasePlayer<
               player: Artplayer
             ) {
               import(
-                /* webpackChunkName: "shaka" */ "shaka-player/dist/shaka-player.compiled.js"
+                /* webpackChunkName: "shaka-player" */ "shaka-player/dist/shaka-player.compiled.js"
               ).then(({ default: shaka }) => {
                 const shakaPlayer = new shaka.Player(video);
                 shakaPlayer.load(url).then(function () {
