@@ -8,14 +8,14 @@ declare module "dplayer/dist/DPlayer.min.js" {
 
 declare module "artplayer/dist/artplayer.js";
 
-declare module "hls.js/dist/hls.min.js" {
+declare module "hls.js/dist/hls.js" {
   import Hls from "hls.js";
   export default Hls;
 }
 
-declare module "flv.js/dist/flv.min.js" {
-  import flvjs from "flv.js";
-  export default flvjs;
+declare module "mpegts.js/dist/mpegts.js" {
+  import mpegts from "mpegts.js";
+  export default mpegts;
 }
 
 declare module "dashjs/dist/dash.all.min.js" {

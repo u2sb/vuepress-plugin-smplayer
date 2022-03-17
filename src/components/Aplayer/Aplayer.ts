@@ -41,33 +41,33 @@ export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
               audioSrc: AplayerAudio,
               ap: APlayer
             ) {
-              import(
-                /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
-              ).then(({ default: Hls }) => {
-                let isPlaying = ap.audio.paused === false ? true : false;
-                if (
-                  audioElement.canPlayType("application/x-mpegURL") ||
-                  audioElement.canPlayType("application/vnd.apple.mpegURL")
-                ) {
-                  audioElement.src = audioSrc.url;
-                } else if (Hls.isSupported()) {
-                  const hls = new Hls();
-                  hls.attachMedia(audioElement);
-                  hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-                    hls.loadSource(audioSrc.url);
-                  });
+              import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.js").then(
+                ({ default: Hls }) => {
+                  let isPlaying = ap.audio.paused === false ? true : false;
+                  if (
+                    audioElement.canPlayType("application/x-mpegURL") ||
+                    audioElement.canPlayType("application/vnd.apple.mpegURL")
+                  ) {
+                    audioElement.src = audioSrc.url;
+                  } else if (Hls.isSupported()) {
+                    const hls = new Hls();
+                    hls.attachMedia(audioElement);
+                    hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+                      hls.loadSource(audioSrc.url);
+                    });
 
-                  ap.on("destroy", function () {
-                    hls.destroy();
-                  });
-                } else {
-                  ap.notice("Error: HLS is not supported.");
-                }
+                    ap.on("destroy", function () {
+                      hls.destroy();
+                    });
+                  } else {
+                    ap.notice("Error: HLS is not supported.");
+                  }
 
-                if (isPlaying) {
-                  ap.play();
+                  if (isPlaying) {
+                    ap.play();
+                  }
                 }
-              });
+              );
             },
           });
         }

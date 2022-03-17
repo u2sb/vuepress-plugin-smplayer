@@ -109,18 +109,18 @@ export default class ArtplayerVue extends SbBasePlayer<
               url: string,
               player: Artplayer
             ) {
-              import(
-                /* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js"
-              ).then(({ default: Hls }) => {
-                const hls = new Hls();
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-                  hls.loadSource(url);
-                });
-                player.on("destroy", function () {
-                  hls.destroy();
-                });
-              });
+              import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.js").then(
+                ({ default: Hls }) => {
+                  const hls = new Hls();
+                  hls.attachMedia(video);
+                  hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+                    hls.loadSource(url);
+                  });
+                  player.on("destroy", function () {
+                    hls.destroy();
+                  });
+                }
+              );
             },
           });
         }
@@ -132,9 +132,9 @@ export default class ArtplayerVue extends SbBasePlayer<
               player: Artplayer
             ) {
               import(
-                /* webpackChunkName: "flv" */ "flv.js/dist/flv.min.js"
-              ).then(({ default: flvjs }) => {
-                const flvPlayer = flvjs.createPlayer({
+                /* webpackChunkName: "mpegts" */ "mpegts.js/dist/mpegts.js"
+              ).then(({ default: mpegts }) => {
+                const flvPlayer = mpegts.createPlayer({
                   type: "flv",
                   url: url,
                 });
