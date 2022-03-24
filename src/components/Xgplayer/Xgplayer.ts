@@ -15,36 +15,52 @@ export default class Xgplayer extends SbBasePlayer<XGplayer, IPlayerOptions> {
       }
 
       let importJs: Promise<any>;
+      let importXg = import("xgplayer/dist/index.js");
 
       if (this.src?.type && typeof this.src.type == "string") {
         switch (this.src.type.toLowerCase()) {
           case "hls":
           case "m3u8":
-            importJs = import("xgplayer-hls.js/dist/index.js");
+            importJs = Promise.all([
+              import("xgplayer-hls.js/dist/index.js"),
+              importXg,
+            ]);
             break;
           case "flv":
-            importJs = import("xgplayer-flv.js/dist/index.js");
+            importJs = Promise.all([
+              import("xgplayer-flv.js/dist/index.js"),
+              importXg,
+            ]);
             break;
           case "dash":
-            importJs = import("xgplayer-dash/dist/index.js");
+            importJs = Promise.all([
+              import("xgplayer-dash/dist/index.js"),
+              importXg,
+            ]);
             break;
           case "shakadash":
           case "shaka":
           case "shaka-dash":
-            importJs = import("xgplayer-shaka/dist/index.js");
+            importJs = Promise.all([
+              import("xgplayer-shaka/dist/index.js"),
+              importXg,
+            ]);
             break;
           case "music":
-            importJs = import("xgplayer-music/dist/index.js");
+            importJs = Promise.all([
+              import("xgplayer-music/dist/index.js"),
+              importXg,
+            ]);
             break;
 
           default:
             importJs = import("xgplayer/dist/index.js");
         }
       } else {
-        importJs = import("xgplayer/dist/index.js");
+        importJs = Promise.all([importXg]);
       }
 
-      return await importJs.then(async ({ default: xgplayer }) => {
+      return await importJs.then(async ([{ default: xgplayer }]) => {
         this.player = this.src?.customInit
           ? await this.src.customInit(xgplayer, this.src).then((player) => {
               return player;

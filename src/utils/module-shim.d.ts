@@ -13,6 +13,11 @@ declare module "hls.js/dist/hls.js" {
   export default Hls;
 }
 
+declare module "hls.js/dist/hls.min.js" {
+  import Hls from "hls.js";
+  export default Hls;
+}
+
 declare module "mpegts.js/dist/mpegts.js" {
   import mpegts from "mpegts.js";
   export default mpegts;

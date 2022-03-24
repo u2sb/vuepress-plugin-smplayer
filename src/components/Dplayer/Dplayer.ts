@@ -108,15 +108,16 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         if (useHls) {
           Object.assign(this.src?.video?.customType, {
             smplayerDplayerHls: function (
-              video: DPlayerOptions,
+              video: HTMLVideoElement,
               player: DPlayer
             ) {
               import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.js").then(
                 ({ default: Hls }) => {
+                  let src = video.src;
                   const hls = new Hls();
-                  hls.attachMedia(player.video);
+                  hls.attachMedia(video);
                   hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-                    hls.loadSource(video.url);
+                    hls.loadSource(src);
                   });
                   player.on("destroy" as DPlayerEvents, function () {
                     hls.destroy();
@@ -130,7 +131,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         if (useFlv) {
           Object.assign(this.src?.video?.customType, {
             smplayerDplayerFlv: function (
-              video: DPlayerOptions,
+              video: HTMLVideoElement,
               player: DPlayer
             ) {
               import(
@@ -140,7 +141,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
                   type: "flv",
                   url: video.src,
                 });
-                flvPlayer.attachMediaElement(player.video);
+                flvPlayer.attachMediaElement(video);
                 flvPlayer.load();
                 player.on("destroy" as DPlayerEvents, function () {
                   flvPlayer.destroy();
@@ -153,14 +154,14 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         if (useDash) {
           Object.assign(this.src?.video?.customType, {
             smplayerDplayerDash: function (
-              video: DPlayerOptions,
+              video: HTMLVideoElement,
               player: DPlayer
             ) {
               import(
                 /* webpackChunkName: "dash" */ "dashjs/dist/dash.all.min.js"
               ).then(({ default: dashjs }) => {
                 const dashPlayer = dashjs.MediaPlayer().create();
-                dashPlayer.initialize(player.video, video.src, false);
+                dashPlayer.initialize(video, video.src, false);
                 player.on("destroy" as DPlayerEvents, function () {
                   dashPlayer.reset();
                 });
@@ -172,7 +173,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         if (useShakaDash) {
           Object.assign(this.src?.video?.customType, {
             smplayerDplayerShakaDash: function (
-              video: DPlayerOptions,
+              video: HTMLVideoElement,
               player: DPlayer
             ) {
               import(
@@ -192,7 +193,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
         if (useWebtorrent) {
           Object.assign(this.src?.video?.customType, {
             smplayerDplayerWebtorrent: function (
-              video: DPlayerOptions,
+              video: HTMLVideoElement,
               player: DPlayer
             ) {
               import(
