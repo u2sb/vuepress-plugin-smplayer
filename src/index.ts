@@ -21,6 +21,4 @@ const smplayerPlugin: Plugin<SmPlayerPluginOption> = (opts) => ({
   enhanceAppFiles: resolve(__dirname, "utils/", "enhanceAppFile.js"),
 });
 
-export { SmPlayerPluginOption };
-
 module.exports = smplayerPlugin;
