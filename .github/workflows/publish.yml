@@ -26,7 +26,7 @@ jobs:
         run: |
           yarn install
           yarn build
-      
+
       - name: Publish
         run: |
           cd ./dist/

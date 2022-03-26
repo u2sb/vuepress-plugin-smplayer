@@ -45,7 +45,6 @@ const ConfigDefault: Config = {
   },
   artplayer: {
     src: {
-      container: "",
       url: "",
       fullscreen: true,
       autoSize: true,

@@ -1,6 +1,9 @@
 import { Artplayer, Option as ArtplayerOption } from "./ArtplayerType";
 
-export interface SbArtplayerOptions extends ArtplayerOption {
+export interface SbArtplayerOptions
+  extends Omit<ArtplayerOption, "container" | "url"> {
+  container?: HTMLElement | string;
+  url?: string;
   quality?: {
     /**
      * Whether the default is selected

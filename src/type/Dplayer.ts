@@ -1,6 +1,7 @@
 import DPlayer, { DPlayerOptions, DPlayerEvents, DPlayerVideo } from "dplayer";
 
-export interface SbDPlayerOptions extends DPlayerOptions {
+export interface SbDPlayerOptions extends Omit<DPlayerOptions, "container"> {
+  container?: HTMLElement | null;
   customInit?: (player: any, src: SbDPlayerOptions) => Promise<SbDPlayer>;
 }
 
