@@ -3,7 +3,7 @@ import {
   DPlayerOptions,
   DPlayerEvents,
   DPlayerVideo,
-} from "../../type/Dplayer";
+} from "../../types/Dplayer";
 import SbBasePlayer from "../BasePlayer/SbBasePlayer";
 export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
   override async InitPlayer() {

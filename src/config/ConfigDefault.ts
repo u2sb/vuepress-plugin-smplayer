@@ -1,4 +1,4 @@
-import { Config } from "../type/Config";
+import { Config } from "../types";
 
 const ConfigDefault: Config = {
   aplayer: {

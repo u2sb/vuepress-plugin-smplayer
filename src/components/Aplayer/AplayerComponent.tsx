@@ -1,7 +1,7 @@
 import merge from "deepmerge";
 import Aplayer from "./Aplayer";
-import { Aplayer as AplayerType } from "../../type/Config";
-import { AplayerOptions, APlayer } from "../../type/Aplayer";
+import { Aplayer as AplayerType } from "../../types/config";
+import { AplayerOptions, APlayer } from "../../types/Aplayer";
 import {
   BasePlayerComponent,
   Component,

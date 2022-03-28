@@ -1,5 +1,5 @@
 import Aplayer from "../Aplayer/Aplayer";
-import { AplayerOptions } from "../../type/Aplayer";
+import { AplayerOptions } from "../../types/Aplayer";
 
 export default class Meting extends Aplayer {
   constructor() {

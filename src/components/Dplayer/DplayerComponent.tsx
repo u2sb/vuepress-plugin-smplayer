@@ -1,7 +1,7 @@
 import merge from "deepmerge";
 import Dplayer from "./Dplayer";
-import { Dplayer as DplayerType } from "../../type/Config";
-import { DPlayer as Player, DPlayerOptions } from "../../type/Dplayer";
+import { Dplayer as DplayerType } from "../../types/config";
+import { DPlayer as Player, DPlayerOptions } from "../../types/Dplayer";
 import {
   BasePlayerComponent,
   Component,

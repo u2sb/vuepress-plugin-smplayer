@@ -1,4 +1,4 @@
-import { Bilibili as BilibiliType } from "../../type/Config";
+import { Bilibili as BilibiliType } from "../../types/config";
 import {
   Vue,
   VNode,

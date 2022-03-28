@@ -1,6 +1,7 @@
-import { Artplayer, Option as ArtplayerOption } from "./ArtplayerType";
+import Artplayer from "artplayer";
+type ArtplayerOption = typeof Artplayer.option;
 
-export interface SbArtplayerOptions
+export interface PlayerOptions
   extends Omit<ArtplayerOption, "container" | "url"> {
   container?: HTMLElement | string;
   url?: string;
@@ -21,13 +22,13 @@ export interface SbArtplayerOptions
     url: string;
     type?: string;
   }[];
-  customInit?: (player: any, src: SbArtplayerOptions) => Promise<SbArtplayer>;
+  customInit?: (player: any, src: PlayerOptions) => Promise<Player>;
 }
 
-class SbArtplayer extends Artplayer {
-  constructor(options: SbArtplayerOptions) {
+export default class Player extends Artplayer {
+  constructor(options: PlayerOptions) {
     super(options as ArtplayerOption);
   }
 }
 
-export { SbArtplayer as Artplayer, SbArtplayerOptions as ArtplayerOptions };
+export type { Player as Artplayer, PlayerOptions as ArtplayerOptions };

@@ -2,7 +2,7 @@ import {
   Audio as AplayerAudio,
   AplayerOptions,
   APlayer,
-} from "../../type/Aplayer";
+} from "../../types/Aplayer";
 import SbBasePlayer from "../BasePlayer/SbBasePlayer";
 
 export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {

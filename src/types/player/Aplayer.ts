@@ -1,6 +1,6 @@
-export type FullScreenType = "web" | "browser";
+type FullScreenType = "web" | "browser";
 
-export interface Audio {
+interface Audio {
   name: string;
   url: string;
   artist?: string;
@@ -11,7 +11,7 @@ export interface Audio {
   customAudioType?: Record<string, void>;
 }
 
-export interface AplayerOptions {
+interface AplayerOptions {
   container?: HTMLElement;
   fixed?: boolean;
   mini?: boolean;
@@ -31,7 +31,7 @@ export interface AplayerOptions {
   customInit?: (player: any, src: AplayerOptions) => Promise<any>;
 }
 
-export interface FullScreen {
+interface FullScreen {
   request(type: FullScreenType): void;
 
   cancel(type: FullScreenType): void;
@@ -86,4 +86,4 @@ export default interface APlayer {
   };
 }
 
-export { APlayer };
+export type { APlayer, AplayerOptions, Audio as AplayerOptionsAudio };

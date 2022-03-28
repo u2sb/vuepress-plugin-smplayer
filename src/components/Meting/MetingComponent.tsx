@@ -1,11 +1,11 @@
 import Meting from "./Meting";
-import { Meting as MetingType } from "../../type/Config";
+import { Meting as MetingType } from "../../types/config";
 import {
   BasePlayerComponent,
   Prop,
   Component,
 } from "../BasePlayer/SbBasePlayerComponent";
-import { Audio as AplayerAudio } from "../../type/Aplayer";
+import { Audio as AplayerAudio } from "../../types/Aplayer";
 
 declare const METING: MetingType;
 

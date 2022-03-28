@@ -1,7 +1,7 @@
 import merge from "deepmerge";
 import Artplayer from "./Artplayer";
-import { Artplayer as Player, ArtplayerOptions } from "../../type/Artplayer";
-import { Artplayer as ArtplayerType } from "../../type/Config";
+import { Artplayer as Player, ArtplayerOptions } from "../../types/Artplayer";
+import { Artplayer as ArtplayerType } from "../../types/config";
 import {
   BasePlayerComponent,
   Component,

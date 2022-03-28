@@ -1,7 +1,7 @@
 import merge from "deepmerge";
 import Xgplayer from "./Xgplayer";
-import { Xgplayer as XgplayerType } from "../../type/Config";
-import { Xgplayer as XGplayer, IPlayerOptions } from "../../type/Xgplayer";
+import { Xgplayer as XgplayerType } from "../../types/config";
+import { Xgplayer as XGplayer, IPlayerOptions } from "../../types/Xgplayer";
 import {
   BasePlayerComponent,
   Component,

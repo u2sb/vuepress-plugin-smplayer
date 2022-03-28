@@ -1,4 +1,4 @@
-import { Artplayer, ArtplayerOptions } from "../../type/Artplayer";
+import { Artplayer, ArtplayerOptions } from "../../types/Artplayer";
 import SbBasePlayer from "../BasePlayer/SbBasePlayer";
 
 export default class ArtplayerVue extends SbBasePlayer<

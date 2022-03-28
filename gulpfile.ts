@@ -40,7 +40,8 @@ const cpTempJs = () =>
     .pipe(dest(outputDir));
 
 const cpJs = () => src(resolve(inputDir, "**/*.js")).pipe(dest(outputDir));
-exports.build = series(  
+
+const build = series(
   cleanTemp,
   tsc,
   cleanOut,
@@ -51,3 +52,5 @@ exports.build = series(
   cpJs,
   cleanTemp
 );
+
+exports.build = build;

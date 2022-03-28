@@ -1,4 +1,4 @@
-import { Xgplayer as XGplayer, IPlayerOptions } from "../../type/Xgplayer";
+import { Xgplayer as XGplayer, IPlayerOptions } from "../../types/Xgplayer";
 import SbBasePlayer from "../BasePlayer/SbBasePlayer";
 
 export default class Xgplayer extends SbBasePlayer<XGplayer, IPlayerOptions> {
