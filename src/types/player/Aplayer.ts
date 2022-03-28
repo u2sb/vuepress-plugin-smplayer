@@ -11,7 +11,7 @@ interface Audio {
   customAudioType?: Record<string, void>;
 }
 
-interface AplayerOptions {
+interface APlayerOptions {
   container?: HTMLElement;
   fixed?: boolean;
   mini?: boolean;
@@ -28,7 +28,7 @@ interface AplayerOptions {
   audio?: Audio[];
   storageName?: string;
   customAudioType?: Record<string, void>;
-  customInit?: (player: any, src: AplayerOptions) => Promise<any>;
+  customInit?: (player: any, src: APlayerOptions) => Promise<any>;
 }
 
 interface FullScreen {
@@ -42,7 +42,7 @@ export default interface APlayer {
   audio: HTMLAudioElement;
   fullScreen: FullScreen;
 
-  constructor(options: AplayerOptions): APlayer;
+  constructor(options: APlayerOptions): APlayer;
 
   play(): void;
 
@@ -86,4 +86,4 @@ export default interface APlayer {
   };
 }
 
-export type { APlayer, AplayerOptions, Audio as AplayerOptionsAudio };
+export type { APlayer, APlayerOptions, Audio as AplayerOptionsAudio };

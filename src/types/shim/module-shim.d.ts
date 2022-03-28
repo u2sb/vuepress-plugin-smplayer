@@ -1,3 +1,8 @@
+declare module "vue-resize-directive" {
+  import resize from "vue-resize-directive";
+  export default resize;
+}
+
 declare module "aplayer/dist/APlayer.min.css";
 declare module "aplayer/dist/APlayer.min.js";
 

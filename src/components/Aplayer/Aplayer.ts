@@ -1,12 +1,15 @@
-import {
-  Audio as AplayerAudio,
-  AplayerOptions,
-  APlayer,
-} from "../../types/Aplayer";
-import SbBasePlayer from "../BasePlayer/SbBasePlayer";
+import { AplayerOptionsAudio, APlayerOptions, APlayer } from "../../types";
 
-export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
-  override async InitPlayer() {
+export default class Aplayer {
+  constructor(src?: APlayerOptions) {
+    if (src) {
+      this.src = src;
+    }
+  }
+  src?: APlayerOptions;
+  player?: APlayer;
+
+  async InitPlayer(): Promise<APlayer | undefined> {
     if (this.src) {
       return await Promise.all([
         import(/* webpackChunkName: "aplayer" */ "aplayer/dist/APlayer.min.js"),
@@ -18,7 +21,7 @@ export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
 
         let useHls = false;
 
-        this.src?.audio?.forEach((e: AplayerAudio) => {
+        this.src?.audio?.forEach((e: AplayerOptionsAudio) => {
           if (!e.type) {
             if (e.url.toLowerCase().endsWith(".m3u8")) {
               e.type = "hls";
@@ -38,7 +41,7 @@ export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
           Object.assign(this.src?.customAudioType, {
             smplayerAplayerHls: function (
               audioElement: HTMLAudioElement,
-              audioSrc: AplayerAudio,
+              audioSrc: AplayerOptionsAudio,
               ap: APlayer
             ) {
               import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.js").then(
@@ -85,9 +88,19 @@ export default class Aplayer extends SbBasePlayer<APlayer, AplayerOptions> {
     }
   }
 
-  override DestroyPlayer() {
+  DestroyPlayer() {
     if (this.player && !this.src?.fixed) {
       this.player.destroy();
+    }
+  }
+
+  AddOnEvent(
+    on?: Record<string, (player: APlayer, src: APlayerOptions) => void>
+  ): void {
+    if (on && this.player) {
+      Object.keys(on).forEach((key) => {
+        this.player!.on(key, () => on[key](this.player!, this.src!));
+      });
     }
   }
 }

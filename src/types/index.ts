@@ -1,6 +1,6 @@
 import type {
   APlayer,
-  AplayerOptions,
+  APlayerOptions,
   AplayerOptionsAudio,
 } from "./player/Aplayer";
 import type { Artplayer, ArtplayerOptions } from "./player/Artplayer";
@@ -14,6 +14,7 @@ import type { Xgplayer, IPlayerOptions } from "./player/Xgplayer";
 import type {
   Config,
   APlayerConfig,
+  MetingConfig,
   ArtplayerConfig,
   DPlayerConfig,
   XgplayerConfig,
@@ -24,7 +25,7 @@ import type {
 export type {
   // APlayer
   APlayer,
-  AplayerOptions,
+  APlayerOptions,
   AplayerOptionsAudio,
   // Artplayer
   Artplayer,
@@ -40,6 +41,7 @@ export type {
   // Config
   Config,
   APlayerConfig,
+  MetingConfig,
   ArtplayerConfig,
   DPlayerConfig,
   XgplayerConfig,

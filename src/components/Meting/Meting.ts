@@ -1,5 +1,5 @@
 import Aplayer from "../Aplayer/Aplayer";
-import { AplayerOptions } from "../../types/Aplayer";
+import { APlayerOptions } from "../../types/";
 
 export default class Meting extends Aplayer {
   constructor() {
@@ -70,7 +70,7 @@ export default class Meting extends Aplayer {
           }))
         );
       });
-      let src: AplayerOptions = {
+      let src: APlayerOptions = {
         container: container,
         audio: audio,
         fixed: meting.fixed,

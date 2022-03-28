@@ -1,8 +1,15 @@
-import { Xgplayer as XGplayer, IPlayerOptions } from "../../types/Xgplayer";
-import SbBasePlayer from "../BasePlayer/SbBasePlayer";
+import { Xgplayer as XGplayer, IPlayerOptions } from "../../types";
 
-export default class Xgplayer extends SbBasePlayer<XGplayer, IPlayerOptions> {
-  override async InitPlayer() {
+export default class Xgplayer {
+  constructor(src?: IPlayerOptions) {
+    if (src) {
+      this.src = src;
+    }
+  }
+  src?: IPlayerOptions;
+  player?: XGplayer;
+
+  async InitPlayer() {
     if (this.src) {
       if (!this.src?.type && typeof this.src?.url == "string") {
         if (this.src.url.toLowerCase().endsWith(".m3u8")) {
@@ -68,6 +75,20 @@ export default class Xgplayer extends SbBasePlayer<XGplayer, IPlayerOptions> {
           : new xgplayer(this.src as IPlayerOptions);
 
         return this.player;
+      });
+    }
+  }
+
+  DestroyPlayer() {
+    this.player?.destroy();
+  }
+
+  AddOnEvent(
+    on?: Record<string, (player: XGplayer, src: IPlayerOptions) => void>
+  ): void {
+    if (on && this.player) {
+      Object.keys(on).forEach((key) => {
+        this.player!.on(key, () => on[key](this.player!, this.src!));
       });
     }
   }

@@ -1,5 +1,6 @@
 import { XiguaConfig } from "../../types";
 import Vue, { VNode, PropType } from "vue";
+
 declare const XIGUA: XiguaConfig;
 
 export default Vue.extend({
@@ -50,7 +51,6 @@ export default Vue.extend({
       <div class="smplayer">
         <iframe
           ref="sbplayer"
-          v-resize="resizePlayer"
           style={`width: ${this.width}`}
           src={`//www.ixigua.com/iframe/${this.xid}?${
             this.id ? "id=" + this.id + "&" : ""
@@ -67,46 +67,12 @@ export default Vue.extend({
       </div>
     );
   },
-  data() {
-    return {};
-  },
   mounted() {
     this.$nextTick(() => {
-      this.resizePlayer();
-    });
-  },
-
-  methods: {
-    resizePlayer() {
       let sbplayer = this.$refs.sbplayer as HTMLIFrameElement;
       sbplayer.style.height = `${
         sbplayer.scrollWidth * this.height[0] + this.height[1]
       }px`;
-    },
-  },
-
-  directives: {
-    resize: {
-      bind(el, binding) {
-        let width = "",
-          height = "";
-        function get() {
-          const style = document.defaultView!.getComputedStyle(el);
-          if (width !== style.width || height !== style.height) {
-            const callback = binding.value;
-            width = style.width;
-            height = style.height;
-            callback({ width, height });
-          }
-        }
-        // @ts-ignore
-        el.__vueReize__ = setInterval(get, 200);
-      },
-
-      unbind(el) {
-        // @ts-ignore
-        clearInterval(el.__vueReize__);
-      },
-    },
+    });
   },
 });

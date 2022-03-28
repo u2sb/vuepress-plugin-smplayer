@@ -1,11 +1,15 @@
-import { Artplayer, ArtplayerOptions } from "../../types/Artplayer";
-import SbBasePlayer from "../BasePlayer/SbBasePlayer";
+import { Artplayer, ArtplayerOptions } from "../../types";
 
-export default class ArtplayerVue extends SbBasePlayer<
-  Artplayer,
-  ArtplayerOptions
-> {
-  override async InitPlayer() {
+export default class ArtplayerVue {
+  constructor(src?: ArtplayerOptions) {
+    if (src) {
+      this.src = src;
+    }
+  }
+  src?: ArtplayerOptions;
+  player?: Artplayer;
+
+  async InitPlayer() {
     if (this.src) {
       return await import(
         /* webpackChunkName: "artplayer" */ "artplayer/dist/artplayer.js"
@@ -222,6 +226,20 @@ export default class ArtplayerVue extends SbBasePlayer<
           : (new artplayer(this.src!) as Artplayer);
 
         return this.player;
+      });
+    }
+  }
+
+  DestroyPlayer() {
+    this.player?.destroy();
+  }
+
+  AddOnEvent(
+    on?: Record<string, (player: Artplayer, src: ArtplayerOptions) => void>
+  ): void {
+    if (on && this.player) {
+      Object.keys(on).forEach((key) => {
+        this.player!.on(key, () => on[key](this.player!, this.src!));
       });
     }
   }

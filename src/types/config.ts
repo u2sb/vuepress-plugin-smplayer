@@ -1,6 +1,6 @@
 import type {
   AplayerOptionsAudio,
-  AplayerOptions,
+  APlayerOptions,
   ArtplayerOptions,
   Artplayer,
   DPlayerOptions,
@@ -17,7 +17,7 @@ interface Player<T, U> {
   customFun?: Array<(player: U, src: T) => void>;
 }
 
-interface APlayerConfig extends Player<AplayerOptions, any> {}
+interface APlayerConfig extends Player<APlayerOptions, any> {}
 interface DPlayerConfig extends Player<DPlayerOptions, DPlayer> {}
 interface ArtplayerConfig extends Player<ArtplayerOptions, Artplayer> {}
 interface XgplayerConfig extends Player<IPlayerOptions, Xgplayer> {}

@@ -2,12 +2,12 @@ import { Plugin } from "vuepress-types";
 import { Config as SmPlayerPluginOption } from "./types";
 
 const { resolve } = require("path");
-const { deepmerge } = require("deepmerge-ts");
+const merge = require("ts-deepmerge").default;
 const config_default = require("./config/ConfigDefault.cjs.js");
 
 const smplayerPlugin: Plugin<SmPlayerPluginOption> = (opts) => ({
   define() {
-    const config = deepmerge(config_default, opts);
+    const config = merge(config_default, opts);
     return {
       APLAYER: config.aplayer,
       METING: config.meting,

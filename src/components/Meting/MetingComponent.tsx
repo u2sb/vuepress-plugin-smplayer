@@ -1,56 +1,132 @@
 import Meting from "./Meting";
-import { Meting as MetingType } from "../../types/config";
-import {
-  BasePlayerComponent,
-  Prop,
-  Component,
-} from "../BasePlayer/SbBasePlayerComponent";
-import { Audio as AplayerAudio } from "../../types/Aplayer";
+import { MetingConfig, AplayerOptionsAudio } from "../../types";
+import Vue, { VNode, PropType } from "vue";
 
-declare const METING: MetingType;
+declare const METING: MetingConfig;
 
-@Component
-export default class MetingComponent extends BasePlayerComponent<
-  Meting,
-  undefined
-> {
-  @Prop({ type: String, default: "" }) id: string | undefined;
-  @Prop({ type: String, default: METING.server }) server: string | undefined;
-  @Prop({ type: String, default: METING.type }) type: string | undefined;
-  @Prop({ type: String, default: "" }) auto: string | undefined;
-  @Prop({ type: Boolean, default: METING.fixed }) fixed: boolean | undefined;
-  @Prop({ type: Boolean, default: METING.mini }) mini: boolean | undefined;
-  @Prop({ type: Boolean, default: METING.autoplay }) autoplay:
-    | boolean
-    | undefined;
-  @Prop({ type: String, default: METING.theme }) theme: string | undefined;
-  @Prop({ type: String, default: METING.loop }) loop: string | undefined;
-  @Prop({ type: String, default: METING.order }) order: string | undefined;
-  @Prop({ type: String, default: METING.preload }) preload: string | undefined;
-  @Prop({ type: Number, default: METING.volume }) volume: number | undefined;
-  @Prop({ type: Boolean, default: METING.mutex }) mutex: boolean | undefined;
-  @Prop({ type: Number, default: METING.lrcType }) lrcType: number | undefined;
-  @Prop({ type: Boolean, default: METING.listFolded }) listFolded:
-    | boolean
-    | undefined;
-  @Prop({ type: String, default: METING.listMaxHeight }) listMaxHeight:
-    | string
-    | undefined;
-  @Prop({ type: String, default: METING.storageName }) storageName:
-    | string
-    | undefined;
-  @Prop({ type: String, default: METING.api }) api: string | undefined;
-  @Prop({ type: Array }) audio: Array<AplayerAudio> | undefined;
-  @Prop({ type: Array }) list: Array<MetingType> | undefined;
+export default Vue.extend({
+  props: {
+    id: {
+      required: false,
+      type: String,
+      default: "",
+    },
+    server: {
+      required: false,
+      type: String,
+      default: METING.server,
+    },
+    type: {
+      required: false,
+      type: String,
+      default: METING.type,
+    },
+    auto: {
+      required: false,
+      type: String,
+      default: "",
+    },
+    fixed: {
+      required: false,
+      type: Boolean,
+      default: METING.fixed,
+    },
+    mini: {
+      required: false,
+      type: Boolean,
+      default: METING.mini,
+    },
+    autoplay: {
+      required: false,
+      type: Boolean,
+      default: METING.autoplay,
+    },
+    theme: {
+      required: false,
+      type: String,
+      default: METING.theme,
+    },
+    loop: {
+      required: false,
+      type: String,
+      default: METING.loop,
+    },
+    order: {
+      required: false,
+      type: String,
+      default: METING.order,
+    },
+    preload: {
+      required: false,
+      type: String,
+      default: METING.preload,
+    },
+    volume: {
+      required: false,
+      type: Number,
+      default: METING.volume,
+    },
+    mutex: {
+      required: false,
+      type: Boolean,
+      default: METING.mutex,
+    },
+    lrcType: {
+      required: false,
+      type: Number,
+      default: METING.lrcType,
+    },
+    listFolded: {
+      required: false,
+      type: Boolean,
+      default: METING.listFolded,
+    },
+    listMaxHeight: {
+      required: false,
+      type: String,
+      default: METING.listMaxHeight,
+    },
+    storageName: {
+      required: false,
+      type: String,
+      default: METING.storageName,
+    },
+    api: {
+      required: false,
+      type: String,
+      default: METING.api,
+    },
+    audio: {
+      required: false,
+      type: Array as PropType<Array<AplayerOptionsAudio>>,
+    },
+    list: {
+      required: false,
+      type: Array as PropType<Array<MetingConfig>>,
+    },
+  },
 
-  meting: Meting | undefined;
+  render(): VNode {
+    return (
+      <div class="smplayer">
+        <div ref="sbplayer" />
+      </div>
+    );
+  },
+
+  data() {
+    return {
+      meting: {} as Meting,
+    };
+  },
+
   async mounted() {
     let src = this.$props;
     this.meting = new Meting();
-    await this.meting.InitMeting(src, this.sbplayer);
-  }
+    await this.meting.InitMeting(src, this.$refs.sbplayer as HTMLElement);
+  },
 
   beforeDestroy() {
     this.meting?.DestroyPlayer();
-  }
-}
+  },
+});

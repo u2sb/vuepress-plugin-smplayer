@@ -1,41 +1,63 @@
-import merge from "deepmerge";
 import Artplayer from "./Artplayer";
-import { Artplayer as Player, ArtplayerOptions } from "../../types/Artplayer";
-import { Artplayer as ArtplayerType } from "../../types/config";
-import {
-  BasePlayerComponent,
-  Component,
-  Prop,
-} from "../BasePlayer/SbBasePlayerComponent";
+import { ArtplayerOptions, ArtplayerConfig } from "../../types";
+import Vue, { VNode, PropType } from "vue";
+import merge from "ts-deepmerge";
 
-declare const ARTPLAYER: ArtplayerType;
+declare const ARTPLAYER: ArtplayerConfig;
 
-@Component
-export default class ArtplayerComponent extends BasePlayerComponent<
-  Player,
-  ArtplayerOptions
-> {
-  @Prop({ type: String, default: ARTPLAYER.width })
-  declare width: string;
-
-  @Prop({ type: Array, default: () => ARTPLAYER.height })
-  declare height: Array<number>;
+export default Vue.extend({
+  props: {
+    src: {
+      type: Object as PropType<ArtplayerOptions>,
+      required: true,
+    },
+    on: {
+      type: Object as PropType<
+        Record<string, (player: Artplayer, src: ArtplayerOptions) => void>
+      >,
+      default: () => ARTPLAYER.on,
+      required: false,
+    },
+    width: {
+      type: String,
+      default: ARTPLAYER.width,
+      required: false,
+    },
+    height: {
+      type: Array as PropType<Array<number>>,
+      default: () => ARTPLAYER.height,
+      required: false,
+    },
+  },
+  render(): VNode {
+    return (
+      <div class="smplayer">
+        <div ref="sbplayer" style={`width: ${this.width}`} />
+      </div>
+    );
+  },
+  data() {
+    return {
+      player: {} as Artplayer,
+    };
+  },
 
   async mounted(): Promise<void> {
+    let sbplayer = this.$refs.sbplayer as HTMLElement;
     let on = merge(ARTPLAYER.on!, this.on);
 
     let src: ArtplayerOptions = {
       ...merge(ARTPLAYER.src, this.src),
-      container: this.$refs.sbplayer as HTMLElement,
+      container: sbplayer,
     };
     this.player = new Artplayer(src);
     await this.player.InitPlayer();
     this.player.AddOnEvent(on);
-    this.sbplayer.style.height =
-      this.sbplayer.scrollWidth * this.height[0] + this.height[1] + "px";
-  }
+    sbplayer.style.height =
+      sbplayer.scrollWidth * this.height[0] + this.height[1] + "px";
+  },
 
   beforeDestroy(): void {
     this.player?.DestroyPlayer();
-  }
-}
+  },
+});

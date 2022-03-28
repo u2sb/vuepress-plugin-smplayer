@@ -2,11 +2,19 @@ import {
   DPlayer,
   DPlayerOptions,
   DPlayerEvents,
-  DPlayerVideo,
-} from "../../types/Dplayer";
-import SbBasePlayer from "../BasePlayer/SbBasePlayer";
-export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
-  override async InitPlayer() {
+  DPlayerOptionsVideo,
+} from "../../types";
+
+export default class Dplayer {
+  constructor(src?: DPlayerOptions) {
+    if (src) {
+      this.src = src;
+    }
+  }
+  src?: DPlayerOptions;
+  player?: DPlayer;
+
+  async InitPlayer() {
     if (this.src) {
       return await import(
         /* webpackChunkName: "dplayer" */ "dplayer/dist/DPlayer.min.js"
@@ -62,7 +70,7 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
           this.src?.video?.quality != undefined &&
           this.src.video.quality.length > 0
         ) {
-          this.src.video.quality.forEach((e: DPlayerVideo) => {
+          this.src.video.quality.forEach((e: DPlayerOptionsVideo) => {
             // .m3u8 和 .flv 结尾的视频
             if (e.type == undefined) {
               if (e.url.toLowerCase().endsWith(".m3u8")) {
@@ -226,7 +234,11 @@ export default class Dplayer extends SbBasePlayer<DPlayer, DPlayerOptions> {
     }
   }
 
-  override AddOnEvent(
+  DestroyPlayer() {
+    this.player?.destroy();
+  }
+
+  AddOnEvent(
     on?: Record<string, (player: DPlayer, src: DPlayerOptions) => void>
   ): void {
     if (on && this.player) {
