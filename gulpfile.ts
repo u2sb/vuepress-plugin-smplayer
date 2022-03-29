@@ -22,6 +22,13 @@ const tsc = () => {
   return tsProject.src().pipe(tsProject()).pipe(dest(tempDir));
 };
 
+const tsc2 = () => {
+  const tsProject = ts.createProject("tsconfig.json", { module: "commonjs" });
+  return src(resolve(inputDir, "index.ts"))
+    .pipe(tsProject())
+    .pipe(dest(tempDir));
+};
+
 const cpVue = () => src(resolve(inputDir, "**/*.vue")).pipe(dest(outputDir));
 const cpCss = () => src(resolve(inputDir, "**/*.css")).pipe(dest(outputDir));
 
@@ -34,16 +41,16 @@ const cpPackageJson = () => {
 };
 
 const cpTempJs = () =>
-  src(resolve(tempDir, "**/*.js"))
-    .pipe(replace("export {};", ""))
-    .pipe(src(resolve(tempDir, "**/*.d.ts")))
-    .pipe(dest(outputDir));
+  src([resolve(tempDir, "**/*.js"), resolve(tempDir, "**/*.d.ts")]).pipe(
+    dest(outputDir)
+  );
 
 const cpJs = () => src(resolve(inputDir, "**/*.js")).pipe(dest(outputDir));
 
 const build = series(
   cleanTemp,
   tsc,
+  tsc2,
   cleanOut,
   cpTempJs,
   cpVue,

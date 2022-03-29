@@ -12,7 +12,7 @@ import type {
 } from "./player/Dplayer";
 import type { Xgplayer, IPlayerOptions } from "./player/Xgplayer";
 import type {
-  Config,
+  Config as SmPlayerPluginOption,
   APlayerConfig,
   MetingConfig,
   ArtplayerConfig,
@@ -39,7 +39,7 @@ export type {
   Xgplayer,
   IPlayerOptions,
   // Config
-  Config,
+  SmPlayerPluginOption,
   APlayerConfig,
   MetingConfig,
   ArtplayerConfig,
