@@ -2,7 +2,7 @@
 
 一个能在 Vuepress 中快速插入媒体标签的插件
 
-文档&DEMO: [https://www.u2sb.com/open-sw/](https://www.u2sb.com/open-sw/#vuepress-plugin-smplayer)
+文档&DEMO: [https://www.u2sb.com/pages/963900/](https://www.u2sb.com/pages/963900/)
 
 包括但不仅限于以下播放器：
 
