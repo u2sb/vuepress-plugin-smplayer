@@ -49,9 +49,12 @@
   },
   "devDependencies": {
     "@types/dplayer": "^1.25.2",
+    "@types/node": "^17.0.23",
     "@types/webtorrent": "^0.109.3",
     "execa": "^5.0.0",
     "gulp": "^4.0.2",
+    "gulp-json-editor": "^2.5.6",
+    "gulp-rename": "^2.0.0",
     "gulp-replace": "^1.1.3",
     "gulp-rimraf": "^1.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",

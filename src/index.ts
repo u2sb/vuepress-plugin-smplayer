@@ -1,7 +1,7 @@
 import { Plugin } from "vuepress-types";
 import { SmPlayerPluginOption } from "./types";
 
-import { resolve } from "path";
+import path from "path";
 import merge from "ts-deepmerge";
 
 const ConfigDefault: SmPlayerPluginOption = {
@@ -100,7 +100,7 @@ const SmPlayerPlugin: Plugin<SmPlayerPluginOption> = (options) => ({
       XGPLAYER: config.xgplayer,
     };
   },
-  enhanceAppFiles: resolve(__dirname, "utils/", "enhanceAppFile.js"),
+  enhanceAppFiles: path.resolve(__dirname, "utils/", "enhanceAppFile.js"),
 });
 
-module.exports = SmPlayerPlugin;
+export default SmPlayerPlugin;
