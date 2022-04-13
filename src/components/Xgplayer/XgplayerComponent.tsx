@@ -4,22 +4,22 @@ import {
   IPlayerOptions,
   XgplayerConfig,
 } from "../../types";
-import Vue, { VNode, PropType } from "vue";
+import { defineComponent, PropType, VNode } from "vue";
 import merge from "ts-deepmerge";
 
 declare const XGPLAYER: XgplayerConfig;
 
-export default Vue.extend({
+export default defineComponent({
   props: {
     src: {
       type: Object as PropType<IPlayerOptions>,
       required: true,
     },
     on: {
-      type: Object as PropType<
-        Record<string, (player: XGplayer, src: IPlayerOptions) => void>
-      >,
-      default: () => XGPLAYER.on,
+      type: Object as PropType<typeof XGPLAYER.on>,
+      default: () => {
+        return XGPLAYER.on;
+      },
       required: false,
     },
     width: {
@@ -29,7 +29,9 @@ export default Vue.extend({
     },
     height: {
       type: Array as PropType<Array<number>>,
-      default: () => XGPLAYER.height,
+      default: () => {
+        return XGPLAYER.height;
+      },
       required: false,
     },
   },
@@ -47,7 +49,7 @@ export default Vue.extend({
   },
 
   async mounted(): Promise<void> {
-    let on = merge(XGPLAYER.on!, this.on);
+    let on = merge(XGPLAYER.on!, this.on!);
 
     let src = {
       ...merge(XGPLAYER.src, this.src),

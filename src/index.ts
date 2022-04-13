@@ -1,7 +1,6 @@
-import { Plugin } from "vuepress-types";
+import type { Plugin, PluginObject } from "@vuepress/core";
 import { SmPlayerPluginOption } from "./types";
-
-import { resolve } from "path";
+import { path } from "@vuepress/utils";
 import merge from "ts-deepmerge";
 
 const ConfigDefault: SmPlayerPluginOption = {
@@ -87,7 +86,10 @@ const ConfigDefault: SmPlayerPluginOption = {
   },
 };
 
-const SmPlayerPlugin: Plugin<SmPlayerPluginOption> = (options) => ({
+const SmPlayerPlugin: Plugin<SmPlayerPluginOption> = (
+  options
+): PluginObject => ({
+  name: "vuepress-plugin-smplayer",
   define() {
     const config = merge(ConfigDefault, options);
     return {
@@ -100,7 +102,7 @@ const SmPlayerPlugin: Plugin<SmPlayerPluginOption> = (options) => ({
       XGPLAYER: config.xgplayer,
     };
   },
-  enhanceAppFiles: resolve(__dirname, "utils/", "enhanceAppFile.js"),
+  clientAppEnhanceFiles: path.resolve(__dirname, "utils", "clientAppEnhanceFiles.js"),
 });
 
 export default SmPlayerPlugin;

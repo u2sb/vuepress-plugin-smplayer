@@ -1,10 +1,10 @@
 import Meting from "./Meting";
 import { MetingConfig, AplayerOptionsAudio } from "../../types";
-import Vue, { VNode, PropType } from "vue";
+import { defineComponent, PropType, VNode } from "vue";
 
 declare const METING: MetingConfig;
 
-export default Vue.extend({
+export default defineComponent({
   props: {
     id: {
       required: false,

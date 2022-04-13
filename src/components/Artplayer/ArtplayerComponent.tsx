@@ -1,21 +1,21 @@
 import Artplayer from "./Artplayer";
 import { ArtplayerOptions, ArtplayerConfig } from "../../types";
-import Vue, { VNode, PropType } from "vue";
+import { defineComponent, PropType, VNode } from "vue";
 import merge from "ts-deepmerge";
 
 declare const ARTPLAYER: ArtplayerConfig;
 
-export default Vue.extend({
+export default defineComponent({
   props: {
     src: {
       type: Object as PropType<ArtplayerOptions>,
       required: true,
     },
     on: {
-      type: Object as PropType<
-        Record<string, (player: Artplayer, src: ArtplayerOptions) => void>
-      >,
-      default: () => ARTPLAYER.on,
+      type: Object as PropType<typeof ARTPLAYER.on>,
+      default: () => {
+        return ARTPLAYER.on;
+      },
       required: false,
     },
     width: {
@@ -25,7 +25,9 @@ export default Vue.extend({
     },
     height: {
       type: Array as PropType<Array<number>>,
-      default: () => ARTPLAYER.height,
+      default: () => {
+        return ARTPLAYER.height;
+      },
       required: false,
     },
   },
@@ -44,7 +46,7 @@ export default Vue.extend({
 
   async mounted(): Promise<void> {
     let sbplayer = this.$refs.sbplayer as HTMLElement;
-    let on = merge(ARTPLAYER.on!, this.on);
+    let on = merge(ARTPLAYER.on!, this.on!);
 
     let src: ArtplayerOptions = {
       ...merge(ARTPLAYER.src, this.src),

@@ -1,21 +1,21 @@
 import Dplayer from "./Dplayer";
 import { DPlayer, DPlayerOptions, DPlayerConfig } from "../../types";
-import Vue, { VNode, PropType } from "vue";
+import { defineComponent, PropType, VNode } from "vue";
 import merge from "ts-deepmerge";
 
 declare const DPLAYER: DPlayerConfig;
 
-export default Vue.extend({
+export default defineComponent({
   props: {
     src: {
       type: Object as PropType<DPlayerOptions>,
       required: true,
     },
     on: {
-      type: Object as PropType<
-        Record<string, (player: DPlayer, src: DPlayerOptions) => void>
-      >,
-      default: () => DPLAYER.on,
+      type: Object as PropType<typeof DPLAYER.on>,
+      default: () => {
+        return DPLAYER.on;
+      },
       required: false,
     },
     width: {
@@ -25,7 +25,9 @@ export default Vue.extend({
     },
     height: {
       type: Array as PropType<Array<number>>,
-      default: () => DPLAYER.height,
+      default: () => {
+        return DPLAYER.height;
+      },
       required: false,
     },
   },
@@ -44,7 +46,7 @@ export default Vue.extend({
   },
 
   async mounted(): Promise<void> {
-    let on = merge(DPLAYER.on!, this.on);
+    let on = merge(DPLAYER.on!, this.on!);
     let src: DPlayerOptions = {
       ...merge(DPLAYER.src, this.src),
       container: this.$refs.sbplayer as HTMLElement,

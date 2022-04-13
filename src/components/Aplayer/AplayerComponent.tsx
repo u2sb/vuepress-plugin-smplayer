@@ -1,21 +1,21 @@
 import Aplayer from "./Aplayer";
 import { APlayerConfig, APlayerOptions, APlayer } from "../../types";
-import Vue, { VNode, PropType } from "vue";
+import { defineComponent, PropType, VNode } from "vue";
 import merge from "ts-deepmerge";
 
 declare const APLAYER: APlayerConfig;
 
-export default Vue.extend({
+export default defineComponent({
   props: {
     src: {
       type: Object as PropType<APlayerOptions>,
       required: true,
     },
     on: {
-      type: Object as PropType<
-        Record<string, (player: APlayer, src: APlayerOptions) => void>
-      >,
-      default: () => APLAYER.on,
+      type: Object as PropType<typeof APLAYER.on>,
+      default: () => {
+        return APLAYER.on;
+      },
       required: false,
     },
   },
@@ -27,6 +27,7 @@ export default Vue.extend({
       </div>
     );
   },
+
   data() {
     return {
       player: {} as Aplayer,
@@ -34,7 +35,7 @@ export default Vue.extend({
   },
 
   async mounted(): Promise<void> {
-    let on = merge(APLAYER.on!, this.on);
+    let on = merge(APLAYER.on!, this.on!);
     let src: APlayerOptions = {
       ...merge(APLAYER.src, this.src),
       container: this.$refs.sbplayer as HTMLElement,

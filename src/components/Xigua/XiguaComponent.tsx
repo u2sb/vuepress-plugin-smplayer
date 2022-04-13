@@ -1,9 +1,9 @@
 import { XiguaConfig } from "../../types";
-import Vue, { VNode, PropType } from "vue";
+import { defineComponent, PropType, VNode } from "vue";
 
 declare const XIGUA: XiguaConfig;
 
-export default Vue.extend({
+export default defineComponent({
   props: {
     xid: {
       type: String,
@@ -42,7 +42,9 @@ export default Vue.extend({
     },
     height: {
       type: Array as PropType<Array<number>>,
-      default: () => XIGUA.height,
+      default: () => {
+        return XIGUA.height;
+      },
       required: false,
     },
   },

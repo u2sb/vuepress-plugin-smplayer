@@ -1,9 +1,9 @@
 import { BilibiliConfig } from "../../types";
-import Vue, { VNode, PropType } from "vue";
+import { defineComponent, PropType, VNode } from "vue";
 
 declare const BILIBILI: BilibiliConfig;
 
-export default Vue.extend({
+export default defineComponent({
   props: {
     bvid: {
       type: String,
@@ -37,7 +37,9 @@ export default Vue.extend({
     },
     height: {
       type: Array as PropType<Array<number>>,
-      default: () => BILIBILI.height,
+      default: () => {
+        return BILIBILI.height;
+      },
       required: false,
     },
   },
