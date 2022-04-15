@@ -1,7 +1,7 @@
 import Aplayer from "./Aplayer";
 import { APlayerConfig, APlayerOptions, APlayer } from "../../types";
 import { defineComponent, PropType, VNode } from "vue";
-import merge from "ts-deepmerge";
+import { deepmerge as merge } from "deepmerge-ts";
 
 declare const APLAYER: APlayerConfig;
 

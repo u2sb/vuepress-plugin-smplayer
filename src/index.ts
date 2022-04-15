@@ -1,7 +1,7 @@
 import type { Plugin, PluginObject } from "@vuepress/core";
 import { SmPlayerPluginOption } from "./types";
 import { path } from "@vuepress/utils";
-import merge from "ts-deepmerge";
+import { deepmerge as merge } from "deepmerge-ts";
 
 const ConfigDefault: SmPlayerPluginOption = {
   aplayer: {

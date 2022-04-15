@@ -5,7 +5,7 @@ import {
   XgplayerConfig,
 } from "../../types";
 import { defineComponent, PropType, VNode } from "vue";
-import merge from "ts-deepmerge";
+import { deepmerge as merge } from "deepmerge-ts";
 
 declare const XGPLAYER: XgplayerConfig;
 
