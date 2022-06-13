@@ -1,8 +1,9 @@
 import Artplayer from "artplayer";
 type ArtplayerOption = typeof Artplayer.option;
+type CustomType = typeof Artplayer.option.customType;
 
 export interface PlayerOptions
-  extends Omit<ArtplayerOption, "container" | "url"> {
+  extends Omit<ArtplayerOption, "container" | "url" | "customType"> {
   container?: HTMLElement | string;
   url?: string;
   quality?: {
@@ -22,6 +23,11 @@ export interface PlayerOptions
     url: string;
     type?: string;
   }[];
+  customType?:
+    | {
+        [key: string]: CustomType;
+      }
+    | any;
   customInit?: (player: any, src: PlayerOptions) => Promise<Player>;
 }
 

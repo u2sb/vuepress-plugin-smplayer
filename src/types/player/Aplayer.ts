@@ -27,7 +27,7 @@ interface APlayerOptions {
   lrcType?: 0 | 1 | 2 | 3;
   audio?: Audio[];
   storageName?: string;
-  customAudioType?: Record<string, void>;
+  customAudioType?: Record<string, void> | any;
   customInit?: (player: any, src: APlayerOptions) => Promise<any>;
 }
 
