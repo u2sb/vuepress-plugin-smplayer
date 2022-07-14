@@ -31,6 +31,13 @@ export default defineClientConfig({
     );
 
     app.component(
+      "Artplayer",
+      defineAsyncComponent(
+        () => import("../components/artplayer/ArtPlayer.vue")
+      )
+    );
+
+    app.component(
       "Meting",
       defineAsyncComponent(
         () => import("../components/meting/Meting.vue")
