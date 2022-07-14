@@ -2,6 +2,7 @@
   "name": "vuepress-plugin-smplayer",
   "version": "vuepress-plugin-smplayer-version",
   "description": "A media player plugin for vuepress",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "build": "gulp build"
@@ -30,25 +31,32 @@
   },
   "homepage": "https://github.com/u2sb/vuepress-plugin-smplayer",
   "dependencies": {
+    "@vueuse/core": "^9.10.0",
     "aplayer": "^1.10.1",
-    "artplayer": "^4.5.2",
-    "artplayer-plugin-danmuku": "^4.4.8",
-    "dashjs": "^4.4.0",
-    "deepmerge-ts": "^4.2.1",
-    "dplayer": "^1.26.0",
-    "hls.js": "^1.1.5",
-    "mpegts.js": "^1.6.10",
-    "shaka-player": "^4.1.1",
-    "webtorrent": "^1.8.24"
+    "artplayer": "^4.6.0",
+    "artplayer-plugin-danmuku": "^4.4.11",
+    "dashjs": "^4.5.2",
+    "deepmerge-ts": "^4.2.2",
+    "dplayer": "^1.27.0",
+    "hls.js": "^1.2.9",
+    "mpegts.js": "^1.7.2",
+    "shaka-player": "^4.3.2",
+    "webtorrent": "^1.9.6"
   },
   "devDependencies": {
-    "@vuepress/client": "^2.0.0-beta.45",
-    "@vuepress/core": "^2.0.0-beta.38",
-    "@vuepress/utils": "^2.0.0-beta.38",
-    "execa": "^5.0.0",
+    "@types/dplayer": "^1.25.2",
+    "@types/node": "^18.11.18",
+    "@types/web-bluetooth": "^0.0.16",
+    "@types/webtorrent": "^0.109.3",
+    "@vuepress/client": "2.0.0-beta.60",
+    "@vuepress/core": "2.0.0-beta.60",
+    "@vuepress/utils": "2.0.0-beta.60",
+    "execa": "^6",
     "gulp": "^4.0.2",
     "gulp-json-editor": "^2.5.6",
-    "gulp-rimraf": "^1.0.0",
-    "vue": "^3.2.37"
+    "gulp-typescript": "6.0.0-alpha.1",
+    "rimraf": "^3.0.2",
+    "typescript": "5.0.0-dev.20230105",
+    "vue": "^3.2.45"
   }
 }
