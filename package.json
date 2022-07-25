@@ -31,21 +31,21 @@
   "homepage": "https://github.com/u2sb/vuepress-plugin-smplayer",
   "dependencies": {
     "aplayer": "^1.10.1",
-    "artplayer": "^4.5.2",
+    "artplayer": "^4.5.3",
     "artplayer-plugin-danmuku": "^4.4.8",
-    "dashjs": "^4.4.0",
+    "dashjs": "^4.4.1",
     "deepmerge-ts": "^4.2.1",
     "dplayer": "^1.26.0",
     "hls.js": "^1.1.5",
     "mpegts.js": "^1.6.10",
-    "shaka-player": "^4.1.1",
-    "webtorrent": "^1.8.24"
+    "shaka-player": "^4.1.2",
+    "webtorrent": "^1.8.26"
   },
   "devDependencies": {
     "@vuepress/client": "^2.0.0-beta.45",
     "@vuepress/core": "^2.0.0-beta.38",
     "@vuepress/utils": "^2.0.0-beta.38",
-    "execa": "^5.0.0",
+    "execa": "^5",
     "gulp": "^4.0.2",
     "gulp-json-editor": "^2.5.6",
     "gulp-rimraf": "^1.0.0",

@@ -1,11 +1,10 @@
 const hls = function (mediaElement, src, player) {
   import(/* webpackChunkName: "hls" */ "hls.js/dist/hls.min.js").then(
     ({ default: Hls }) => {
-      if (
-        !mediaElement.canPlayType("application/x-mpegURL") &&
-        !mediaElement.canPlayType("application/vnd.apple.mpegURL") &&
-        Hls.isSupported()
-      ) {
+      if (mediaElement.canPlayType("application/x-mpegURL") || mediaElement.canPlayType("application/vnd.apple.mpegURL")) {
+        mediaElement.src = src;
+      }
+      else if (Hls.isSupported()) {
         const hls = new Hls();
         hls.attachMedia(mediaElement);
         hls.on(Hls.Events.MEDIA_ATTACHED, function () {
