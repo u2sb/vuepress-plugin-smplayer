@@ -1,3 +1,9 @@
+import type artplayer from "artplayer";
+
+export type ArtPlayer = artplayer;
+export type ArtplayerOption = typeof artplayer.option;
+type ArtPlayerCustomType = typeof artplayer.option.customType;
+
 export interface MetingOptions {
   id?: string;
   auth?: string;
@@ -40,6 +46,41 @@ export interface XiguaOptions {
   ratio?: number;
 }
 
+export interface SbArtPlayerPlayerOptions
+  extends Omit<ArtplayerOption, "container" | "url" | "customType"> {
+  container?: HTMLElement | string;
+  url?: string;
+  quality?: {
+    /**
+     * Whether the default is selected
+     */
+    default?: boolean;
+
+    /**
+     * Html string of quality
+     */
+    html: string;
+
+    /**
+     * Video quality url
+     */
+    url: string;
+    type?: string;
+  }[];
+  customType?:
+    | {
+        [key: string]: ArtPlayerCustomType;
+      }
+    | any;
+}
+
+export interface SbArtPlayerOptions {
+  src?: SbArtPlayerPlayerOptions;
+  width?: string;
+  height?: string | number;
+  ratio?: number;
+}
+
 export interface SmplayerPluginsOptions {
   bilibili?: BilibiliOptions;
   xigua?: XiguaOptions;
@@ -47,4 +88,5 @@ export interface SmplayerPluginsOptions {
     src?: Object;
   };
   meting?: MetingOptions;
+  artplayer?: SbArtPlayerOptions;
 }

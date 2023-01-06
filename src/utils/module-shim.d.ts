@@ -1,13 +1,11 @@
 declare module "aplayer/dist/APlayer.min.css";
-declare module "aplayer";
+declare module "aplayer/dist/APlayer.min.js";
 
 declare module "dplayer/dist/DPlayer.min.js";
 
-declare module "artplayer/dist/artplayer.js";
-
-declare module "hls.js/dist/hls.js" {
-  import Hls from "hls.js";
-  export default Hls;
+declare module "artplayer/dist/artplayer.js" {
+  import Artplayer from "artplayer";
+  export default Artplayer;
 }
 
 declare module "hls.js/dist/hls.min.js" {
@@ -16,8 +14,8 @@ declare module "hls.js/dist/hls.min.js" {
 }
 
 declare module "mpegts.js/dist/mpegts.js" {
-  import mpegts from "mpegts.js";
-  export default mpegts;
+  import Mpegts from "mpegts.js";
+  export default Mpegts;
 }
 
 declare module "dashjs/dist/dash.all.min.js" {
@@ -25,12 +23,4 @@ declare module "dashjs/dist/dash.all.min.js" {
   export default dashjs;
 }
 
-// declare module "shaka-player/dist/shaka-player.compiled.js" {
-//   import shaka from "shaka-player";
-//   export default shaka;
-// }
-
-declare module "webtorrent/webtorrent.min.js" {
-  import WebTorrent from "webtorrent";
-  export default WebTorrent;
-}
+declare module "shaka-player/dist/shaka-player.compiled.js";

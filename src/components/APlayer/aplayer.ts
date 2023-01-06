@@ -22,10 +22,11 @@ export default defineComponent({
 
     const initAPlayer = () => {
       Promise.all([
-        import("aplayer"),
+        import("aplayer/dist/APlayer.min.js"),
         import("aplayer/dist/APlayer.min.css"),
       ]).then(([{ default: aplayer }]) => {
-        (src.container = el.value), (player = new aplayer(src));
+        src.container = el.value;
+        player = new aplayer(src);
       });
     };
 
@@ -42,7 +43,6 @@ export default defineComponent({
 
     return (): VNode[] => [
       h("div", {
-        id: "sb-aplayer",
         ref: el,
       }),
     ];

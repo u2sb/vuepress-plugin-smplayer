@@ -43,6 +43,10 @@ const OptionDefault: SmplayerPluginsOptions = {
     listMaxHeight: "340px",
     storageName: "vuepress-plugin-smplayer",
   },
+  artplayer: {
+    width: "100%",
+    ratio: 16 / 9,
+  },
 };
 
 const SmplayerPlugin = (options: SmplayerPluginsOptions = {}): PluginObject => {
