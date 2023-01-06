@@ -19,6 +19,7 @@ jobs:
         with:
           version: latest
           run_install: false
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -34,6 +35,6 @@ jobs:
       - name: Publish
         run: |
           cd ./dist/
-          pnpm publish
+          pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
