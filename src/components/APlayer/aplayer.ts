@@ -20,14 +20,11 @@ export default defineComponent({
 
     let player: any;
 
-    const initAPlayer = () => {
-      Promise.all([
-        import("aplayer"),
-        import("aplayer/dist/APlayer.min.css"),
-      ]).then(([{ default: APlayer }]) => {
-        src.container = el.value;
-        player = new APlayer(src);
-      });
+    const initAPlayer = async () => {
+      const { default: APlayer } = await import("aplayer/dist/APlayer.min.js");
+      await import("aplayer/dist/APlayer.min.css");
+      src.container = el.value;
+      player = new APlayer(src);
     };
 
     const destroyAPlayer = () => {
