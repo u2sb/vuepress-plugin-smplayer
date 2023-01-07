@@ -22,5 +22,3 @@ declare module "dashjs/dist/dash.all.min.js" {
   import dashjs from "dashjs";
   export default dashjs;
 }
-
-declare module "shaka-player/dist/shaka-player.compiled.js";

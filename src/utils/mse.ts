@@ -68,20 +68,3 @@ export const dash = async (
     dashPlayer.destroy();
   });
 };
-
-export const shaka = async (
-  mediaElement: HTMLMediaElement,
-  src: string,
-  player: any
-) => {
-  const { default: shaka } = await import(
-    "shaka-player/dist/shaka-player.compiled.js"
-  );
-
-  const shakaPlayer = new shaka.Player(mediaElement);
-  shakaPlayer.load(src);
-
-  player.on("destroy", function () {
-    shakaPlayer.destroy();
-  });
-};
