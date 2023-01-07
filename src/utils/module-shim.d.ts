@@ -1,5 +1,5 @@
 declare module "aplayer/dist/APlayer.min.css";
-declare module "aplayer/dist/APlayer.min.js";
+declare module "aplayer";
 
 declare module "dplayer/dist/DPlayer.min.js";
 

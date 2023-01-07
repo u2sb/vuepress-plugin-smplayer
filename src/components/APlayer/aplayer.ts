@@ -22,11 +22,11 @@ export default defineComponent({
 
     const initAPlayer = () => {
       Promise.all([
-        import("aplayer/dist/APlayer.min.js"),
+        import("aplayer"),
         import("aplayer/dist/APlayer.min.css"),
-      ]).then(([{ default: aplayer }]) => {
+      ]).then(([{ default: APlayer }]) => {
         src.container = el.value;
-        player = new aplayer(src);
+        player = new APlayer(src);
       });
     };
 
