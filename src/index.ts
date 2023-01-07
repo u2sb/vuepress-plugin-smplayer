@@ -63,6 +63,19 @@ const SmplayerPlugin = (options: SmplayerPluginsOptions = {}): PluginObject => {
       await app.writeTemp("SmplayerOptions.json", JSON.stringify(options));
     },
     clientConfigFile: path.resolve(__dirname, "client.js"),
+    extendsBundlerOptions: (bundlerOptions, app) => {
+      // 修改 @vuepress/bundler-vite 的配置项
+      if (app.options.bundler.name === "@vuepress/bundler-vite") {
+        bundlerOptions.viteOptions ??= {};
+        bundlerOptions.viteOptions.optimizeDeps = {
+          include: [
+            "aplayer",
+            "aplayer/dist/APlayer.min.js",
+            "artplayer/dist/artplayer.js",
+          ],
+        };
+      }
+    },
   };
 };
 
