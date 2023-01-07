@@ -2,8 +2,7 @@ name: deploy
 on:
   push:
     branches:
-      - master
-      - main
+      - docs
 env:
   TZ: Asia/Shanghai
 jobs:

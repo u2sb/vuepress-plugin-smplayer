@@ -68,3 +68,11 @@ export default {
 ```
 
 :::
+
+## 建议
+
+- 建议配置 `shouldPrefetch: false`,
+
+## 反馈
+
+[GitHub](https://github.com/u2sb/vuepress-plugin-smplayer/issues)

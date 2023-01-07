@@ -4,7 +4,7 @@ title: 主页
 heroImage: /assets/img/smlogo2.png
 actions:
   - text: 快速上手
-    link: /guide/getting-started.html
+    link: /guide/install.html
     type: primary
   - text: 配置选项
     link: /guide/
