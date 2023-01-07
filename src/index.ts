@@ -69,9 +69,11 @@ const SmplayerPlugin = (options: SmplayerPluginsOptions = {}): PluginObject => {
         bundlerOptions.viteOptions ??= {};
         bundlerOptions.viteOptions.optimizeDeps = {
           include: [
-            "aplayer",
             "aplayer/dist/APlayer.min.js",
             "artplayer/dist/artplayer.js",
+            "hls.js/dist/hls.min.js",
+            "mpegts.js/dist/mpegts.js",
+            "dashjs/dist/dash.all.min.js",
           ],
         };
       }
