@@ -46,6 +46,12 @@ const OptionDefault: SmplayerPluginsOptions = {
   artplayer: {
     width: "100%",
     ratio: 16 / 9,
+    src: {
+      fullscreen: true,
+      autoSize: true,
+      setting: true,
+      whitelist: ["*"],
+    },
   },
 };
 
