@@ -1,0 +1,14 @@
+// place your custom styles here
+
+:root {
+  --search-input-width: 8rem !important;
+  --search-result-width: 100% !important;
+}
+
+.suggestions {
+  position: fixed !important;
+  top: calc(var(--navbar-line-height) + 7px) !important;
+  width: 60%;
+  min-width: 360px;
+  max-width: 720px !important;
+}
