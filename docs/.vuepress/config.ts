@@ -4,7 +4,6 @@ import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
 import { shikiPlugin } from "@vuepress/plugin-shiki";
 import smplayer from "vuepress-plugin-smplayer";
-import wxshare from "./wxshare/node";
 
 export default defineUserConfig({
   lang: "zh-CN",
@@ -32,7 +31,11 @@ export default defineUserConfig({
       "/guide/": [
         {
           text: "指南",
-          children: ["/guide/README.md", "/guide/install.md"],
+          children: [
+            "/guide/README.md",
+            "/guide/install.md",
+            "/guide/config.md",
+          ],
         },
       ],
     },
@@ -97,10 +100,5 @@ export default defineUserConfig({
       theme: "one-dark-pro",
     }),
     smplayer({}),
-    wxshare({
-      host: "https://smplayer.u2sb.com",
-      redirectApi: "https://wx.xxwhite.com/wxshare/",
-      imgUrl: "https://smplayer.u2sb.com/assets/img/smlogo2.png",
-    }),
   ],
 });

@@ -1,5 +1,5 @@
 ---
-title: 快速开始
+title: 安装
 ---
 
 ## 安装
@@ -10,9 +10,9 @@ title: 快速开始
 
 运行
 
-::: code-tabs#shell
+::: code-tabs
 
-@tab pnpm
+@tab:active pnpm
 
 ```bash
 pnpm add -D vuepress-plugin-smplayer@2.0.0-beta.13
@@ -24,7 +24,7 @@ pnpm add -D vuepress-plugin-smplayer@2.0.0-beta.13
 yarn add -D vuepress-plugin-smplayer@2.0.0-beta.13
 ```
 
-@tab:active npm
+@tab npm
 
 ```bash
 npm i -D vuepress-plugin-smplayer@2.0.0-beta.13
@@ -34,7 +34,7 @@ npm i -D vuepress-plugin-smplayer@2.0.0-beta.13
 
 ## 配置
 
-::: code-tabs#language
+::: code-tabs
 
 @tab TS
 
@@ -71,7 +71,7 @@ export default {
 
 ## 建议
 
-- 建议配置 `shouldPrefetch: false`,
+- 建议配置 `shouldPrefetch: false`
 
 ## 反馈
 
