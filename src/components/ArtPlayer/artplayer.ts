@@ -2,6 +2,7 @@ import { defineComponent, h, onBeforeUnmount, onMounted, PropType } from "vue";
 import { deepmerge as merge } from "deepmerge-ts";
 import { useSize } from "../../utils/size.js";
 import * as mse from "../../utils/mse.js";
+import art from "artplayer";
 
 import type { VNode } from "vue";
 import type {
@@ -49,7 +50,6 @@ export default defineComponent({
     let artplayer: ArtPlayer;
 
     const initAPlayer = async () => {
-      const { default: art } = await import("artplayer/dist/artplayer.js");
       src.container = el.value;
       src.customType = src.customType || {};
       src.type = src.type || mse.checkType(src.url!);
