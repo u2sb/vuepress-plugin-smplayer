@@ -15,22 +15,28 @@ title: 安装
 @tab:active pnpm
 
 ```bash
-pnpm add -D vuepress-plugin-smplayer@2.0.0-beta.13
+pnpm add -D vuepress-plugin-smplayer@2.0.0-beta.15
 ```
 
 @tab yarn
 
 ```bash
-yarn add -D vuepress-plugin-smplayer@2.0.0-beta.13
+yarn add -D vuepress-plugin-smplayer@2.0.0-beta.15
 ```
 
 @tab npm
 
 ```bash
-npm i -D vuepress-plugin-smplayer@2.0.0-beta.13
+npm i -D vuepress-plugin-smplayer@2.0.0-beta.15
 ```
 
 :::
+
+如果使用 pnpm 可能还需要安装相关包。
+
+```bash
+pnpm add -D aplayer artplayer hls.js mpegts.js dashjs
+```
 
 ## 配置
 

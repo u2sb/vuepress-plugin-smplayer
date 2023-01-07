@@ -35,6 +35,8 @@ export default defineUserConfig({
             "/guide/README.md",
             "/guide/install.md",
             "/guide/config.md",
+            "/guide/aplayer.md",
+            "/guide/artplayer.md",
           ],
         },
       ],

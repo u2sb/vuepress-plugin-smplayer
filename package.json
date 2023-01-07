@@ -15,11 +15,15 @@
     "@vuepress/core": "2.0.0-beta.60",
     "@vuepress/plugin-shiki": "2.0.0-beta.60",
     "@vuepress/utils": "2.0.0-beta.60",
+    "aplayer": "^1.10.1",
+    "artplayer": "^4.6.0",
+    "dashjs": "^4.5.2",
+    "hls.js": "^1.2.9",
+    "mpegts.js": "^1.7.2",
     "vue": "^3.2.45",
     "vuepress": "2.0.0-beta.60",
     "vuepress-plugin-md-enhance": "2.0.0-beta.152",
     "vuepress-plugin-search-pro": "2.0.0-beta.152",
-    "vuepress-plugin-smplayer": "2.0.0-beta.13",
-    "wechat-jssdk": "^5.0.8"
+    "vuepress-plugin-smplayer": "2.0.0-beta.18"
   }
 }
