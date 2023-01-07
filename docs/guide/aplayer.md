@@ -60,6 +60,41 @@ export default defineUserConfig({
 </script>
 ```
 
+### 列表
+
+<ClientOnly>
+  <APlayer :src="aplayer2" />
+</ClientOnly>
+
+```html
+<ClientOnly>
+  <APlayer :src="aplayer2" />
+</ClientOnly>
+
+<script setup>
+  const aplayer2 = {
+    audio: [
+      {
+        name: "年轻人要热爱祖国",
+        artist: "音阙诗听/赵方婧",
+        url: "/assets/audio/年轻人要热爱祖国.mp3",
+        cover:
+          "https://sm.sm9.top/api/music?server=Tencent&type=pic&id=001gv6xI4BNGiP",
+        lrc: "/assets/audio/年轻人要热爱祖国.lrc",
+      },
+      {
+        name: "年轻人要热爱祖国",
+        artist: "音阙诗听/赵方婧",
+        url: "/assets/audio/年轻人要热爱祖国.mp3",
+        cover:
+          "https://sm.sm9.top/api/music?server=Tencent&type=pic&id=001gv6xI4BNGiP",
+        lrc: "/assets/audio/年轻人要热爱祖国.lrc",
+      },
+    ],
+  };
+</script>
+```
+
 <script setup>
   const aplayer1 = {
     audio: [
@@ -73,4 +108,25 @@ export default defineUserConfig({
       },
     ],
   };
+  const aplayer2 = {
+    audio: [
+      {
+        name: "年轻人要热爱祖国",
+        artist: "音阙诗听/赵方婧",
+        url: "/assets/audio/年轻人要热爱祖国.mp3",
+        cover:
+          "https://sm.sm9.top/api/music?server=Tencent&type=pic&id=001gv6xI4BNGiP",
+        lrc: "/assets/audio/年轻人要热爱祖国.lrc",
+      },
+      {
+        name: "年轻人要热爱祖国",
+        artist: "音阙诗听/赵方婧",
+        url: "/assets/audio/年轻人要热爱祖国.mp3",
+        cover:
+          "https://sm.sm9.top/api/music?server=Tencent&type=pic&id=001gv6xI4BNGiP",
+        lrc: "/assets/audio/年轻人要热爱祖国.lrc",
+      },
+    ],
+  };
 </script>
+

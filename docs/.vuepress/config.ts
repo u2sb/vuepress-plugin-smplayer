@@ -1,4 +1,5 @@
 import { defineUserConfig } from "vuepress";
+import { viteBundler } from "@vuepress/bundler-vite";
 import { defaultTheme } from "vuepress";
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
@@ -103,4 +104,11 @@ export default defineUserConfig({
     }),
     smplayer({}),
   ],
+  // bundler: viteBundler({
+  //   viteOptions: {
+  //     optimizeDeps: {
+  //       include: ["artplayer-plugin-danmuku"],
+  //     },
+  //   },
+  // }),
 });
