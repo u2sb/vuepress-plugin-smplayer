@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-85fa9b2a","path":"/guide/config.html","title":"配置","lang":"zh-CN","frontmatter":{"title":"配置"},"headers":[{"level":2,"title":"结构","slug":"结构","link":"#结构","children":[]}],"git":{"updatedTime":1673074059000,"contributors":[{"name":"MonoLogueChi","email":"xxwhite.com@gmail.com","commits":1}]},"filePathRelative":"guide/config.md"}');export{e as data};
