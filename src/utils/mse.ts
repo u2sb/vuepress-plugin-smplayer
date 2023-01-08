@@ -1,14 +1,17 @@
 export const checkType = (url: string) => {
-  switch (true) {
-    case url.endsWith(".m3u8"):
-      return "m3u8";
-    case url.endsWith(".flv"):
-      return "flv";
-    case url.endsWith(".mpd"):
-      return "mpd";
-    default:
-      return "mp4";
+  if (url) {
+    switch (true) {
+      case url.endsWith(".m3u8"):
+        return "m3u8";
+      case url.endsWith(".flv"):
+        return "flv";
+      case url.endsWith(".mpd"):
+        return "mpd";
+      default:
+        return "mp4";
+    }
   }
+  return undefined;
 };
 
 export const m3u8 = async (
@@ -32,6 +35,10 @@ export const m3u8 = async (
     player.on("destroy", function () {
       hls.destroy();
     });
+
+    player.on("BeforeDispose", function () {
+      hls.destroy();
+    });
   }
 };
 
@@ -51,6 +58,9 @@ export const flv = async (
   player.on("destroy", function () {
     flvPlayer.destroy();
   });
+  player.on("BeforeDispose", function () {
+    flvPlayer.destroy();
+  });
 };
 
 export const dash = async (
@@ -63,6 +73,9 @@ export const dash = async (
   dashPlayer.initialize(mediaElement, src, false);
 
   player.on("destroy", function () {
+    dashPlayer.destroy();
+  });
+  player.on("BeforeDispose", function () {
     dashPlayer.destroy();
   });
 };

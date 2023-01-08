@@ -3,6 +3,8 @@ declare module "artplayer/dist/artplayer.js" {
   export = Artplayer;
 }
 
+declare module "nplayer/dist/index.min.js"
+
 declare module "hls.js/dist/hls.min.js" {
   import Hls from "hls.js";
   export = Hls;

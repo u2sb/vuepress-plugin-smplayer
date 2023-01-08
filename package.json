@@ -34,6 +34,7 @@
     "deepmerge-ts": "^4.2.2",
     "hls.js": "^1.2.9",
     "mpegts.js": "^1.7.2",
+    "nplayer": "^1.0.15",
     "vue3-audio-player": "^1.0.6"
   },
   "devDependencies": {

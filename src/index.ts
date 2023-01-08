@@ -31,6 +31,10 @@ const OptionDefault: SmplayerPluginsOptions = {
     },
   },
   vue3AudioPlayer: {},
+  nplayer: {
+    width: "100%",
+    ratio: 16 / 9,
+  },
 };
 
 const SmplayerPlugin = (options: SmplayerPluginsOptions = {}): PluginObject => {
@@ -47,8 +51,8 @@ const SmplayerPlugin = (options: SmplayerPluginsOptions = {}): PluginObject => {
         bundlerOptions.viteOptions ??= {};
         bundlerOptions.viteOptions.optimizeDeps = {
           include: [
-            "aplayer/dist/APlayer.min.js",
             "artplayer/dist/artplayer.js",
+            "nplayer/dist/index.min.js",
             "hls.js/dist/hls.min.js",
             "mpegts.js/dist/mpegts.js",
             "dashjs/dist/dash.all.min.js",

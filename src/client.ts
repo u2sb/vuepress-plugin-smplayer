@@ -4,6 +4,7 @@ import bilibili from "./components/Bilibili/bilibili.js";
 import xigua from "./components/Xigua/xigua.js";
 import artplayer from "./components/ArtPlayer/artplayer.js";
 import vue3AudioPlayer from "./components/Vue3AudioPlayer/audioPlayer.js";
+import nplayer from "./components/NPlayer/nplayer.js";
 
 export default defineClientConfig({
   async enhance({ app }) {
@@ -13,5 +14,6 @@ export default defineClientConfig({
     app.component("Vue3AudioPlayer", vue3AudioPlayer);
     app.component("vue3-audio-player", vue3AudioPlayer);
     app.component("AudioPlayer", vue3AudioPlayer);
+    app.component("NPlayer", nplayer);
   },
 });

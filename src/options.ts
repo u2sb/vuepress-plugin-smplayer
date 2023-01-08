@@ -63,9 +63,17 @@ export interface Vue3AudioPlayerOptions {
   src?: AudioPlayerOption;
 }
 
+export interface SbNPlayerOptions {
+  src?: object;
+  width?: string;
+  height?: string | number;
+  ratio?: number;
+}
+
 export interface SmplayerPluginsOptions {
   bilibili?: BilibiliOptions;
   xigua?: XiguaOptions;
   artplayer?: SbArtPlayerOptions;
   vue3AudioPlayer?: Vue3AudioPlayerOptions;
+  nplayer?: SbNPlayerOptions;
 }

@@ -18,6 +18,7 @@ specifiers:
   gulp-typescript: 6.0.0-alpha.1
   hls.js: ^1.2.9
   mpegts.js: ^1.7.2
+  nplayer: ^1.0.15
   rimraf: ^3.0.2
   typescript: 5.0.0-dev.20230105
   vue: ^3.2.45
@@ -30,6 +31,7 @@ dependencies:
   deepmerge-ts: 4.2.2
   hls.js: 1.2.9
   mpegts.js: 1.7.2
+  nplayer: 1.0.15
   vue3-audio-player: 1.0.6
 
 devDependencies:
@@ -2360,6 +2362,10 @@ packages:
     dependencies:
       once: 1.4.0
     dev: true
+
+  /nplayer/1.0.15:
+    resolution: {integrity: sha512-QONvD0+ZvorQNOghe55FY10ebNv6yDnr2QgHs8JdessOex+vVNSKZz88Rl9RBMflb4+MRpeMVJpkTpji0XzVCg==}
+    dev: false
 
   /npm-run-path/5.1.0:
     resolution: {integrity: sha512-sJOdmRGrY2sjNTRMbSvluQqg+8X7ZK61yvzBEIDhz4f8z1TZFYABsqjjCBd/0PUNE9M6QDgHJXQkGUEm7Q+l9Q==}
