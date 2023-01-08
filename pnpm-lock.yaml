@@ -12,11 +12,12 @@ specifiers:
   dashjs: ^4.5.2
   hls.js: ^1.2.9
   mpegts.js: ^1.7.2
+  nplayer: ^1.0.15
   vue: ^3.2.45
   vuepress: 2.0.0-beta.60
   vuepress-plugin-md-enhance: 2.0.0-beta.152
   vuepress-plugin-search-pro: 2.0.0-beta.152
-  vuepress-plugin-smplayer: 2.0.0-beta.19
+  vuepress-plugin-smplayer: 2.0.0-beta.20
 
 devDependencies:
   '@vuepress/client': 2.0.0-beta.60
@@ -30,11 +31,12 @@ devDependencies:
   dashjs: 4.5.2
   hls.js: 1.2.9
   mpegts.js: 1.7.2
+  nplayer: 1.0.15
   vue: 3.2.45
   vuepress: 2.0.0-beta.60_dlgznq46b2nyvtu5wqobknojfm
   vuepress-plugin-md-enhance: 2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau
   vuepress-plugin-search-pro: 2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau
-  vuepress-plugin-smplayer: 2.0.0-beta.19_vue@3.2.45
+  vuepress-plugin-smplayer: 2.0.0-beta.20_vue@3.2.45
 
 packages:
 
@@ -2519,6 +2521,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /nplayer/1.0.15:
+    resolution: {integrity: sha512-QONvD0+ZvorQNOghe55FY10ebNv6yDnr2QgHs8JdessOex+vVNSKZz88Rl9RBMflb4+MRpeMVJpkTpji0XzVCg==}
+    dev: true
+
   /npm-run-path/5.1.0:
     resolution: {integrity: sha512-sJOdmRGrY2sjNTRMbSvluQqg+8X7ZK61yvzBEIDhz4f8z1TZFYABsqjjCBd/0PUNE9M6QDgHJXQkGUEm7Q+l9Q==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -3149,8 +3155,8 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress-plugin-smplayer/2.0.0-beta.19_vue@3.2.45:
-    resolution: {integrity: sha512-5cAMe5D2FF4fYricNjcR/Updx4DKSVTtlwVislyW3zqx+udEtqGgswPuukJ2wzyeLktwTHA+UGZmW8MBNN+fWg==}
+  /vuepress-plugin-smplayer/2.0.0-beta.20_vue@3.2.45:
+    resolution: {integrity: sha512-JV7KBBXu2/rX/PjD5k3nFdVzcUDKHLSCdtO2Gjlf5bGh7yZyXiJy6aKrUYMis37aJksiyRbSrPhhTNxWsdh4oA==}
     dependencies:
       '@vueuse/core': 9.10.0_vue@3.2.45
       artplayer: 4.6.0
@@ -3158,6 +3164,7 @@ packages:
       deepmerge-ts: 4.2.2
       hls.js: 1.2.9
       mpegts.js: 1.7.2
+      nplayer: 1.0.15
       vue3-audio-player: 1.0.6
     transitivePeerDependencies:
       - '@vue/composition-api'

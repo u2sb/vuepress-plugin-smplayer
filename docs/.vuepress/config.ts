@@ -38,6 +38,7 @@ export default defineUserConfig({
             "/guide/config.md",
             "/guide/audioplayer.md",
             "/guide/artplayer.md",
+            "/guide/nplayer.md",
           ],
         },
       ],

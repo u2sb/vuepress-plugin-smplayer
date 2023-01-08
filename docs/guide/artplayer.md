@@ -4,7 +4,7 @@ title: ArtPlayer
 
 ## 介绍
 
-可以插入 artplayer 标签。
+可以插入 artplayer 播放器。
 
 ## 配置
 
@@ -163,7 +163,7 @@ export default defineUserConfig({
 </ClientOnly>
 
 <script setup>
-  import { onMounted , ref} from 'vue'
+  import { onMounted, ref } from "vue";
   let art5 = {};
   let isDanmuOk = ref(false);
   onMounted(async () => {
