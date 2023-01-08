@@ -48,7 +48,7 @@ export default defineComponent({
 
     let artplayer: ArtPlayer;
 
-    const initAPlayer = async () => {
+    const initArtPlayer = async () => {
       const { default: art } = await import("artplayer/dist/artplayer.js");
       src.container = el.value;
       src.customType = src.customType || {};
@@ -71,15 +71,15 @@ export default defineComponent({
       artplayer = new art(src as ArtplayerOption);
     };
 
-    const destroyAPlayer = () => {
+    const destroyArtPlayer = () => {
       artplayer.destroy();
     };
 
     onMounted(() => {
-      initAPlayer();
+      initArtPlayer();
     });
     onBeforeUnmount(() => {
-      destroyAPlayer();
+      destroyArtPlayer();
     });
 
     return (): VNode[] => [

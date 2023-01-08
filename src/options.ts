@@ -1,32 +1,10 @@
 import type artplayer from "artplayer";
+import type { AudioPlayerOption } from "vue3-audio-player";
 
 export type ArtPlayer = artplayer;
 export type ArtplayerOption = typeof artplayer.option;
-type ArtPlayerCustomType = typeof artplayer.option.customType;
 
-export interface MetingOptions {
-  id?: string;
-  auth?: string;
-  auto?: string;
-  api?: string;
-  server?: string;
-  type?: string;
-  fixed?: boolean;
-  mini?: boolean;
-  autoplay?: boolean;
-  theme?: string;
-  loop?: string;
-  order?: string;
-  preload?: string;
-  volume?: number;
-  mutex?: boolean;
-  lrcType?: number;
-  listFolded?: boolean;
-  listMaxHeight?: string;
-  storageName?: string;
-  audio?: Array<Object>;
-  list?: Array<MetingOptions>;
-}
+type ArtPlayerCustomType = typeof artplayer.option.customType;
 
 export interface BilibiliOptions {
   bvid?: string;
@@ -81,12 +59,13 @@ export interface SbArtPlayerOptions {
   ratio?: number;
 }
 
+export interface Vue3AudioPlayerOptions {
+  src?: AudioPlayerOption;
+}
+
 export interface SmplayerPluginsOptions {
   bilibili?: BilibiliOptions;
   xigua?: XiguaOptions;
-  aplayer?: {
-    src?: Object;
-  };
-  meting?: MetingOptions;
   artplayer?: SbArtPlayerOptions;
+  vue3AudioPlayer?: Vue3AudioPlayerOptions;
 }

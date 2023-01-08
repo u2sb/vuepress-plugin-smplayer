@@ -14,7 +14,8 @@
     "moduleResolution": "NodeNext",
     "outDir": "./dist",
     "rootDir": "./src",
-    "types": ["@types/web-bluetooth", "vue"]
+    "types": ["@types/web-bluetooth", "vue"],
+    "declarationMap": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

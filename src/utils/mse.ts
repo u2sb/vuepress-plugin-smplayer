@@ -23,7 +23,6 @@ export const m3u8 = async (
     mediaElement.src = src;
   } else {
     const { default: Hls } = await import("hls.js/dist/hls.min.js");
-    // @ts-ignore
     const hls = new Hls();
     hls.attachMedia(mediaElement);
     hls.on(Hls.Events.MEDIA_ATTACHED, function () {
@@ -42,7 +41,6 @@ export const flv = async (
   player: any
 ) => {
   const { default: mpegts } = await import("mpegts.js/dist/mpegts.js");
-  // @ts-ignore
   const flvPlayer = mpegts.createPlayer({
     type: "flv",
     url: src,
