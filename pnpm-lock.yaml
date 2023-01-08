@@ -1,9 +1,9 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@vuepress/bundler-vite': 2.0.0-beta.60
   '@vuepress/client': 2.0.0-beta.60
   '@vuepress/core': 2.0.0-beta.60
+  '@vuepress/plugin-medium-zoom': 2.0.0-beta.60
   '@vuepress/plugin-shiki': 2.0.0-beta.60
   '@vuepress/utils': 2.0.0-beta.60
   aplayer: ^1.10.1
@@ -16,12 +16,12 @@ specifiers:
   vuepress: 2.0.0-beta.60
   vuepress-plugin-md-enhance: 2.0.0-beta.152
   vuepress-plugin-search-pro: 2.0.0-beta.152
-  vuepress-plugin-smplayer: 2.0.0-beta.18
+  vuepress-plugin-smplayer: 2.0.0-beta.19
 
 devDependencies:
-  '@vuepress/bundler-vite': 2.0.0-beta.60
   '@vuepress/client': 2.0.0-beta.60
   '@vuepress/core': 2.0.0-beta.60
+  '@vuepress/plugin-medium-zoom': 2.0.0-beta.60
   '@vuepress/plugin-shiki': 2.0.0-beta.60
   '@vuepress/utils': 2.0.0-beta.60
   aplayer: 1.10.1
@@ -34,7 +34,7 @@ devDependencies:
   vuepress: 2.0.0-beta.60_dlgznq46b2nyvtu5wqobknojfm
   vuepress-plugin-md-enhance: 2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau
   vuepress-plugin-search-pro: 2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau
-  vuepress-plugin-smplayer: 2.0.0-beta.18_vue@3.2.45
+  vuepress-plugin-smplayer: 2.0.0-beta.19_vue@3.2.45
 
 packages:
 
@@ -44,6 +44,38 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.17
+    dev: true
+
+  /@any-touch/compute/2.2.0:
+    resolution: {integrity: sha512-hrw74b/cVT8SmiKFLValmllajw+bBvTa5iUwIXFVVIJM9T3tO15zZC2QbjVz8Uwi6XjH932RDUILGMs2TNvyQg==}
+    dependencies:
+      '@any-touch/shared': 2.2.0
+      '@any-touch/vector': 2.2.0
+      tslib: 2.4.1
+    dev: true
+
+  /@any-touch/core/2.2.0:
+    resolution: {integrity: sha512-xMHAA5aLCatFto+4fQWyE4YAsyN/LsXS4mnYuVpqFYoNz8dl5FsB/TIyb9JrqMKLYMxxcZ9joqR8gDprH1lwBw==}
+    dependencies:
+      '@any-touch/shared': 2.2.0
+      any-event: 2.2.0
+    dev: true
+
+  /@any-touch/pan/2.2.0:
+    resolution: {integrity: sha512-uMkCHbTm5qWji/FvhumP9n1ZCkPU7hy864g+ZhoWZ0OWAmn7s/TKRo4UqPBfqEPUMV6obGZvatrrgBLWT6J57w==}
+    dependencies:
+      '@any-touch/compute': 2.2.0
+      '@any-touch/shared': 2.2.0
+    dev: true
+
+  /@any-touch/shared/2.2.0:
+    resolution: {integrity: sha512-2n1zWaATi/3osr/dkIUq5O7aSffKUsTM4DsIbPMW1VEO77v/rX2HkLoxt2Djzj5eCGh7An55Vw8NeA33kTTSRA==}
+    dev: true
+
+  /@any-touch/vector/2.2.0:
+    resolution: {integrity: sha512-t7pGYegIDCJl+swwsohZHZKmF71ZMt+hjwVEyhaEP6nQhcx6S7zulxnRxNp1t8s+c/JdK02Q89HnzQ4Ukg4+IA==}
+    dependencies:
+      '@any-touch/shared': 2.2.0
     dev: true
 
   /@babel/code-frame/7.18.6:
@@ -1201,6 +1233,12 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       color-convert: 1.9.3
+    dev: true
+
+  /any-event/2.2.0:
+    resolution: {integrity: sha512-PB4sEiVUjL+5mLmwlAGYdI5/1ouckapxS6+RPIvrGXv9XTMav7M3k3rR/f9fwAR+e2608CTR3FOR5HrOEYTtKA==}
+    dependencies:
+      tslib: 2.4.1
     dev: true
 
   /anymatch/3.1.3:
@@ -2843,6 +2881,10 @@ packages:
     resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
     dev: true
 
+  /tslib/2.4.1:
+    resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: true
+
   /ua-parser-js/1.0.32:
     resolution: {integrity: sha512-dXVsz3M4j+5tTiovFVyVqssXBu5HM47//YSOeZ9fQkdDKkfzv2v3PP1jmH6FUyPW+yCSn7aBVK1fGGKNhowdDA==}
     dev: true
@@ -2954,6 +2996,14 @@ packages:
       '@vue/runtime-dom': 3.2.45
       '@vue/server-renderer': 3.2.45_vue@3.2.45
       '@vue/shared': 3.2.45
+    dev: true
+
+  /vue3-audio-player/1.0.6:
+    resolution: {integrity: sha512-B1gWcjovJekLiW5oRSGV7K412AvLr1WiIDMdHG8y7SF40Sm+WYUC4nGMoUjFlNi/fgARhBxjMjWqEs4GWf5mvQ==}
+    dependencies:
+      '@any-touch/core': 2.2.0
+      '@any-touch/pan': 2.2.0
+      vue: 3.2.45
     dev: true
 
   /vuepress-plugin-md-enhance/2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau:
@@ -3099,17 +3149,16 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress-plugin-smplayer/2.0.0-beta.18_vue@3.2.45:
-    resolution: {integrity: sha512-liS/A6p2V4FlH24UnJK8LY/VVEPnprdmx0swaTImnuCAjlI4to/9Kuj5XF4URDnGjPpxdx8reLean5nd32UJZw==}
+  /vuepress-plugin-smplayer/2.0.0-beta.19_vue@3.2.45:
+    resolution: {integrity: sha512-5cAMe5D2FF4fYricNjcR/Updx4DKSVTtlwVislyW3zqx+udEtqGgswPuukJ2wzyeLktwTHA+UGZmW8MBNN+fWg==}
     dependencies:
       '@vueuse/core': 9.10.0_vue@3.2.45
-      aplayer: 1.10.1
       artplayer: 4.6.0
-      artplayer-plugin-danmuku: 4.4.11
       dashjs: 4.5.2
       deepmerge-ts: 4.2.2
       hls.js: 1.2.9
       mpegts.js: 1.7.2
+      vue3-audio-player: 1.0.6
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue

@@ -1,9 +1,9 @@
 import { defineUserConfig } from "vuepress";
-import { viteBundler } from "@vuepress/bundler-vite";
 import { defaultTheme } from "vuepress";
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
 import { shikiPlugin } from "@vuepress/plugin-shiki";
+import { mediumZoomPlugin } from "@vuepress/plugin-medium-zoom";
 import smplayer from "vuepress-plugin-smplayer";
 
 export default defineUserConfig({
@@ -36,7 +36,7 @@ export default defineUserConfig({
             "/guide/README.md",
             "/guide/install.md",
             "/guide/config.md",
-            "/guide/aplayer.md",
+            "/guide/audioplayer.md",
             "/guide/artplayer.md",
           ],
         },
@@ -102,13 +102,9 @@ export default defineUserConfig({
     shikiPlugin({
       theme: "one-dark-pro",
     }),
+    mediumZoomPlugin({
+      selector: ":not(a) > img :not(.audio__player)",
+    }),
     smplayer({}),
   ],
-  // bundler: viteBundler({
-  //   viteOptions: {
-  //     optimizeDeps: {
-  //       include: ["artplayer-plugin-danmuku"],
-  //     },
-  //   },
-  // }),
 });

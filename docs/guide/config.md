@@ -32,30 +32,6 @@ export default defineUserConfig({
         width: "100%",
         ratio: 16 / 9,
       },
-      aplayer: {
-        src: {
-          lrcType: 3,
-          // 所有 aplayer 配置项都可以在这配置
-        },
-      },
-      meting: {
-        api: "https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r",
-        server: "tencent",
-        type: "song",
-        fixed: false,
-        mini: false,
-        autoplay: false,
-        theme: "#2980b9",
-        loop: "all",
-        order: "list",
-        preload: "auto",
-        volume: 0.7,
-        mutex: true,
-        lrcType: 3,
-        listFolded: false,
-        listMaxHeight: "340px",
-        storageName: "vuepress-plugin-smplayer",
-      },
       artplayer: {
         width: "100%",
         ratio: 16 / 9,
