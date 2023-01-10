@@ -20,13 +20,13 @@ export const m3u8 = async (
   player: any,
   onDestroy: string = "destroy"
 ) => {
+  const { default: Hls } = await import("hls.js/dist/hls.min.js");
   if (
     mediaElement.canPlayType("application/x-mpegURL") ||
     mediaElement.canPlayType("application/vnd.apple.mpegURL")
   ) {
     mediaElement.src = src;
-  } else {
-    const { default: Hls } = await import("hls.js/dist/hls.min.js");
+  } else if (Hls.isSupported()) {
     const hls = new Hls();
     hls.attachMedia(mediaElement);
     hls.on(Hls.Events.MEDIA_ATTACHED, function () {
