@@ -36,87 +36,47 @@ export default defineUserConfig({
 
 ### 基本使用
 
-<ClientOnly>
-  <NPlayer :src="src0" />
-</ClientOnly>
+<NPlayer url="/assets/video/s_720.mp4" />
 
 ```html
-<ClientOnly>
-  <NPlayer :src="src0" />
-</ClientOnly>
-
-<script setup>
-  const src0 = {
-    src: "/assets/video/s_720.mp4",
-  };
-</script>
+<NPlayer url="/assets/video/s_720.mp4" />
 ```
 
 ### HLS
 
-<ClientOnly>
-  <NPlayer :src="src1" />
-</ClientOnly>
+<NPlayer url="/assets/video/dash/master.m3u8" />
 
 ```html
-<ClientOnly>
-  <NPlayer :src="src1" />
-</ClientOnly>
-
-<script setup>
-  const src1 = {
-    src: "/assets/video/dash/master.m3u8",
-  };
-</script>
+<NPlayer url="/assets/video/dash/master.m3u8" />
 ```
 
 ### FLV
 
-<ClientOnly>
-  <NPlayer :src="src2" />
-</ClientOnly>
+<NPlayer url="/assets/video/s_720.flv" />
 
 ```html
-<ClientOnly>
-  <NPlayer :src="src2" />
-</ClientOnly>
-
-<script setup>
-  const src2 = {
-    url: "/assets/video/s_720.flv",
-  };
-</script>
+<NPlayer url="/assets/video/s_720.flv" />
 ```
 
 ### DASH
 
-<ClientOnly>
-  <NPlayer :src="src3" />
-</ClientOnly>
+<NPlayer url="/assets/video/dash/stream.mpd" />
 
 ```html
-<ClientOnly>
-  <NPlayer :src="src3" />
-</ClientOnly>
+<NPlayer url="/assets/video/dash/stream.mpd" />
+```
+
+### 高级
+
+其他设置可通过 `src` 选项配置
+
+```html
+<NPlayer :src="src" />
 
 <script setup>
-  const src3 = {
+  const src = {
     url: "/assets/video/dash/stream.mpd",
+    // 其他 nplayer 配置项
   };
 </script>
 ```
-
-<script setup>
-  const src0 = {
-    src: "/assets/video/s_720.mp4",
-  };
-  const src1 = {
-    src: "/assets/video/dash/master.m3u8",
-  };
-  const src2 = {
-    src: "/assets/video/s_720.flv",
-  };
-  const src3 = {
-    src: "/assets/video/dash/stream.mpd",
-  };
-</script>

@@ -40,62 +40,42 @@ export default defineUserConfig({
 
 ### 基本使用
 
-<ClientOnly>
-  <ArtPlayer url="/assets/video/s_720.mp4" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/s_720.mp4" />
 
 ```html
-<ClientOnly>
-  <ArtPlayer url="/assets/video/s_720.mp4" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/s_720.mp4" />
 ```
 
 ### HLS
 
-<ClientOnly>
-  <ArtPlayer url="/assets/video/dash/master.m3u8" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/dash/master.m3u8" />
 
 ```html
-<ClientOnly>
-  <ArtPlayer url="/assets/video/dash/master.m3u8" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/dash/master.m3u8" />
 ```
 
 ### FLV
 
-<ClientOnly>
-  <ArtPlayer url="/assets/video/s_720.flv" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/s_720.flv" />
 
 ```html
-<ClientOnly>
-  <ArtPlayer url="/assets/video/s_720.flv" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/s_720.flv" />
 ```
 
 ### DASH
 
-<ClientOnly>
-  <ArtPlayer url="/assets/video/dash/stream.mpd" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/dash/stream.mpd" />
 
 ```html
-<ClientOnly>
-  <ArtPlayer url="/assets/video/dash/stream.mpd" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/dash/stream.mpd" />
 ```
 
 ### CustomType
 
-<ClientOnly>
-  <ArtPlayer :src="art4" />
-</ClientOnly>
+<ArtPlayer :src="art4" />
 
 ```html
-<ClientOnly>
-  <ArtPlayer :src="art4" />
-</ClientOnly>
+<ArtPlayer :src="art4" />
 
 <script setup>
   const art4 = {
@@ -129,13 +109,15 @@ export default defineUserConfig({
 
 ### 弹幕
 
-<ClientOnly>
-  <ArtPlayer url="/assets/video/s_720.mp4" :player="player5" :pluginDanmuKu="danmu5" />
-</ClientOnly>
+<ArtPlayer url="/assets/video/s_720.mp4" :player="player5" :pluginDanmuKu="danmu5" />
 
 ```html
 <ClientOnly>
-  <ArtPlayer url="/assets/video/s_720.mp4" :player="player5" :pluginDanmuKu="danmu5" />
+  <ArtPlayer
+    url="/assets/video/s_720.mp4"
+    :player="player5"
+    :pluginDanmuKu="danmu5"
+  />
 </ClientOnly>
 
 <script setup>
