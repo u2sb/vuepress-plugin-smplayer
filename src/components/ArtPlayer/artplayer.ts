@@ -21,7 +21,7 @@ export default defineComponent({
     src: Object as PropType<SbArtPlayerPlayerOptions>,
     url: String,
     player: Function,
-
+    pluginDanmuKu: Object,
     width: {
       type: String,
       default: ARTPLAYER.width,
@@ -39,10 +39,11 @@ export default defineComponent({
   },
 
   setup(props) {
-    let src = {
-      ...merge(ARTPLAYER.src, props.src),
+    const option = {
+      ...merge(ARTPLAYER, props),
     };
 
+    let src = option.src || {};
     src.url ??= props.url;
 
     const { el, width, height } = useSize<HTMLDivElement>(props, 0);
@@ -67,6 +68,16 @@ export default defineComponent({
         case "dash":
           src.customType[src.type] = mse.dash;
           break;
+      }
+
+      if (option.pluginDanmuKu) {
+        const { default: artplayerPluginDanmuku } = await import(
+          "artplayer-plugin-danmuku"
+        );
+        src.plugins ??= [];
+        // @ts-ignore
+        src.plugins?.push(artplayerPluginDanmuku(option.pluginDanmuKu));
+        console.log(src);
       }
 
       artplayer = new art(src as ArtplayerOption);

@@ -10,6 +10,7 @@ specifiers:
   '@vuepress/utils': 2.0.0-beta.60
   '@vueuse/core': ^9.10.0
   artplayer: ^4.6.0
+  artplayer-plugin-danmuku: ^4.4.11
   dashjs: ^4.5.2
   deepmerge-ts: ^4.2.2
   execa: ^6
@@ -27,6 +28,7 @@ specifiers:
 dependencies:
   '@vueuse/core': 9.10.0_vue@3.2.45
   artplayer: 4.6.0
+  artplayer-plugin-danmuku: 4.4.11
   dashjs: 4.5.2
   deepmerge-ts: 4.2.2
   hls.js: 1.2.9
@@ -596,6 +598,10 @@ packages:
     resolution: {integrity: sha512-SleRWjh9JUud2wH1hPs9rZBZ33H6T9HOiL0uwGnGx9FpE6wKGyfWugmbkEOIs6qWrZhg0LWeLziLrEwQJhs5mQ==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /artplayer-plugin-danmuku/4.4.11:
+    resolution: {integrity: sha512-/4F8IyB29Bdr1LV1RM3FM7CdiAMsVNOOJ/HY4jaJCXnMAKThQiGa++0PhCJ07nhyGvDcZGRL2/UWJRz9zZJFNw==}
+    dev: false
 
   /artplayer/4.6.0:
     resolution: {integrity: sha512-dv93RmpMzb9VIfKsvjlmp6zbnLD9gPcMDkJ1aQGGczU+F5Jly0h249HtEsgnr8hc00c8YQp7GeAJsuMu9vwI4w==}

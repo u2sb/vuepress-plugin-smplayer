@@ -30,6 +30,7 @@
   "dependencies": {
     "@vueuse/core": "^9.10.0",
     "artplayer": "^4.6.0",
+    "artplayer-plugin-danmuku": "^4.4.11",
     "dashjs": "^4.5.2",
     "deepmerge-ts": "^4.2.2",
     "hls.js": "^1.2.9",

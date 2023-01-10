@@ -52,6 +52,7 @@ const SmplayerPlugin = (options: SmplayerPluginsOptions = {}): PluginObject => {
         bundlerOptions.viteOptions.optimizeDeps = {
           include: [
             "artplayer/dist/artplayer.js",
+            "artplayer-plugin-danmuku",
             "nplayer/dist/index.min.js",
             "hls.js/dist/hls.min.js",
             "mpegts.js/dist/mpegts.js",
