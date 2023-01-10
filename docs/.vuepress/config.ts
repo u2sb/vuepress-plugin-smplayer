@@ -1,5 +1,4 @@
-import { defineUserConfig } from "vuepress";
-import { defaultTheme } from "vuepress";
+import { defineUserConfig, defaultTheme } from "vuepress";
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
 import { shikiPlugin } from "@vuepress/plugin-shiki";
@@ -54,6 +53,9 @@ export default defineUserConfig({
         link: "https://www.u2sb.com",
       },
     ],
+    themePlugins: {
+      mediumZoom: false,
+    },
   }),
   plugins: [
     mdEnhancePlugin({

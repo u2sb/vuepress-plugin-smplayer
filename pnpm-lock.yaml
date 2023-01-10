@@ -10,7 +10,6 @@ specifiers:
   artplayer: ^4.6.0
   artplayer-plugin-danmuku: ^4.4.11
   dashjs: ^4.5.2
-  dist: link:..\vuepress-plugin-smplayer2\dist
   hls.js: ^1.2.9
   mpegts.js: ^1.7.2
   nplayer: ^1.0.15
@@ -30,7 +29,6 @@ devDependencies:
   artplayer: 4.6.0
   artplayer-plugin-danmuku: 4.4.11
   dashjs: 4.5.2
-  dist: link:../vuepress-plugin-smplayer2/dist
   hls.js: 1.2.9
   mpegts.js: 1.7.2
   nplayer: 1.0.15
