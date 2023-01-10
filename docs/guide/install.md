@@ -15,19 +15,19 @@ title: 安装
 @tab:active pnpm
 
 ```bash
-pnpm add -D vuepress-plugin-smplayer@2.0.0-beta.20
+pnpm add -D vuepress-plugin-smplayer@2.0.0-beta.23
 ```
 
 @tab yarn
 
 ```bash
-yarn add -D vuepress-plugin-smplayer@2.0.0-beta.20
+yarn add -D vuepress-plugin-smplayer@2.0.0-beta.23
 ```
 
 @tab npm
 
 ```bash
-npm i -D vuepress-plugin-smplayer@2.0.0-beta.20
+npm i -D vuepress-plugin-smplayer@2.0.0-beta.23
 ```
 
 :::

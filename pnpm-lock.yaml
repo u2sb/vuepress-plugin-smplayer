@@ -17,7 +17,7 @@ specifiers:
   vuepress: 2.0.0-beta.60
   vuepress-plugin-md-enhance: 2.0.0-beta.152
   vuepress-plugin-search-pro: 2.0.0-beta.152
-  vuepress-plugin-smplayer: 2.0.0-beta.22
+  vuepress-plugin-smplayer: 2.0.0-beta.23
 
 devDependencies:
   '@vuepress/client': 2.0.0-beta.60
@@ -36,7 +36,7 @@ devDependencies:
   vuepress: 2.0.0-beta.60_dlgznq46b2nyvtu5wqobknojfm
   vuepress-plugin-md-enhance: 2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau
   vuepress-plugin-search-pro: 2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau
-  vuepress-plugin-smplayer: 2.0.0-beta.22_vue@3.2.45
+  vuepress-plugin-smplayer: 2.0.0-beta.23_vue@3.2.45
 
 packages:
 
@@ -3155,8 +3155,8 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress-plugin-smplayer/2.0.0-beta.22_vue@3.2.45:
-    resolution: {integrity: sha512-eLsJrZsmHYWD6oOPOkDlXP5XAlNp/i6uIgSTzYKsC2EfWaL1VPreaSAK1uAoii8X4834yv6HWHk8b2K4UI0r9g==}
+  /vuepress-plugin-smplayer/2.0.0-beta.23_vue@3.2.45:
+    resolution: {integrity: sha512-b+jxvK452TLEm5JpXYXoHEyreSGc0CuFBfNB1MhB9yOnkDcUu3HZidJ0FJUGDghx0cdk2c15QMx15+2K+I3qZw==}
     dependencies:
       '@vueuse/core': 9.10.0_vue@3.2.45
       artplayer: 4.6.0
