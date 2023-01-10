@@ -77,7 +77,6 @@ export default defineComponent({
         src.plugins ??= [];
         // @ts-ignore
         src.plugins?.push(artplayerPluginDanmuku(option.pluginDanmuKu));
-        console.log(src);
       }
 
       artplayer = new art(src as ArtplayerOption);
