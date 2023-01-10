@@ -35,7 +35,7 @@ npm i -D vuepress-plugin-smplayer@2.0.0-beta.20
 如果使用 pnpm 可能还需要安装相关包。
 
 ```bash
-pnpm add -D artplayer nplayer hls.js mpegts.js dashjs
+pnpm add -D artplayer artplayer-plugin-danmuku nplayer hls.js mpegts.js dashjs
 ```
 
 ## 配置

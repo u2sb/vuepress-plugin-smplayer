@@ -41,73 +41,49 @@ export default defineUserConfig({
 ### 基本使用
 
 <ClientOnly>
-  <ArtPlayer :src="art0" />
+  <ArtPlayer url="/assets/video/s_720.mp4" />
 </ClientOnly>
 
 ```html
 <ClientOnly>
-  <ArtPlayer :src="art0" />
+  <ArtPlayer url="/assets/video/s_720.mp4" />
 </ClientOnly>
-
-<script setup>
-  const art0 = {
-    url: "/assets/video/s_720.mp4",
-  };
-</script>
 ```
 
 ### HLS
 
 <ClientOnly>
-  <ArtPlayer :src="art1" />
+  <ArtPlayer url="/assets/video/dash/master.m3u8" />
 </ClientOnly>
 
 ```html
 <ClientOnly>
-  <ArtPlayer :src="art1" />
+  <ArtPlayer url="/assets/video/dash/master.m3u8" />
 </ClientOnly>
-
-<script setup>
-  const art1 = {
-    url: "/assets/video/dash/master.m3u8",
-  };
-</script>
 ```
 
 ### FLV
 
 <ClientOnly>
-  <ArtPlayer :src="art2" />
+  <ArtPlayer url="/assets/video/s_720.flv" />
 </ClientOnly>
 
 ```html
 <ClientOnly>
-  <ArtPlayer :src="art2" />
+  <ArtPlayer url="/assets/video/s_720.flv" />
 </ClientOnly>
-
-<script setup>
-  const art2 = {
-    url: "/assets/video/s_720.flv",
-  };
-</script>
 ```
 
 ### DASH
 
 <ClientOnly>
-  <ArtPlayer :src="art3" />
+  <ArtPlayer url="/assets/video/dash/stream.mpd" />
 </ClientOnly>
 
 ```html
 <ClientOnly>
-  <ArtPlayer :src="art3" />
+  <ArtPlayer url="/assets/video/dash/stream.mpd" />
 </ClientOnly>
-
-<script setup>
-  const art3 = {
-    url: "/assets/video/dash/stream.mpd",
-  };
-</script>
 ```
 
 ### CustomType
@@ -154,82 +130,61 @@ export default defineUserConfig({
 ### 弹幕
 
 <ClientOnly>
-  <ArtPlayer :src="art5" v-if="isDanmuOk"/>
+  <ArtPlayer url="/assets/video/s_720.mp4" :player="player5" :pluginDanmuKu="danmu5" />
 </ClientOnly>
 
 ```html
 <ClientOnly>
-  <ArtPlayer :src="art5" v-if="isDanmuOk" />
+  <ArtPlayer url="/assets/video/s_720.mp4" :player="player5" :pluginDanmuKu="danmu5" />
 </ClientOnly>
 
 <script setup>
-  import { onMounted, ref } from "vue";
-  let art5 = {};
-  let isDanmuOk = ref(false);
-  onMounted(async () => {
-    const { default: artplayerPluginDanmuku } = await import(
-      "artplayer-plugin-danmuku"
-    );
+  const danmakuId = "cENuyhsT2rMOCohK";
+  const danmakuApi = "https://danmu.u2sb.com/api/artplayer/v1";
+  const bilibiliDanmaku = `${danmakuApi}/bilibili/BV1zt411t79A.json`;
 
-    const danmakuId = "cENuyhsT2rMOCohK";
-    const danmakuApi = "https://danmu.u2sb.com/api/artplayer/v1";
-    const bilibiliDanmaku = `${danmakuApi}/bilibili/BV1zt411t79A.json`;
-    art5 = {
-      url: "/assets/video/s_720.mp4",
-      plugins: [
-        artplayerPluginDanmuku({
-          danmuku: () =>
-            Promise.allSettled([
-              fetch(bilibiliDanmaku).then((res) => res.json()),
-              fetch(`${danmakuApi}/${danmakuId}.json`).then((res) =>
-                res.json()
-              ),
-            ])
-              .then((res) =>
-                res.filter((r) => r.status === "fulfilled").map((r) => r.value)
-              )
-              .then((res) =>
-                res
-                  .filter(
-                    (r) =>
-                      r["code"] !== undefined &&
-                      r["code"] === 0 &&
-                      r["data"] !== undefined &&
-                      r["data"].length > 0
-                  )
-                  .reduce((acc, cur) => acc.concat(cur["data"]), [])
-              ),
+  const danmu5 = {
+    danmuku: () =>
+      Promise.allSettled([
+        fetch(bilibiliDanmaku).then((res) => res.json()),
+        fetch(`${danmakuApi}/${danmakuId}.json`).then((res) => res.json()),
+      ])
+        .then((res) =>
+          res.filter((r) => r.status === "fulfilled").map((r) => r.value)
+        )
+        .then((res) =>
+          res
+            .filter(
+              (r) =>
+                r["code"] !== undefined &&
+                r["code"] === 0 &&
+                r["data"] !== undefined &&
+                r["data"].length > 0
+            )
+            .reduce((acc, cur) => acc.concat(cur["data"]), [])
+        ),
+  };
+  const player5 = (player) => {
+    player.on("artplayerPluginDanmuku:emit", (danmu) => {
+      console.log(danmu);
+      fetch(danmakuApi, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          Id: danmakuId,
+          Referer: window.location.origin + window.location.pathname,
+          ...danmu,
         }),
-      ],
-    };
-    isDanmuOk.value = true;
-  });
+      });
+    });
+  };
 </script>
 ```
 
-:::tip
-插件暂时还不能注册事件，发送弹幕功能暂时还未能直接实现。
-:::
-
 <script setup>
-  import { onMounted , ref} from 'vue'
-  
-  const art0 = {
-    url: "/assets/video/s_720.mp4",
-  };
-
-  const art1 = {
-    url: "/assets/video/dash/master.m3u8",
-  };
-
-  const art2 = {
-    url: "/assets/video/s_720.flv",
-  };
-
-  const art3 = {
-    url: "/assets/video/dash/stream.mpd",
-  };
-
   const art4 = {
     url: "/assets/video/dash/master.m3u8",
     type: "customHLS",
@@ -257,44 +212,46 @@ export default defineUserConfig({
     },
   };
 
-  let art5 = {};
-  let isDanmuOk = ref(false);
-  onMounted(async () => {
-    const { default: artplayerPluginDanmuku } = await import(
-      "artplayer-plugin-danmuku"
-    );
+  const danmakuId = "cENuyhsT2rMOCohK";
+  const danmakuApi = "https://danmu.u2sb.com/api/artplayer/v1";
+  const bilibiliDanmaku = `${danmakuApi}/bilibili/BV1zt411t79A.json`;
 
-    const danmakuId = "cENuyhsT2rMOCohK";
-    const danmakuApi = "https://danmu.u2sb.com/api/artplayer/v1";
-    const bilibiliDanmaku = `${danmakuApi}/bilibili/BV1zt411t79A.json`;
-    art5 = {
-      url: "/assets/video/s_720.mp4",
-      plugins: [
-        artplayerPluginDanmuku({
-          danmuku: () =>
-            Promise.allSettled([
-              fetch(bilibiliDanmaku).then((res) => res.json()),
-              fetch(`${danmakuApi}/${danmakuId}.json`).then((res) =>
-                res.json()
-              ),
-            ])
-              .then((res) =>
-                res.filter((r) => r.status === "fulfilled").map((r) => r.value)
-              )
-              .then((res) =>
-                res
-                  .filter(
-                    (r) =>
-                      r["code"] !== undefined &&
-                      r["code"] === 0 &&
-                      r["data"] !== undefined &&
-                      r["data"].length > 0
-                  )
-                  .reduce((acc, cur) => acc.concat(cur["data"]), [])
-              ),
+  const danmu5 = {
+    danmuku: () =>
+      Promise.allSettled([
+        fetch(bilibiliDanmaku).then((res) => res.json()),
+        fetch(`${danmakuApi}/${danmakuId}.json`).then((res) => res.json()),
+      ])
+        .then((res) =>
+          res.filter((r) => r.status === "fulfilled").map((r) => r.value)
+        )
+        .then((res) =>
+          res
+            .filter(
+              (r) =>
+                r["code"] !== undefined &&
+                r["code"] === 0 &&
+                r["data"] !== undefined &&
+                r["data"].length > 0
+            )
+            .reduce((acc, cur) => acc.concat(cur["data"]), [])
+        ),
+  };
+  const player5 = (player) => {
+    player.on("artplayerPluginDanmuku:emit", (danmu) => {
+      console.log(danmu);
+      fetch(danmakuApi, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          Id: danmakuId,
+          Referer: window.location.origin + window.location.pathname,
+          ...danmu,
         }),
-      ],
-    };
-    isDanmuOk.value = true;
-  });
+      });
+    });
+  };
 </script>

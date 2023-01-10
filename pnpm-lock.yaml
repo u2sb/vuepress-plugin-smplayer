@@ -10,6 +10,7 @@ specifiers:
   artplayer: ^4.6.0
   artplayer-plugin-danmuku: ^4.4.11
   dashjs: ^4.5.2
+  dist: link:..\vuepress-plugin-smplayer2\dist
   hls.js: ^1.2.9
   mpegts.js: ^1.7.2
   nplayer: ^1.0.15
@@ -17,7 +18,7 @@ specifiers:
   vuepress: 2.0.0-beta.60
   vuepress-plugin-md-enhance: 2.0.0-beta.152
   vuepress-plugin-search-pro: 2.0.0-beta.152
-  vuepress-plugin-smplayer: 2.0.0-beta.20
+  vuepress-plugin-smplayer: 2.0.0-beta.22
 
 devDependencies:
   '@vuepress/client': 2.0.0-beta.60
@@ -29,6 +30,7 @@ devDependencies:
   artplayer: 4.6.0
   artplayer-plugin-danmuku: 4.4.11
   dashjs: 4.5.2
+  dist: link:../vuepress-plugin-smplayer2/dist
   hls.js: 1.2.9
   mpegts.js: 1.7.2
   nplayer: 1.0.15
@@ -36,7 +38,7 @@ devDependencies:
   vuepress: 2.0.0-beta.60_dlgznq46b2nyvtu5wqobknojfm
   vuepress-plugin-md-enhance: 2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau
   vuepress-plugin-search-pro: 2.0.0-beta.152_e7jwb2ulu5orbkux7obq5onfau
-  vuepress-plugin-smplayer: 2.0.0-beta.20_vue@3.2.45
+  vuepress-plugin-smplayer: 2.0.0-beta.22_vue@3.2.45
 
 packages:
 
@@ -3155,11 +3157,12 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress-plugin-smplayer/2.0.0-beta.20_vue@3.2.45:
-    resolution: {integrity: sha512-JV7KBBXu2/rX/PjD5k3nFdVzcUDKHLSCdtO2Gjlf5bGh7yZyXiJy6aKrUYMis37aJksiyRbSrPhhTNxWsdh4oA==}
+  /vuepress-plugin-smplayer/2.0.0-beta.22_vue@3.2.45:
+    resolution: {integrity: sha512-eLsJrZsmHYWD6oOPOkDlXP5XAlNp/i6uIgSTzYKsC2EfWaL1VPreaSAK1uAoii8X4834yv6HWHk8b2K4UI0r9g==}
     dependencies:
       '@vueuse/core': 9.10.0_vue@3.2.45
       artplayer: 4.6.0
+      artplayer-plugin-danmuku: 4.4.11
       dashjs: 4.5.2
       deepmerge-ts: 4.2.2
       hls.js: 1.2.9
