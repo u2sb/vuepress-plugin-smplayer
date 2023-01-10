@@ -12,16 +12,15 @@ const NPLAYER = nplayer as SbNPlayerOptions;
 
 export default defineComponent({
   props: {
-    src: {
-      type: Object,
-      required: true,
-    },
+    src: Object,
+    url: String,
+    player: Function,
+
     width: {
       type: String,
       default: NPLAYER.width,
       required: false,
     },
-
     height: {
       type: [String, Number],
       default: NPLAYER.height,
@@ -34,9 +33,10 @@ export default defineComponent({
   },
 
   setup(props) {
-    const src = {
+    let src = {
       ...merge(NPLAYER.src, props.src),
     };
+    src.src ??= props.url;
 
     const { el, width, height } = useSize<HTMLDivElement>(props, 0);
 
@@ -45,25 +45,30 @@ export default defineComponent({
     const initNPlayer = async () => {
       const { default: NPlayer } = await import("nplayer/dist/index.min.js");
       src.container = el.value;
+
       nplayer = new NPlayer(src);
+
       src.type = src.type || mse.checkType(src.src!);
-      if(src.type){
+      if (src.type) {
         switch (src.type) {
           case "m3u8":
           case "hls":
-            await mse.m3u8(nplayer.video, src.src!, nplayer);
+            await mse.m3u8(nplayer.video, src.src!, nplayer, "BeforeDispose");
             break;
           case "flv":
-            await mse.flv(nplayer.video, src.src!, nplayer);
+            await mse.flv(nplayer.video, src.src!, nplayer, "BeforeDispose");
             break;
           case "mpd":
           case "dash":
-            await mse.dash(nplayer.video, src.src!, nplayer);
+            await mse.dash(nplayer.video, src.src!, nplayer, "BeforeDispose");
             break;
         }
       }
 
       nplayer.mount(el.value);
+      if (props.player) {
+        props.player(nplayer);
+      }
     };
 
     const destroyNPlayer = () => {

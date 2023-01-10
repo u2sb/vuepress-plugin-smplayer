@@ -18,16 +18,15 @@ const ARTPLAYER = artplayer as SbArtPlayerOptions;
 
 export default defineComponent({
   props: {
-    src: {
-      type: Object as PropType<SbArtPlayerPlayerOptions>,
-      required: true,
-    },
+    src: Object as PropType<SbArtPlayerPlayerOptions>,
+    url: String,
+    player: Function,
+
     width: {
       type: String,
       default: ARTPLAYER.width,
       required: false,
     },
-
     height: {
       type: [String, Number],
       default: ARTPLAYER.height,
@@ -40,9 +39,11 @@ export default defineComponent({
   },
 
   setup(props) {
-    const src = {
+    let src = {
       ...merge(ARTPLAYER.src, props.src),
     };
+
+    src.url ??= props.url;
 
     const { el, width, height } = useSize<HTMLDivElement>(props, 0);
 
@@ -69,6 +70,9 @@ export default defineComponent({
       }
 
       artplayer = new art(src as ArtplayerOption);
+      if (props.player) {
+        props.player(artplayer);
+      }
     };
 
     const destroyArtPlayer = () => {

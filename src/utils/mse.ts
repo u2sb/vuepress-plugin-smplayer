@@ -17,7 +17,8 @@ export const checkType = (url: string) => {
 export const m3u8 = async (
   mediaElement: HTMLMediaElement,
   src: string,
-  player: any
+  player: any,
+  onDestroy: string = "destroy"
 ) => {
   if (
     mediaElement.canPlayType("application/x-mpegURL") ||
@@ -32,11 +33,7 @@ export const m3u8 = async (
       hls.loadSource(src);
     });
 
-    player.on("destroy", function () {
-      hls.destroy();
-    });
-
-    player.on("BeforeDispose", function () {
+    player.on(onDestroy, function () {
       hls.destroy();
     });
   }
@@ -45,7 +42,8 @@ export const m3u8 = async (
 export const flv = async (
   mediaElement: HTMLMediaElement,
   src: string,
-  player: any
+  player: any,
+  onDestroy: string = "destroy"
 ) => {
   const { default: mpegts } = await import("mpegts.js/dist/mpegts.js");
   const flvPlayer = mpegts.createPlayer({
@@ -55,10 +53,7 @@ export const flv = async (
   flvPlayer.attachMediaElement(mediaElement);
   flvPlayer.load();
 
-  player.on("destroy", function () {
-    flvPlayer.destroy();
-  });
-  player.on("BeforeDispose", function () {
+  player.on(onDestroy, function () {
     flvPlayer.destroy();
   });
 };
@@ -66,16 +61,14 @@ export const flv = async (
 export const dash = async (
   mediaElement: HTMLMediaElement,
   src: string,
-  player: any
+  player: any,
+  onDestroy: string = "destroy"
 ) => {
   const { default: dashjs } = await import("dashjs/dist/dash.all.min.js");
   const dashPlayer = dashjs.MediaPlayer().create();
   dashPlayer.initialize(mediaElement, src, false);
 
-  player.on("destroy", function () {
-    dashPlayer.destroy();
-  });
-  player.on("BeforeDispose", function () {
+  player.on(onDestroy, function () {
     dashPlayer.destroy();
   });
 };
