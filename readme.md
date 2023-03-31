@@ -1,3 +1,7 @@
+## 说明
+
+如果不出意外，这个插件不会再有后续更新了，推荐使用 [vuepress-plugin-components](https://plugin-components.vuejs.press/) 替代本品。
+
 ## 介绍
 
 一个能在 Vuepress 中快速插入媒体标签的插件
@@ -10,7 +14,7 @@
 - [x] [西瓜视频](https://www.ixigua.com/)
 - [ ] [YouTube]()
 - [x] [ArtPlayer](https://github.com/zhw2590582/ArtPlayer)
-- [ ] [NPlayer](https://github.com/oyuyue/nplayer)
+- [x] [NPlayer](https://github.com/oyuyue/nplayer)
 - [x] [vue3-audio-player](https://github.com/RealCoolSnow/vue3-audio-player)
 
 ## 感谢
